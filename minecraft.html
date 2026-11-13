@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Speech Mobs">
+<title>Guess That Minecraft Mob!</title>
+<style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html, body {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, 'Trebuchet MS', Arial, sans-serif;
+  background: linear-gradient(135deg, #c9f0b8, #a7e4f2, #e2d1f9);
+  color: #263226;
+  text-align: center;
+}
+header {
+  background: linear-gradient(180deg, #5ea83a 0%, #4b8b2c 76%, #79553a 76%, #65452e 100%);
+  color: #ffffff;
+  padding: 20px 18px 24px;
+  border-bottom: 5px solid #4a3220;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.45);
+}
+h1 { margin: 0; font-size: 2.2rem; letter-spacing: 0.5px; }
+.subtitle { margin: 6px 0 0; font-size: 1.02rem; }
+.container {
+  max-width: 850px;
+  margin: 20px auto;
+  padding: 15px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 5px 14px rgba(38, 64, 38, 0.16);
+  border: 2px solid #dcebd6;
+}
+h2 { color: #38761d; margin-top: 0; }
+select, input, button {
+  font: inherit;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 5px;
+  border: 2px solid #c9dec2;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+select { max-width: 100%; background: #fff; color: #263226; }
+button {
+  background: #4e8c32;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  -webkit-appearance: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+button:hover { background: #3e7326; }
+button:active, button.is-pressed {
+  transform: scale(0.95);
+  filter: brightness(0.92);
+}
+button:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+.primary { background: #2e8b9a; }
+.primary:hover { background: #236f7b; }
+.secondary { background: #7b887a; }
+.secondary:hover { background: #626e61; }
+.modeled-btn { background: #d97706; color: white; }
+.modeled-btn:hover { background: #b45309; }
+.modeled-btn.active {
+  background: #b45309;
+  outline: 3px solid #fde68a;
+}
+.danger-btn { background: #d64545; }
+.danger-btn:hover { background: #b53434; }
+
+.preview-warning {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 2px solid #ef4444;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.client-bar {
+  background: #f1f8ee;
+  border: 2px solid #cbe3c2;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.client-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.counter {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #38761d;
+  margin: 10px;
+}
+.progress {
+  height: 20px;
+  background: #e5efe2;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0;
+  border: 1px solid #c5dcc0;
+}
+.bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6ab04c, #2e8b9a);
+  transition: .3s;
+}
+.prompt {
+  font-size: 1.65rem;
+  font-weight: bold;
+  background: #f1f8ee;
+  border: 2px solid #d5e8ce;
+  padding: 22px;
+  border-radius: 15px;
+  margin: 15px 0;
+}
+.cue-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  background: #e3f2fd;
+  color: #1e567a;
+}
+.cue-badge.modeled {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #f59e0b;
+}
+.scoring-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+.scoring-row button {
+  min-width: 185px;
+  min-height: 56px;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+}
+.utility-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.hidden { display: none; }
+.choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+@media (max-width: 480px) {
+  .choices { grid-template-columns: 1fr; }
+}
+.choice {
+  background: #eef7eb;
+  color: #264d19;
+  border: 3px solid #c2dec0;
+  min-height: 72px;
+  font-size: 1.15rem;
+}
+.choice:hover { background: #dcefd6; }
+
+.mob-stage {
+  background: radial-gradient(circle, #eef8ff 0%, #d8ecd0 100%);
+  border: 3px solid #c2dec0;
+  border-radius: 18px;
+  padding: 18px;
+  margin: 14px auto;
+  max-width: 320px;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#mobSilhouette {
+  max-width: 190px;
+  max-height: 190px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0);
+  margin: 8px;
+  transition: filter 0.4s ease, transform 0.3s ease;
+  image-rendering: auto;
+}
+#mobSilhouette.revealed {
+  filter: none;
+  transform: scale(1.05);
+}
+#mobFallbackIcon {
+  font-size: 5rem;
+  filter: brightness(0);
+  margin: 8px;
+}
+#mobFallbackIcon.revealed {
+  filter: none;
+}
+.mob-hint {
+  font-size: 0.95rem;
+  color: #486348;
+  background: #f4faf2;
+  border: 1px dashed #9fc59a;
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: inline-block;
+  margin-top: 4px;
+}
+.feedback {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-height: 35px;
+  margin: 10px;
+}
+.stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.stat {
+  background: #e6f4ea;
+  border: 1px solid #bfe0c8;
+  border-radius: 12px;
+  padding: 12px 22px;
+  font-weight: bold;
+}
+label { font-weight: bold; display: block; margin-top: 6px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
+th, td {
+  border: 1px solid #c9dec2;
+  padding: 8px;
+}
+th { background: #f1f8ee; }
+.import-help {
+  font-size: 0.88rem;
+  color: #4f5e4f;
+}
+footer { padding: 20px; font-size: .85rem; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⛏️ Guess That Minecraft Mob! 🟩</h1>
+  <p class="subtitle">Practise your sounds, unlock Minecraft mobs, and track your progress!</p>
+</header>
+
+<div class="container">
+
+<!-- WARNING SHOWN ONLY IF JS IS BLOCKED BY IPAD QUICK LOOK -->
+<div id="jsWarning" class="preview-warning">
+  ⚠️ If buttons do not respond on iPad, you are viewing this file in Apple's static Quick Look preview (which disables JavaScript). Open this page in Safari via a web link (e.g., GitHub Pages) or an HTML viewer app.
+</div>
+
+<!-- SLP SETTINGS -->
+<section class="card">
+<h2>🎓 SLP Control Center</h2>
+<p>Select a client and choose their articulation goal.</p>
+
+<!-- CLIENT PROFILES -->
+<div class="client-bar">
+  <label for="clientSelect">Active Client</label>
+  <div class="client-controls">
+    <select id="clientSelect"></select>
+    <input type="text" id="newClientName" placeholder="Client initials or name..." aria-label="New client name">
+    <button type="button" id="addClientBtn">+ Add Client</button>
+    <button type="button" id="deleteClientBtn" class="danger-btn">Remove Client</button>
+  </div>
+  <div id="clientStatus" class="import-help" style="margin-top:6px;"></div>
+</div>
+
+<div class="settings-grid">
+  <div>
+    <label for="sound">Target sound</label>
+    <select id="sound">
+      <option value="p">/p/</option>
+      <option value="b">/b/</option>
+      <option value="t">/t/</option>
+      <option value="d">/d/</option>
+      <option value="k">/k/</option>
+      <option value="g">/g/</option>
+      <option value="m">/m/</option>
+      <option value="n">/n/</option>
+      <option value="ng">/ŋ/ (ng)</option>
+      <option value="f">/f/</option>
+      <option value="v">/v/</option>
+      <option value="s">/s/</option>
+      <option value="z">/z/</option>
+      <option value="sh">/ʃ/ (sh)</option>
+      <option value="zh">/ʒ/ (zh)</option>
+      <option value="ch">/tʃ/ (ch)</option>
+      <option value="j">/dʒ/ (j)</option>
+      <option value="th1">/θ/ (voiceless th)</option>
+      <option value="th2">/ð/ (voiced th)</option>
+      <option value="l">/l/</option>
+      <option value="r">/r/</option>
+      <option value="w">/w/</option>
+      <option value="y">/j/ (y)</option>
+      <option value="h">/h/</option>
+      <option value="blend">Consonant blends</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="position">Word position</label>
+    <select id="position">
+      <option value="initial">Initial</option>
+      <option value="medial">Medial</option>
+      <option value="final">Final</option>
+      <option value="mixed">Mixed</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="level">Practice level</label>
+    <select id="level">
+      <option value="word">Word level</option>
+      <option value="sentence">Sentence level</option>
+    </select>
+  </div>
+</div>
+
+<p><b>Goal: 5 correct productions to unlock a mystery Minecraft mob!</b></p>
+<button type="button" id="startBtn" class="primary">Start Speech Challenge ⛏️</button>
+</section>
+
+<!-- CUSTOM WORD IMPORT -->
+<section class="card">
+  <h2>📝 Custom Practice Words</h2>
+  <p>Import custom words or sentences (saved specifically to the active client).</p>
+  <div class="import-row">
+    <input type="file" id="wordFile" accept=".csv,.txt,text/csv,text/plain">
+    <button type="button" id="importBtn">Import File</button>
+    <button type="button" id="clearWordsBtn" class="secondary">Clear Client Words</button>
+  </div>
+  <p class="import-help">TXT: one item per line. CSV: required <b>word</b> column; optional <b>sound</b>, <b>position</b>, and <b>level</b> columns. Example sound values: r, sh, th1. Position: initial, medial, final, mixed. Level: word or sentence.</p>
+  <div id="importStatus" role="status" aria-live="polite"></div>
+</section>
+
+<!-- SPEECH PRACTICE -->
+<section class="card hidden" id="practice">
+<h2>🗣️ Speech Challenge</h2>
+<div class="stats">
+  <div class="stat">Client: <span id="activeClientBadge">Default Client</span></div>
+  <div class="stat">Sound: <span id="activeSound">/p/</span></div>
+  <div class="stat">Goal: 5 productions</div>
+</div>
+
+<p id="positionText"></p>
+<div><span id="cueBadge" class="cue-badge">Cueing: Spontaneous / Independent</span></div>
+<div class="prompt" id="speechPrompt">Say your target word!</div>
+<p>Tap <b>🗣️ Modeled</b> if you provide a model first, then score the student's production.</p>
+
+<div class="counter"><span id="count">0</span> / 5</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+
+<div class="scoring-row">
+  <button type="button" id="modeledBtn" class="modeled-btn">🗣️ Modeled: OFF</button>
+  <button type="button" id="correctBtn">⭐ Correct Production</button>
+  <button type="button" id="incorrectBtn" class="secondary">✖ Incorrect Production</button>
+</div>
+<div class="utility-row">
+  <button type="button" id="nextPromptBtn">Next Practice Word</button>
+  <button type="button" id="resetCountBtn">Reset Count</button>
+</div>
+
+<div class="feedback" id="practiceFeedback"></div>
+</section>
+
+<!-- MINECRAFT MOB GAME -->
+<section class="card hidden" id="mobGame">
+<h2>🎉 You spawned a Mystery Mob!</h2>
+<p>Look closely at the silhouette!</p>
+
+<div class="mob-stage">
+  <img id="mobSilhouette" alt="Mystery Minecraft mob silhouette" src="" />
+  <div id="mobFallbackIcon" class="hidden" aria-hidden="true"></div>
+</div>
+<div id="mobHint" class="mob-hint"></div>
+<div id="mysteryName" style="font-size:1.5rem;font-weight:bold;margin-top:8px;"></div>
+<p>Who is this Minecraft mob?</p>
+
+<div class="choices" id="choices"></div>
+<div class="feedback" id="guessFeedback"></div>
+<button type="button" class="primary hidden" id="nextMob">Next Mob ➜</button>
+</section>
+
+<!-- SCOREBOARD -->
+<section class="card">
+<h2>🏆 Explorer Scoreboard — <span id="scoreboardClientName">Default Client</span></h2>
+<div class="stats">
+  <div class="stat">Mobs guessed correctly: <span id="caught">0</span></div>
+  <div class="stat">Emeralds (Points): <span id="points">0</span> 💎</div>
+</div>
+<p>Keep practising to discover every Minecraft mob!</p>
+  <div class="import-row">
+    <button type="button" id="exportActiveBtn">⬇ Export Active Client CSV</button>
+    <button type="button" id="exportAllBtn">⬇ Export All Clients CSV</button>
+    <button type="button" id="copyCsvBtn" class="secondary">📋 Copy CSV to Clipboard</button>
+    <button type="button" id="clearLogBtn" class="secondary">Clear Client Session Data</button>
+  </div>
+  <p class="import-help">Export includes: client, timestamp, target sound, position, level, prompt, cue type (Spontaneous vs. Modeled), and accuracy.</p>
+  <table id="sessionLog">
+    <thead>
+      <tr>
+        <th>Total Trials</th>
+        <th>Spontaneous</th>
+        <th>Modeled</th>
+        <th>Overall Accuracy</th>
+        <th>Client Words</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="logTrials">0</td>
+        <td id="logSpontaneous">—</td>
+        <td id="logModeled">—</td>
+        <td id="logAccuracy">—</td>
+        <td id="logCustom">0</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<footer>
+  Made for speech therapy practice 💚<br>
+  SLP-supervised articulation practice. Data is saved locally in your browser per client.
+</footer>
+
+<script>
+// Hide static preview warning immediately when JavaScript executes
+document.getElementById("jsWarning").classList.add("hidden");
+
+// Enable active press visual states on iOS Safari
+document.addEventListener("touchstart", function(e) {
+  const btn = e.target.closest("button");
+  if (btn && !btn.disabled) btn.classList.add("is-pressed");
+}, { passive: true });
+
+document.addEventListener("touchend", function(e) {
+  const btn = e.target.closest("button");
+  if (btn) btn.classList.remove("is-pressed");
+}, { passive: true });
+
+document.addEventListener("touchcancel", function(e) {
+  const btn = e.target.closest("button");
+  if (btn) btn.classList.remove("is-pressed");
+}, { passive: true });
+
+// Unified fast touch + click binder for iPad Safari & desktop
+function bindTap(el, handler) {
+  if (!el) return;
+  let touchHandled = false;
+  let startX = 0;
+  let startY = 0;
+
+  el.addEventListener("touchstart", function(e) {
+    if (el.disabled) return;
+    if (e.touches && e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  el.addEventListener("touchend", function(e) {
+    if (el.disabled) return;
+    if (e.changedTouches && e.changedTouches.length === 1) {
+      const dx = Math.abs(e.changedTouches[0].clientX - startX);
+      const dy = Math.abs(e.changedTouches[0].clientY - startY);
+      if (dx > 12 || dy > 12) return;
+    }
+    e.preventDefault();
+    touchHandled = true;
+    handler(e);
+    setTimeout(() => { touchHandled = false; }, 400);
+  }, { passive: false });
+
+  el.addEventListener("click", function(e) {
+    if (el.disabled || touchHandled) return;
+    handler(e);
+  });
+}
+
+const prompts = {
+  p: {
+    initial: ["pig", "pencil", "pizza", "panda", "popcorn"],
+    medial: ["apple", "happy", "puppy", "hippo", "paper"],
+    final: ["cup", "map", "soap", "hop", "ship"]
+  },
+  b: {
+    initial: ["ball", "baby", "bear", "book", "bus"],
+    medial: ["rabbit", "cabin", "robot", "table", "bubble"],
+    final: ["web", "tub", "crab", "bib", "cub"]
+  },
+  t: {
+    initial: ["table", "turtle", "tiger", "tomato", "tent"],
+    medial: ["button", "water", "kitten", "butter", "mitten"],
+    final: ["hat", "cat", "boat", "kite", "bat"]
+  },
+  d: {
+    initial: ["dog", "daddy", "duck", "door", "dolphin"],
+    medial: ["ladder", "candy", "spider", "garden", "window"],
+    final: ["bed", "red", "bird", "cloud", "hand"]
+  },
+  k: {
+    initial: ["cat", "cookie", "kite", "king", "cow"],
+    medial: ["taco", "rocket", "monkey", "chicken", "pumpkin"],
+    final: ["book", "duck", "cake", "sock", "bike"]
+  },
+  g: {
+    initial: ["goat", "gum", "girl", "gift", "goose"],
+    medial: ["tiger", "wagon", "burger", "dragon", "sugar"],
+    final: ["dog", "pig", "frog", "bug", "egg"]
+  },
+  m: {
+    initial: ["moon", "monkey", "mouse", "milk", "muffin"],
+    medial: ["lemon", "hammer", "camel", "snowman", "tomato"],
+    final: ["gum", "ham", "drum", "worm", "jam"]
+  },
+  n: {
+    initial: ["nose", "napkin", "nest", "nurse", "net"],
+    medial: ["dinner", "banana", "bunny", "donut", "peanut"],
+    final: ["sun", "pen", "train", "spoon", "lion"]
+  },
+  ng: {
+    initial: [],
+    medial: ["finger", "hanger", "singer", "ping-pong", "kangaroo"],
+    final: ["sing", "ring", "song", "king", "wing"]
+  },
+  f: {
+    initial: ["fish", "funny", "fox", "fork", "feather"],
+    medial: ["coffee", "elephant", "muffin", "dolphin", "waffle"],
+    final: ["leaf", "off", "giraffe", "roof", "chef"]
+  },
+  v: {
+    initial: ["van", "vacuum", "vest", "vine", "volcano"],
+    medial: ["seven", "river", "oven", "shovel", "beaver"],
+    final: ["love", "five", "glove", "wave", "cave"]
+  },
+  s: {
+    initial: ["sun", "sock", "soap", "sand", "seal"],
+    medial: ["pencil", "dinosaur", "castle", "bicycle", "glasses"],
+    final: ["bus", "mouse", "house", "horse", "ice"]
+  },
+  z: {
+    initial: ["zebra", "zipper", "zoo", "zero", "zucchini"],
+    medial: ["puzzle", "music", "lizard", "wizard", "daisy"],
+    final: ["nose", "cheese", "bees", "toes", "rose"]
+  },
+  sh: {
+    initial: ["shoe", "shower", "sheep", "shark", "shell"],
+    medial: ["fishing", "washing", "ocean", "lotion", "mushroom"],
+    final: ["fish", "brush", "wash", "dish", "push"]
+  },
+  zh: {
+    initial: ["genre"],
+    medial: ["measure", "treasure", "usual", "vision", "television"],
+    final: ["beige", "garage", "collage", "massage", "camouflage"]
+  },
+  ch: {
+    initial: ["chair", "chicken", "cheese", "cherry", "chin"],
+    medial: ["teacher", "ketchup", "kitchen", "nature", "pitcher"],
+    final: ["watch", "peach", "beach", "couch", "lunch"]
+  },
+  j: {
+    initial: ["jump", "jelly", "jacket", "giraffe", "juice"],
+    medial: ["magic", "pajamas", "pigeon", "soldier", "angel"],
+    final: ["bridge", "orange", "cage", "page", "fridge"]
+  },
+  th1: {
+    initial: ["thumb", "thunder", "three", "thirsty", "thorn"],
+    medial: ["toothbrush", "birthday", "bathtub", "python", "healthy"],
+    final: ["bath", "teeth", "mouth", "earth", "path"]
+  },
+  th2: {
+    initial: ["this", "that", "there", "them", "those"],
+    medial: ["mother", "weather", "feather", "brother", "father"],
+    final: ["smooth", "breathe", "bathe", "soothe", "clothe"]
+  },
+  l: {
+    initial: ["lion", "lemon", "leaf", "lamp", "ladder"],
+    medial: ["yellow", "balloon", "pillow", "salad", "dolphin"],
+    final: ["ball", "bell", "owl", "shell", "whale"]
+  },
+  r: {
+    initial: ["rabbit", "rainbow", "rocket", "red", "ring"],
+    medial: ["carrot", "pirate", "giraffe", "cherry", "orange"],
+    final: ["car", "star", "bear", "door", "chair"]
+  },
+  w: {
+    initial: ["water", "window", "wagon", "whale", "worm"],
+    medial: ["flower", "towel", "kiwi", "shower", "cowboy"],
+    final: []
+  },
+  y: {
+    initial: ["yellow", "yoyo", "yogurt", "yarn", "yard"],
+    medial: ["onion", "canyon", "crayon", "kayak", "lawyer"],
+    final: []
+  },
+  h: {
+    initial: ["house", "hello", "hammer", "happy", "horse"],
+    medial: ["behind", "ahead", "grasshopper", "treehouse", "doghouse"],
+    final: []
+  },
+  blend: {
+    initial: ["star", "plane", "green", "train", "spoon"],
+    medial: ["ostrich", "ice-cream", "umbrella", "backpack", "hamster"],
+    final: ["desk", "nest", "milk", "hand", "jump"]
+  }
+};
+
+const sentences = {
+  p: ["The pig is pink.","I put the paper on the table.","The puppy plays outside.","Please pass the popcorn.","The cup is purple."],
+  b: ["The baby has a blue ball.","The rabbit is in the barn.","I see a big balloon.","The boy rides his bike.","The bear is eating berries."],
+  t: ["The turtle is tiny.","I ate a tomato today.","The cat is sitting on the mat.","The train is going fast.","Put the toy on the table."],
+  d: ["The dog is digging.","Daddy drives the red car.","The lady has a doll.","I found a diamond.","The bird is in the garden."],
+  k: ["The cat is climbing.","I like chocolate cake.","The duck is in the pond.","The cookie is crunchy.","The cow is in the kitchen."],
+  g: ["The goat is green.","The girl is playing a game.","I got a big gift.","The dog is digging.","The wagon is going fast."],
+  m: ["My mom made muffins.","The monkey is climbing.","I see a small mouse.","The lemon is yellow.","The farmer has a hammer."],
+  n: ["The nice nurse is kind.","The bunny is eating a banana.","I need a new notebook.","The sun is shining.","The dinner is ready."],
+  ng: ["The king is singing.","I like swinging.","The ring is sparkling.","The bird is singing.","We are going camping."],
+  f: ["The fish is funny.","The elephant has big feet.","I found a flower.","The family is having fun.","The fox is fast."],
+  v: ["The van is very big.","I love vegetables.","The seven birds are flying.","The vacuum is loud.","The river is flowing."],
+  s: ["The sun is shining.","I see six silly snakes.","The mouse is eating cheese.","The bus is yellow.","Sam likes swimming."],
+  z: ["The zebra is at the zoo.","The music is amazing.","The puzzle is easy.","The bees are buzzing.","My nose is cold."],
+  sh: ["The sheep is in the shed.","She has shiny shoes.","The fish is splashing.","I like shopping.","The spaceship is silver."],
+  zh: ["The treasure is hidden.","The television has a picture.","I measure the vision.","The usual decision is easy.","The beige cushion is soft."],
+  ch: ["The chicken is eating cheese.","The teacher has a chair.","I watch the children play.","The cheese is crunchy.","The train is at the station."],
+  j: ["The jelly is delicious.","The giraffe is jumping.","The magic show is fun.","The bridge is very long.","The baby has a new jacket."],
+  th1: ["I think about Thursday.","The three thieves are hiding.","I brush my teeth.","The thunder is loud.","I see a thorn."],
+  th2: ["This is my brother.","The mother is happy.","Those are their toys.","The weather is warm.","My father is tall."],
+  l: ["The lion likes lemons.","The little girl is laughing.","I see a yellow balloon.","The flower is beautiful.","The ball is on the table."],
+  r: ["The rabbit is running.","The red car is very fast.","I like riding my bike.","The green frog is jumping.","The pirate has a treasure."],
+  w: ["The whale is swimming.","The window is open.","I want watermelon.","The cow is in the meadow.","We went to the zoo."],
+  y: ["The yellow yo-yo is yours.","The boy is playing.","I eat yogurt every morning.","The unicorn is young.","The onion is yellow."],
+  h: ["The happy horse is hungry.","The house has a big hall.","I hear a helicopter.","He has a hat.","The hamster is hiding."],
+  blend: ["The frog jumps on the grass.","The plane is flying.","The star is shining.","The train is fast.","The blue flower is pretty."]
+};
+
+const mobs = [
+  { name: "Creeper", wikiPage: "Creeper", files: ["Creeper_JE2_BE1.png", "Creeper_JE1.png"], hint: "Hostile • Hisses before exploding!" },
+  { name: "Enderman", wikiPage: "Enderman", files: ["Enderman_JE3_BE1.png", "Enderman_JE2.png", "Enderman_JE1.png"], hint: "Neutral • Tall, teleports, and dislikes water." },
+  { name: "Skeleton", wikiPage: "Skeleton", files: ["Skeleton_JE6_BE4.png", "Skeleton_JE5.png"], hint: "Hostile • Shoots arrows with a bow." },
+  { name: "Zombie", wikiPage: "Zombie", files: ["Zombie_JE3_BE2.png", "Zombie_JE2.png"], hint: "Hostile • Groans at night and burns in sunlight." },
+  { name: "Spider", wikiPage: "Spider", files: ["Spider_JE5_BE4.png", "Spider_JE4.png"], hint: "Neutral in daylight • Can climb walls." },
+  { name: "Pig", wikiPage: "Pig", files: ["Temperate_Pig_JE3_BE2.png", "Pig_JE3_BE2.png"], hint: "Passive • Loves carrots and can wear a saddle." },
+  { name: "Cow", wikiPage: "Cow", files: ["Temperate_Cow_JE5_BE2.png", "Cow_JE5_BE2.png"], hint: "Passive • Gives milk and leather." },
+  { name: "Sheep", wikiPage: "Sheep", files: ["White_Sheep_JE3_BE2.png", "Sheep_JE3_BE2.png"], hint: "Passive • Drops wool when sheared." },
+  { name: "Chicken", wikiPage: "Chicken", files: ["Temperate_Chicken_JE2_BE2.png", "Chicken_JE2_BE2.png"], hint: "Passive • Lays eggs and flaps when falling." },
+  { name: "Wolf", wikiPage: "Wolf", files: ["Pale_Wolf_JE2_BE2.png", "Wolf_JE2_BE2.png"], hint: "Neutral • Can be tamed with bones." },
+  { name: "Cat", wikiPage: "Cat", files: ["Tabby_Cat_JE2_BE2.png", "Tuxedo_Cat_JE2_BE2.png", "Cat_JE2_BE2.png"], hint: "Passive • Scares away Creepers and Phantoms." },
+  { name: "Fox", wikiPage: "Fox", files: ["Red_Fox_JE1_BE1.png", "Fox_JE1_BE1.png"], hint: "Passive • Sleeps curled up and holds items in its mouth." },
+  { name: "Axolotl", wikiPage: "Axolotl", files: ["Lucy_Axolotl_JE2_BE2.png", "Axolotl_JE2_BE2.png"], hint: "Passive • Cute aquatic friend found in Lush Caves." },
+  { name: "Bee", wikiPage: "Bee", files: ["Bee_JE1_BE1.png"], hint: "Neutral • Pollinates flowers and makes honey." },
+  { name: "Iron Golem", wikiPage: "Iron_Golem", files: ["Iron_Golem_JE2_BE2.png"], hint: "Neutral • Protects villagers and holds poppies." },
+  { name: "Snow Golem", wikiPage: "Snow_Golem", files: ["Snow_Golem_JE2_BE2.png"], hint: "Passive • Built from snow blocks and a carved pumpkin." },
+  { name: "Villager", wikiPage: "Villager", files: ["Plains_Villager_Base_JE2.png", "Villager_JE2.png"], hint: "Passive • Trades emeralds for items." },
+  { name: "Slime", wikiPage: "Slime", files: ["Slime_JE3_BE2.png"], hint: "Hostile • Bounces around and splits when defeated." },
+  { name: "Ghast", wikiPage: "Ghast", files: ["Ghast_JE2_BE2.png"], hint: "Hostile • Floats in the Nether and shoots fireballs." },
+  { name: "Blaze", wikiPage: "Blaze", files: ["Blaze_JE2_BE2.png"], hint: "Hostile • Spinning yellow rods in Nether Fortresses." },
+  { name: "Warden", wikiPage: "Warden", files: ["Warden_JE1_BE1.png"], hint: "Hostile • Huge blind mob in the Deep Dark." },
+  { name: "Allay", wikiPage: "Allay", files: ["Allay_JE1_BE1.png"], hint: "Passive • Blue flying helper that collects matching items." },
+  { name: "Panda", wikiPage: "Panda", files: ["Panda_JE1_BE1.png"], hint: "Neutral • Eats bamboo in the jungle." },
+  { name: "Turtle", wikiPage: "Turtle", files: ["Turtle_JE1_BE1.png"], hint: "Passive • Swims in oceans and lays eggs on beaches." },
+  { name: "Llama", wikiPage: "Llama", files: ["Creamy_Llama_JE2_BE2.png", "Llama_JE2_BE2.png"], hint: "Neutral • Carries chests and spits when provoked." },
+  { name: "Guardian", wikiPage: "Guardian", files: ["Guardian_JE2_BE2.png"], hint: "Hostile • Spiky one-eyed ocean monument mob." },
+  { name: "Sniffer", wikiPage: "Sniffer", files: ["Sniffer_JE1_BE1.png"], hint: "Passive • Ancient six-legged mob that sniffs out seeds." },
+  { name: "Ender Dragon", wikiPage: "Ender_Dragon", files: ["Ender_Dragon.gif", "Ender_Dragon_JE1_BE1.png"], hint: "Boss • Rules The End dimension." }
+];
+
+const resolvedWikiImageCache = {};
+
+async function fetchWikiMobCandidates(mob) {
+  if (resolvedWikiImageCache[mob.name]) {
+    return resolvedWikiImageCache[mob.name];
+  }
+
+  const urls = [];
+  // 1. Direct Special:Redirect/file URLs (follows Minecraft Wiki internal file redirects automatically)
+  for (const file of mob.files) {
+    urls.push(`https://minecraft.wiki/w/Special:Redirect/file/${encodeURIComponent(file)}`);
+    urls.push(`https://minecraft.wiki/images/${encodeURIComponent(file)}`);
+  }
+
+  // 2. Query Minecraft Wiki official MediaWiki API for the mob page lead image & page images
+  try {
+    const apiUrl = `https://minecraft.wiki/api.php?action=query&titles=${encodeURIComponent(mob.wikiPage)}&prop=pageimages|images&piprop=original|thumbnail&pithumbsize=320&imlimit=25&format=json&origin=*`;
+    const resp = await fetch(apiUrl);
+    if (resp.ok) {
+      const data = await resp.json();
+      const pages = data?.query?.pages || {};
+      for (const pageId of Object.keys(pages)) {
+        const page = pages[pageId];
+        if (page.original?.source) urls.unshift(page.original.source);
+        if (page.thumbnail?.source) urls.unshift(page.thumbnail.source);
+        if (Array.isArray(page.images)) {
+          const cleanName = mob.name.replace(/\s+/g, "_").toLowerCase();
+          const matchingFiles = page.images
+            .map(img => img.title.replace(/^File:/i, ""))
+            .filter(fn => /\.(png|gif|webp)$/i.test(fn))
+            .filter(fn => fn.toLowerCase().includes(cleanName) && !/face|head|spawn|egg|icon|je1_be1_old/i.test(fn));
+          for (const fn of matchingFiles) {
+            urls.push(`https://minecraft.wiki/w/Special:Redirect/file/${encodeURIComponent(fn)}`);
+          }
+        }
+      }
+    }
+  } catch (e) {}
+
+  // 3. Fallback to Fandom Minecraft Wiki Special:Redirect/file if minecraft.wiki is unreachable
+  for (const file of mob.files) {
+    urls.push(`https://minecraft.fandom.com/wiki/Special:Redirect/file/${encodeURIComponent(file)}`);
+  }
+
+  const uniqueUrls = [...new Set(urls)];
+  resolvedWikiImageCache[mob.name] = uniqueUrls;
+  return uniqueUrls;
+}
+
+async function loadMobImageFromWiki(mob, imgEl, fallbackEl) {
+  const candidates = await fetchWikiMobCandidates(mob);
+  let idx = 0;
+
+  function tryNextUrl() {
+    if (idx >= candidates.length) {
+      imgEl.classList.add("hidden");
+      fallbackEl.classList.remove("hidden");
+      fallbackEl.style.fontSize = "1.05rem";
+      fallbackEl.style.filter = "none";
+      fallbackEl.textContent = "Image unavailable offline — use the clue below!";
+      return;
+    }
+    const nextUrl = candidates[idx++];
+    imgEl.onerror = tryNextUrl;
+    imgEl.onload = () => {
+      resolvedWikiImageCache[mob.name] = [nextUrl];
+    };
+    imgEl.src = nextUrl;
+  }
+
+  tryNextUrl();
+}
+
+const STORAGE_KEY = "minecraft_slp_clients_v1";
+
+function createDefaultClient(id, name) {
+  return {
+    id,
+    name,
+    sound: "p",
+    position: "initial",
+    level: "word",
+    caught: 0,
+    points: 0,
+    customEntries: [],
+    trialLog: []
+  };
+}
+
+let appState = loadState();
+let count = 0;
+let currentMob;
+let locked = false;
+let lastMob = null;
+let currentPrompt = "";
+let isModeled = false;
+
+const $ = id => document.getElementById(id);
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.clients) && parsed.clients.length) {
+        return parsed;
+      }
+    }
+  } catch (e) {}
+  const defaultClient = createDefaultClient("client-default", "Default Client");
+  return { activeClientId: defaultClient.id, clients: [defaultClient] };
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+  } catch (e) {}
+}
+
+function getActiveClient() {
+  return appState.clients.find(c => c.id === appState.activeClientId) || appState.clients[0];
+}
+
+function renderClientSelector() {
+  const select = $("clientSelect");
+  select.innerHTML = "";
+  appState.clients.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c.id;
+    opt.textContent = c.name;
+    select.appendChild(opt);
+  });
+  const active = getActiveClient();
+  appState.activeClientId = active.id;
+  select.value = active.id;
+  loadClientIntoUI();
+}
+
+function loadClientIntoUI() {
+  const client = getActiveClient();
+  $("sound").value = client.sound || "p";
+  $("position").value = client.position || "initial";
+  $("level").value = client.level || "word";
+  $("caught").textContent = client.caught || 0;
+  $("points").textContent = client.points || 0;
+  $("activeClientBadge").textContent = client.name;
+  $("scoreboardClientName").textContent = client.name;
+  $("importStatus").textContent = "";
+  updateSessionStats();
+}
+
+function switchClient() {
+  appState.activeClientId = $("clientSelect").value;
+  saveState();
+  loadClientIntoUI();
+  $("practice").classList.add("hidden");
+  $("mobGame").classList.add("hidden");
+  $("clientStatus").textContent = `Loaded profile for ${getActiveClient().name}.`;
+}
+
+function addClient() {
+  const input = $("newClientName");
+  const name = input.value.trim();
+  if (!name) {
+    $("clientStatus").textContent = "Enter a client name or initials first.";
+    return;
+  }
+  const newClient = createDefaultClient("client-" + Date.now(), name);
+  appState.clients.push(newClient);
+  appState.activeClientId = newClient.id;
+  input.value = "";
+  saveState();
+  renderClientSelector();
+  $("practice").classList.add("hidden");
+  $("mobGame").classList.add("hidden");
+  $("clientStatus").textContent = `Added and selected client "${name}".`;
+}
+
+function deleteClient() {
+  if (appState.clients.length <= 1) {
+    $("clientStatus").textContent = "At least one client profile must remain.";
+    return;
+  }
+  const active = getActiveClient();
+  if (!confirm(`Remove client "${active.name}" and all their recorded data?`)) return;
+  appState.clients = appState.clients.filter(c => c.id !== active.id);
+  appState.activeClientId = appState.clients[0].id;
+  saveState();
+  renderClientSelector();
+  $("practice").classList.add("hidden");
+  $("mobGame").classList.add("hidden");
+  $("clientStatus").textContent = `Removed "${active.name}".`;
+}
+
+function saveClientGoal() {
+  const client = getActiveClient();
+  client.sound = $("sound").value;
+  client.position = $("position").value;
+  client.level = $("level").value;
+  saveState();
+}
+
+function setModeledState(val) {
+  isModeled = val;
+  const btn = $("modeledBtn");
+  const badge = $("cueBadge");
+  if (isModeled) {
+    btn.textContent = "🗣️ Modeled: ON";
+    btn.classList.add("active");
+    badge.textContent = "Cueing: Modeled Production";
+    badge.classList.add("modeled");
+  } else {
+    btn.textContent = "🗣️ Modeled: OFF";
+    btn.classList.remove("active");
+    badge.textContent = "Cueing: Spontaneous / Independent";
+    badge.classList.remove("modeled");
+  }
+}
+
+function toggleModeled() {
+  if (locked) return;
+  setModeledState(!isModeled);
+}
+
+function startGame() {
+  saveClientGoal();
+  const client = getActiveClient();
+  count = 0;
+  locked = false;
+  setModeledState(false);
+
+  $("count").textContent = 0;
+  $("bar").style.width = "0%";
+  $("practiceFeedback").textContent = "";
+  $("guessFeedback").textContent = "";
+  $("activeClientBadge").textContent = client.name;
+  $("practice").classList.remove("hidden");
+  $("mobGame").classList.add("hidden");
+  $("nextMob").classList.add("hidden");
+
+  let sound = $("sound").value;
+  $("activeSound").textContent = "/" + sound + "/";
+  $("positionText").textContent =
+    "Position: " + $("position").selectedOptions[0].text +
+    " | Level: " + $("level").selectedOptions[0].text;
+
+  nextPrompt();
+}
+
+function getBuiltInWords(sound, position) {
+  const soundGroup = prompts[sound];
+  if (!soundGroup) return [];
+  if (position === "mixed") {
+    return [
+      ...(soundGroup.initial || []),
+      ...(soundGroup.medial || []),
+      ...(soundGroup.final || [])
+    ];
+  }
+  return soundGroup[position] || [];
+}
+
+function nextPrompt() {
+  if (locked) return;
+  setModeledState(false);
+  const client = getActiveClient();
+  const sound = $("sound").value;
+  const level = $("level").value;
+  const position = $("position").value;
+
+  let list = level === "sentence"
+    ? (sentences[sound] || [])
+    : getBuiltInWords(sound, position);
+
+  const imported = (client.customEntries || []).filter(entry =>
+    (!entry.sound || entry.sound === sound) &&
+    (!entry.level || entry.level === level) &&
+    (!entry.position || entry.position === "mixed" || position === "mixed" || entry.position === position)
+  ).map(entry => entry.word);
+
+  const pool = [...list, ...imported];
+  const candidates = pool.length > 1 ? pool.filter(w => w !== currentPrompt) : pool;
+
+  if (!candidates.length) {
+    currentPrompt = "";
+    $("speechPrompt").textContent = `No ${position} words available for /${sound}/. Try another position or import custom words.`;
+  } else {
+    let word = candidates[Math.floor(Math.random() * candidates.length)];
+    currentPrompt = word;
+    $("speechPrompt").textContent = word;
+  }
+
+  if (level === "word" && position !== "mixed") {
+    $("positionText").textContent = "Word position goal: " + position.toUpperCase();
+  } else {
+    $("positionText").textContent =
+      "Position: " + $("position").selectedOptions[0].text +
+      " | Level: " + $("level").selectedOptions[0].text;
+  }
+}
+
+function markTrial(correctVal) {
+  if (locked || !currentPrompt) return;
+  if (correctVal === 1 && count >= 5) return;
+
+  const client = getActiveClient();
+  const cueType = isModeled ? "modeled" : "spontaneous";
+
+  client.trialLog.push({
+    client: client.name,
+    timestamp: new Date().toISOString(),
+    sound: $("sound").value,
+    position: $("position").value,
+    level: $("level").value,
+    prompt: currentPrompt,
+    cue: cueType,
+    correct: correctVal
+  });
+  saveState();
+  updateSessionStats();
+
+  const cueLabel = isModeled ? " (Modeled)" : "";
+
+  if (correctVal === 1) {
+    count++;
+    $("count").textContent = count;
+    $("bar").style.width = (count / 5 * 100) + "%";
+    $("practiceFeedback").textContent = `⭐ Great job${cueLabel}! ${count} out of 5!`;
+
+    if (count === 5) {
+      locked = true;
+      $("practiceFeedback").textContent = "🎉 AMAZING! You unlocked a Minecraft mob!";
+      setTimeout(unlockMob, 800);
+    } else {
+      nextPrompt();
+    }
+  } else {
+    $("practiceFeedback").textContent = `Trial recorded${cueLabel}. Keep practising!`;
+    nextPrompt();
+  }
+}
+
+function formatAccuracy(rows) {
+  if (!rows.length) return "—";
+  const correct = rows.reduce((sum, r) => sum + r.correct, 0);
+  return `${correct}/${rows.length} (${Math.round(correct / rows.length * 100)}%)`;
+}
+
+function updateSessionStats() {
+  const client = getActiveClient();
+  const log = client.trialLog || [];
+  const spontRows = log.filter(r => r.cue !== "modeled");
+  const modRows = log.filter(r => r.cue === "modeled");
+
+  $("logTrials").textContent = log.length;
+  $("logSpontaneous").textContent = formatAccuracy(spontRows);
+  $("logModeled").textContent = formatAccuracy(modRows);
+  $("logAccuracy").textContent = formatAccuracy(log);
+  $("logCustom").textContent = (client.customEntries || []).length;
+}
+
+function buildCSVString(allClients) {
+  const rows = allClients
+    ? appState.clients.flatMap(c => (c.trialLog || []).map(r => ({ client: c.name, ...r })))
+    : (getActiveClient().trialLog || []).map(r => ({ client: getActiveClient().name, ...r }));
+
+  if (!rows.length) return null;
+  const headers = ["client", "timestamp", "sound", "position", "level", "prompt", "cue", "correct"];
+  const quote = value => '"' + String(value ?? "").replace(/"/g, '""') + '"';
+  return [headers.join(","), ...rows.map(row => headers.map(key => quote(row[key])).join(","))].join("\r\n");
+}
+
+function exportCSV(allClients) {
+  const csv = buildCSVString(allClients);
+  if (!csv) {
+    alert("There are no scored trials to export yet.");
+    return;
+  }
+  const slug = allClients ? "all-clients" : getActiveClient().name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const filename = `minecraft-speech-practice-${slug}.csv`;
+
+  try {
+    const file = new File([csv], filename, { type: "text/csv" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: filename }).catch(() => {});
+      return;
+    }
+  } catch (e) {}
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function copyCSV() {
+  const csv = buildCSVString(false);
+  if (!csv) {
+    alert("There are no scored trials to copy yet.");
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(csv);
+    alert("Active client CSV copied to clipboard!");
+  } catch (e) {
+    alert("Clipboard access unavailable in this browser context.");
+  }
+}
+
+function clearSessionLog() {
+  const client = getActiveClient();
+  if (!confirm(`Clear all recorded trials for ${client.name}?`)) return;
+  client.trialLog = [];
+  saveState();
+  updateSessionStats();
+}
+
+function parseCSVLine(line) {
+  const cells = []; let value = "", quoted = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"' && line[i+1] === '"' && quoted) { value += '"'; i++; }
+    else if (ch === '"') quoted = !quoted;
+    else if (ch === ',' && !quoted) { cells.push(value.trim()); value = ""; }
+    else value += ch;
+  }
+  cells.push(value.trim()); return cells;
+}
+
+function importWords() {
+  const file = $("wordFile").files[0];
+  if (!file) { $("importStatus").textContent = "Choose a .txt or .csv file first."; return; }
+  const client = getActiveClient();
+  const reader = new FileReader();
+  reader.onload = () => {
+    const content = String(reader.result || "").replace(/^\uFEFF/, "");
+    const lines = content.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+    if (!lines.length) { $("importStatus").textContent = "That file appears to be empty."; return; }
+    if (file.name.toLowerCase().endsWith(".txt")) {
+      client.customEntries = lines.map(word => ({ word, sound: "", position: "", level: "" }));
+    } else {
+      const headers = parseCSVLine(lines[0]).map(h => h.toLowerCase());
+      const wi = headers.indexOf("word");
+      if (wi < 0) { $("importStatus").textContent = 'CSV needs a column named "word".'; return; }
+      const idx = name => headers.indexOf(name);
+      client.customEntries = lines.slice(1).map(line => {
+        const row = parseCSVLine(line);
+        const sound = idx("sound") >= 0 ? (row[idx("sound")] || "").toLowerCase().replace(/^\/|\/$/g, "") : "";
+        return {
+          word: (row[wi] || "").trim(),
+          sound,
+          position: idx("position") >= 0 ? (row[idx("position")] || "").toLowerCase() : "",
+          level: idx("level") >= 0 ? (row[idx("level")] || "").toLowerCase() : ""
+        };
+      }).filter(entry => entry.word);
+    }
+    saveState();
+    updateSessionStats();
+    $("importStatus").textContent = `Imported ${client.customEntries.length} item(s) for ${client.name}.`;
+  };
+  reader.onerror = () => $("importStatus").textContent = "Could not read that file.";
+  reader.readAsText(file);
+}
+
+function clearCustomWords() {
+  const client = getActiveClient();
+  client.customEntries = [];
+  saveState();
+  updateSessionStats();
+  $("importStatus").textContent = `Imported words cleared for ${client.name}.`;
+}
+
+function resetCount() {
+  if (locked) return;
+  count = 0;
+  setModeledState(false);
+  $("count").textContent = 0;
+  $("bar").style.width = "0%";
+  $("practiceFeedback").textContent = "Let's try again!";
+}
+
+function unlockMob() {
+  $("mobGame").classList.remove("hidden");
+  $("mobGame").scrollIntoView({ behavior: "smooth" });
+  $("practice").classList.add("hidden");
+
+  let available = mobs.filter(m => m.name !== lastMob);
+  currentMob = available[Math.floor(Math.random() * available.length)];
+  lastMob = currentMob.name;
+
+  const imgEl = $("mobSilhouette");
+  const fallbackEl = $("mobFallbackIcon");
+
+  imgEl.classList.remove("hidden", "revealed");
+  fallbackEl.classList.add("hidden");
+  fallbackEl.classList.remove("revealed");
+  fallbackEl.textContent = "";
+  imgEl.alt = "Silhouette of " + currentMob.name;
+  loadMobImageFromWiki(currentMob, imgEl, fallbackEl);
+
+  $("mobHint").textContent = "Clue: " + currentMob.hint;
+  $("choices").dataset.answered = "no";
+  $("mysteryName").textContent = "???";
+
+  let wrong = mobs.filter(m => m.name !== currentMob.name)
+    .sort(() => Math.random() - 0.5).slice(0, 3);
+
+  let choices = [...wrong, currentMob]
+    .sort(() => Math.random() - 0.5);
+
+  $("choices").innerHTML = "";
+  choices.forEach(m => {
+    let btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "choice";
+    btn.textContent = m.name;
+    bindTap(btn, () => guessMob(m.name));
+    $("choices").appendChild(btn);
+  });
+}
+
+function guessMob(answer) {
+  if ($("choices").dataset.answered === "yes") return;
+  $("choices").dataset.answered = "yes";
+
+  const client = getActiveClient();
+
+  if (answer === currentMob.name) {
+    $("guessFeedback").textContent = `🎊 YOU GOT IT! It's ${currentMob.name}! (+10 Emeralds)`;
+    client.points = (client.points || 0) + 10;
+    client.caught = (client.caught || 0) + 1;
+    saveState();
+  } else {
+    $("guessFeedback").textContent = `Nice try! The mob was ${currentMob.name}!`;
+  }
+
+  $("mobSilhouette").classList.add("revealed");
+  $("mobFallbackIcon").classList.add("revealed");
+  $("mysteryName").textContent = currentMob.name;
+  $("points").textContent = client.points || 0;
+  $("caught").textContent = client.caught || 0;
+
+  $("choices").querySelectorAll("button").forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === currentMob.name) {
+      btn.style.background = "#b5edc4";
+      btn.style.color = "#1b4d2b";
+      btn.style.borderColor = "#4e8c32";
+    }
+  });
+
+  $("nextMob").classList.remove("hidden");
+  $("nextMob").scrollIntoView({ behavior: "smooth" });
+}
+
+// Bind dropdowns and all buttons with unified touch + click handlers
+$("clientSelect").addEventListener("change", switchClient);
+$("sound").addEventListener("change", saveClientGoal);
+$("position").addEventListener("change", saveClientGoal);
+$("level").addEventListener("change", saveClientGoal);
+
+bindTap($("addClientBtn"), addClient);
+bindTap($("deleteClientBtn"), deleteClient);
+bindTap($("startBtn"), startGame);
+bindTap($("importBtn"), importWords);
+bindTap($("clearWordsBtn"), clearCustomWords);
+bindTap($("modeledBtn"), toggleModeled);
+bindTap($("correctBtn"), () => markTrial(1));
+bindTap($("incorrectBtn"), () => markTrial(0));
+bindTap($("nextPromptBtn"), nextPrompt);
+bindTap($("resetCountBtn"), resetCount);
+bindTap($("nextMob"), startGame);
+bindTap($("exportActiveBtn"), () => exportCSV(false));
+bindTap($("exportAllBtn"), () => exportCSV(true));
+bindTap($("copyCsvBtn"), copyCSV);
+bindTap($("clearLogBtn"), clearSessionLog);
+
+renderClientSelector();
+</script>
+</body>
+</html>
