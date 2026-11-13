@@ -1,6 +1,6 @@
 # Speech Therapy Articulation Games
 
-Interactive, clinician-supervised articulation practice web apps designed for Speech-Language Pathologists (SLPs) on **iPad (Safari)** and **desktop computers**. Students earn 5 correct productions to unlock a mystery silhouette challenge!
+Interactive, clinician-supervised articulation practice web apps designed for Speech-Language Pathologists (SLPs) (and SLPAs!) on **iPad (Safari)** and **desktop computers**. Students earn 5 correct productions to unlock a mystery silhouette challenge!
 
 ## Current Live Games
 
