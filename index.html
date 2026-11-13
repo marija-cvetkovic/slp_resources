@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Speech Pokémon">
 <title>Guess That Pokémon!</title>
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html, body {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
 body {
   margin: 0;
-  font-family: 'Trebuchet MS', Arial, sans-serif;
+  font-family: -apple-system, 'Trebuchet MS', Arial, sans-serif;
   background: linear-gradient(135deg,#fff2bd,#ffcfdf,#c8e8ff);
   color: #30334a;
   text-align: center;
@@ -35,25 +45,34 @@ h1 { margin: 0; font-size: 2.2rem; }
 h2 { color: #5264b8; margin-top: 0; }
 select, input, button {
   font: inherit;
-  border-radius: 10px;
-  padding: 11px;
+  border-radius: 12px;
+  padding: 12px 16px;
   margin: 5px;
   border: 2px solid #d6d9ec;
+  min-height: 48px;
+  touch-action: manipulation;
 }
-select { max-width: 100%; }
+select { max-width: 100%; background: #fff; }
 button {
   background: #6379db;
   color: white;
   border: none;
   font-weight: bold;
   cursor: pointer;
-  transition: .2s;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  -webkit-appearance: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
-button:hover { transform: scale(1.04); background: #485bb8; }
+button:active, button.is-pressed {
+  transform: scale(0.95);
+  filter: brightness(0.92);
+}
 button:disabled {
   background: #bbb;
   cursor: not-allowed;
   transform: none;
+  filter: none;
 }
 .primary { background: #ef7193; }
 .primary:hover { background: #d9577a; }
@@ -64,10 +83,19 @@ button:disabled {
 .modeled-btn.active {
   background: #d97706;
   outline: 3px solid #fde68a;
-  transform: scale(1.04);
 }
 .danger-btn { background: #e05263; }
 .danger-btn:hover { background: #c53b4c; }
+
+.preview-warning {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 2px solid #ef4444;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
 
 .client-bar {
   background: #f2f4ff;
@@ -109,18 +137,18 @@ button:disabled {
   transition: .3s;
 }
 .prompt {
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   font-weight: bold;
   background: #f2f4ff;
-  padding: 20px;
+  padding: 22px;
   border-radius: 15px;
   margin: 15px 0;
 }
 .cue-badge {
   display: inline-block;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: bold;
   margin-bottom: 8px;
   background: #e9edff;
@@ -135,31 +163,36 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 12px;
+}
+.scoring-row button {
+  min-width: 185px;
+  min-height: 56px;
+  padding: 15px 20px;
+  font-size: 1.1rem;
 }
 .utility-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 10px;
+  margin-top: 12px;
 }
 .hidden { display: none; }
 .choices {
   display: grid;
   grid-template-columns: repeat(2,1fr);
-  gap: 12px;
+  gap: 14px;
   margin-top: 20px;
 }
 .choice {
   background: #e9edff;
   color: #35458e;
   border: 3px solid #d4dcff;
-  min-height: 65px;
-  font-size: 1.05rem;
+  min-height: 72px;
+  font-size: 1.15rem;
 }
-.choice:hover { background: #d5ddff; }
 #pokemonSilhouette {
   max-width: 220px;
   height: auto;
@@ -215,6 +248,11 @@ footer { padding: 20px; font-size: .85rem; }
 
 <div class="container">
 
+<!-- WARNING SHOWN ONLY IF JS IS BLOCKED BY IPAD QUICK LOOK -->
+<div id="jsWarning" class="preview-warning">
+  ⚠️ If buttons do not respond on iPad, you are viewing this file in Apple's static Quick Look preview (which disables JavaScript). Open this page in Safari via a web link (e.g., GitHub Pages) or an HTML viewer app.
+</div>
+
 <!-- SLP SETTINGS -->
 <section class="card">
 <h2>🎓 SLP Control Center</h2>
@@ -224,10 +262,10 @@ footer { padding: 20px; font-size: .85rem; }
 <div class="client-bar">
   <label for="clientSelect">Active Client</label>
   <div class="client-controls">
-    <select id="clientSelect" onchange="switchClient()"></select>
+    <select id="clientSelect"></select>
     <input type="text" id="newClientName" placeholder="Client initials or name..." aria-label="New client name">
-    <button type="button" onclick="addClient()">+ Add Client</button>
-    <button type="button" class="danger-btn" onclick="deleteClient()">Remove Client</button>
+    <button type="button" id="addClientBtn">+ Add Client</button>
+    <button type="button" id="deleteClientBtn" class="danger-btn">Remove Client</button>
   </div>
   <div id="clientStatus" class="import-help" style="margin-top:6px;"></div>
 </div>
@@ -235,7 +273,7 @@ footer { padding: 20px; font-size: .85rem; }
 <div class="settings-grid">
   <div>
     <label for="sound">Target sound</label>
-    <select id="sound" onchange="saveClientGoal()">
+    <select id="sound">
       <option value="p">/p/</option>
       <option value="b">/b/</option>
       <option value="t">/t/</option>
@@ -266,7 +304,7 @@ footer { padding: 20px; font-size: .85rem; }
 
   <div>
     <label for="position">Word position</label>
-    <select id="position" onchange="saveClientGoal()">
+    <select id="position">
       <option value="initial">Initial</option>
       <option value="medial">Medial</option>
       <option value="final">Final</option>
@@ -276,7 +314,7 @@ footer { padding: 20px; font-size: .85rem; }
 
   <div>
     <label for="level">Practice level</label>
-    <select id="level" onchange="saveClientGoal()">
+    <select id="level">
       <option value="word">Word level</option>
       <option value="sentence">Sentence level</option>
     </select>
@@ -284,7 +322,7 @@ footer { padding: 20px; font-size: .85rem; }
 </div>
 
 <p><b>Goal: 5 correct productions to unlock a Generation I Pokémon!</b></p>
-<button class="primary" onclick="startGame()">Start Speech Challenge 🚀</button>
+<button type="button" id="startBtn" class="primary">Start Speech Challenge 🚀</button>
 </section>
 
 <!-- CUSTOM WORD IMPORT -->
@@ -292,9 +330,9 @@ footer { padding: 20px; font-size: .85rem; }
   <h2>📝 Custom Practice Words</h2>
   <p>Import custom words or sentences (saved specifically to the active client).</p>
   <div class="import-row">
-    <input type="file" id="wordFile" accept=".csv,.txt">
-    <button onclick="importWords()">Import File</button>
-    <button class="secondary" onclick="clearCustomWords()">Clear Client Words</button>
+    <input type="file" id="wordFile" accept=".csv,.txt,text/csv,text/plain">
+    <button type="button" id="importBtn">Import File</button>
+    <button type="button" id="clearWordsBtn" class="secondary">Clear Client Words</button>
   </div>
   <p class="import-help">TXT: one item per line. CSV: required <b>word</b> column; optional <b>sound</b>, <b>position</b>, and <b>level</b> columns. Example sound values: r, sh, th1. Position: initial, medial, final, mixed. Level: word or sentence.</p>
   <div id="importStatus" role="status" aria-live="polite"></div>
@@ -312,19 +350,19 @@ footer { padding: 20px; font-size: .85rem; }
 <p id="positionText"></p>
 <div><span id="cueBadge" class="cue-badge">Cueing: Spontaneous / Independent</span></div>
 <div class="prompt" id="speechPrompt">Say your target word!</div>
-<p>Click <b>🗣️ Modeled</b> if you provide a model first, then score the student's production.</p>
+<p>Tap <b>🗣️ Modeled</b> if you provide a model first, then score the student's production.</p>
 
 <div class="counter"><span id="count">0</span> / 5</div>
 <div class="progress"><div class="bar" id="bar"></div></div>
 
 <div class="scoring-row">
-  <button type="button" id="modeledBtn" class="modeled-btn" onclick="toggleModeled()">🗣️ Modeled: OFF</button>
-  <button type="button" onclick="markTrial(1)">⭐ Correct Production</button>
-  <button type="button" class="secondary" onclick="markTrial(0)">✖ Incorrect Production</button>
+  <button type="button" id="modeledBtn" class="modeled-btn">🗣️ Modeled: OFF</button>
+  <button type="button" id="correctBtn">⭐ Correct Production</button>
+  <button type="button" id="incorrectBtn" class="secondary">✖ Incorrect Production</button>
 </div>
 <div class="utility-row">
-  <button type="button" onclick="nextPrompt()">Next Practice Word</button>
-  <button type="button" onclick="resetCount()">Reset Count</button>
+  <button type="button" id="nextPromptBtn">Next Practice Word</button>
+  <button type="button" id="resetCountBtn">Reset Count</button>
 </div>
 
 <div class="feedback" id="practiceFeedback"></div>
@@ -341,7 +379,7 @@ footer { padding: 20px; font-size: .85rem; }
 
 <div class="choices" id="choices"></div>
 <div class="feedback" id="guessFeedback"></div>
-<button class="primary hidden" id="nextPokemon" onclick="startGame()">Next Pokémon ➜</button>
+<button type="button" class="primary hidden" id="nextPokemon">Next Pokémon ➜</button>
 </section>
 
 <!-- SCOREBOARD -->
@@ -353,9 +391,10 @@ footer { padding: 20px; font-size: .85rem; }
 </div>
 <p>Keep practising to become a Pokémon Master!</p>
   <div class="import-row">
-    <button onclick="exportCSV(false)">⬇ Export Active Client CSV</button>
-    <button onclick="exportCSV(true)">⬇ Export All Clients CSV</button>
-    <button class="secondary" onclick="clearSessionLog()">Clear Client Session Data</button>
+    <button type="button" id="exportActiveBtn">⬇ Export Active Client CSV</button>
+    <button type="button" id="exportAllBtn">⬇ Export All Clients CSV</button>
+    <button type="button" id="copyCsvBtn" class="secondary">📋 Copy CSV to Clipboard</button>
+    <button type="button" id="clearLogBtn" class="secondary">Clear Client Session Data</button>
   </div>
   <p class="import-help">Export includes: client, timestamp, target sound, position, level, prompt, cue type (Spontaneous vs. Modeled), and accuracy.</p>
   <table id="sessionLog">
@@ -388,6 +427,60 @@ footer { padding: 20px; font-size: .85rem; }
 </footer>
 
 <script>
+// Hide static preview warning immediately when JavaScript executes
+document.getElementById("jsWarning").classList.add("hidden");
+
+// Enable active press visual states on iOS Safari
+document.addEventListener("touchstart", function(e) {
+  const btn = e.target.closest("button");
+  if (btn && !btn.disabled) btn.classList.add("is-pressed");
+}, { passive: true });
+
+document.addEventListener("touchend", function(e) {
+  const btn = e.target.closest("button");
+  if (btn) btn.classList.remove("is-pressed");
+}, { passive: true });
+
+document.addEventListener("touchcancel", function(e) {
+  const btn = e.target.closest("button");
+  if (btn) btn.classList.remove("is-pressed");
+}, { passive: true });
+
+// Unified fast touch + click binder for iPad Safari & desktop
+function bindTap(el, handler) {
+  if (!el) return;
+  let touchHandled = false;
+  let startX = 0;
+  let startY = 0;
+
+  el.addEventListener("touchstart", function(e) {
+    if (el.disabled) return;
+    if (e.touches && e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  el.addEventListener("touchend", function(e) {
+    if (el.disabled) return;
+    if (e.changedTouches && e.changedTouches.length === 1) {
+      const dx = Math.abs(e.changedTouches[0].clientX - startX);
+      const dy = Math.abs(e.changedTouches[0].clientY - startY);
+      // Ignore scroll/swipe gestures
+      if (dx > 12 || dy > 12) return;
+    }
+    e.preventDefault();
+    touchHandled = true;
+    handler(e);
+    setTimeout(() => { touchHandled = false; }, 400);
+  }, { passive: false });
+
+  el.addEventListener("click", function(e) {
+    if (el.disabled || touchHandled) return;
+    handler(e);
+  });
+}
+
 const prompts = {
   p: {
     initial: ["pig", "pencil", "pizza", "panda", "popcorn"],
@@ -856,28 +949,57 @@ function updateSessionStats() {
   $("logCustom").textContent = (client.customEntries || []).length;
 }
 
-function exportCSV(allClients) {
+function buildCSVString(allClients) {
   const rows = allClients
     ? appState.clients.flatMap(c => (c.trialLog || []).map(r => ({ client: c.name, ...r })))
     : (getActiveClient().trialLog || []).map(r => ({ client: getActiveClient().name, ...r }));
 
-  if (!rows.length) {
+  if (!rows.length) return null;
+  const headers = ["client", "timestamp", "sound", "position", "level", "prompt", "cue", "correct"];
+  const quote = value => '"' + String(value ?? "").replace(/"/g, '""') + '"';
+  return [headers.join(","), ...rows.map(row => headers.map(key => quote(row[key])).join(","))].join("\r\n");
+}
+
+function exportCSV(allClients) {
+  const csv = buildCSVString(allClients);
+  if (!csv) {
     alert("There are no scored trials to export yet.");
     return;
   }
-  const headers = ["client", "timestamp", "sound", "position", "level", "prompt", "cue", "correct"];
-  const quote = value => '"' + String(value ?? "").replace(/"/g, '""') + '"';
-  const csv = [headers.join(","), ...rows.map(row => headers.map(key => quote(row[key])).join(","))].join("\r\n");
+  const slug = allClients ? "all-clients" : getActiveClient().name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const filename = `pokemon-speech-practice-${slug}.csv`;
+
+  try {
+    const file = new File([csv], filename, { type: "text/csv" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: filename }).catch(() => {});
+      return;
+    }
+  } catch (e) {}
+
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-  const slug = allClients ? "all-clients" : getActiveClient().name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   link.href = url;
-  link.download = `pokemon-speech-practice-${slug}.csv`;
+  link.download = filename;
   document.body.appendChild(link);
   link.click();
   link.remove();
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function copyCSV() {
+  const csv = buildCSVString(false);
+  if (!csv) {
+    alert("There are no scored trials to copy yet.");
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(csv);
+    alert("Active client CSV copied to clipboard!");
+  } catch (e) {
+    alert("Clipboard access unavailable in this browser context.");
+  }
 }
 
 function clearSessionLog() {
@@ -979,9 +1101,10 @@ function unlockPokemon() {
   $("choices").innerHTML = "";
   choices.forEach(p => {
     let btn = document.createElement("button");
+    btn.type = "button";
     btn.className = "choice";
     btn.textContent = p.name;
-    btn.onclick = () => guessPokemon(p.name);
+    bindTap(btn, () => guessPokemon(p.name));
     $("choices").appendChild(btn);
   });
 }
@@ -1017,6 +1140,28 @@ function guessPokemon(answer) {
   $("nextPokemon").classList.remove("hidden");
   $("nextPokemon").scrollIntoView({ behavior: "smooth" });
 }
+
+// Bind dropdowns and all buttons with unified touch + click handlers
+$("clientSelect").addEventListener("change", switchClient);
+$("sound").addEventListener("change", saveClientGoal);
+$("position").addEventListener("change", saveClientGoal);
+$("level").addEventListener("change", saveClientGoal);
+
+bindTap($("addClientBtn"), addClient);
+bindTap($("deleteClientBtn"), deleteClient);
+bindTap($("startBtn"), startGame);
+bindTap($("importBtn"), importWords);
+bindTap($("clearWordsBtn"), clearCustomWords);
+bindTap($("modeledBtn"), toggleModeled);
+bindTap($("correctBtn"), () => markTrial(1));
+bindTap($("incorrectBtn"), () => markTrial(0));
+bindTap($("nextPromptBtn"), nextPrompt);
+bindTap($("resetCountBtn"), resetCount);
+bindTap($("nextPokemon"), startGame);
+bindTap($("exportActiveBtn"), () => exportCSV(false));
+bindTap($("exportAllBtn"), () => exportCSV(true));
+bindTap($("copyCsvBtn"), copyCSV);
+bindTap($("clearLogBtn"), clearSessionLog);
 
 renderClientSelector();
 </script>
