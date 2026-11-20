@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Spider-Verse Battle SLP">
+<title>Spider-Verse Speech Battle — Articulation Practice</title>
+<style>
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+html, body {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, 'Trebuchet MS', Arial, sans-serif;
+  background: linear-gradient(135deg, #fee2e2, #dbeafe, #fef3c7);
+  color: #1e293b;
+  text-align: center;
+}
+header {
+  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 74%, #facc15 74%, #eab308 86%, #0f172a 86%, #1e293b 100%);
+  color: #ffffff;
+  padding: 20px 18px 28px;
+  border-bottom: 4px solid #1d4ed8;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.45);
+}
+h1 { margin: 0; font-size: 2.15rem; letter-spacing: 0.5px; }
+.subtitle { margin: 6px 0 0; font-size: 1.02rem; }
+.container {
+  max-width: 880px;
+  margin: 20px auto;
+  padding: 15px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 5px 14px rgba(30, 41, 59, 0.14);
+  border: 2px solid #e2e8f0;
+}
+h2 { color: #b91c1c; margin-top: 0; }
+select, input, button {
+  font: inherit;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 5px;
+  border: 2px solid #cbd5e1;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+select { max-width: 100%; background: #fff; color: #1e293b; }
+button {
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  -webkit-appearance: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+button:hover { background: #1e3a8a; }
+button:active, button.is-pressed {
+  transform: scale(0.95);
+  filter: brightness(0.92);
+}
+button:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+.primary { background: #dc2626; }
+.primary:hover { background: #b91c1c; }
+.secondary { background: #64748b; }
+.secondary:hover { background: #475569; }
+.modeled-btn { background: #d97706; color: white; }
+.modeled-btn:hover { background: #b45309; }
+.modeled-btn.active {
+  background: #b45309;
+  outline: 3px solid #fde68a;
+}
+.danger-btn { background: #dc2626; }
+.danger-btn:hover { background: #b91c1c; }
+.hidden { display: none !important; }
+
+.preview-warning {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 2px solid #ef4444;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+/* PRIVACY LOCK */
+.privacy-banner {
+  background: #f8fafc;
+  border: 2px solid #94a3b8;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+.privacy-banner.trusted {
+  background: #ecfdf5;
+  border-color: #34d399;
+}
+.privacy-status-text {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+.privacy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.privacy-actions button {
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 0.92rem;
+  margin: 0;
+}
+.pin-panel {
+  background: #ffffff;
+  border: 2px solid #1d4ed8;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.pin-panel input {
+  max-width: 210px;
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.client-bar {
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.client-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* HERO SELECTION */
+.starter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.starter-card {
+  background: #f8fafc;
+  border: 3px solid #cbd5e1;
+  border-radius: 16px;
+  padding: 10px 8px;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 122px;
+}
+.starter-card:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+.starter-card.selected {
+  background: #fee2e2;
+  border-color: #dc2626;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.25);
+}
+.starter-card img {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.starter-card span {
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* BATTLE ARENA — NYC SKYLINE & ROOFTOP */
+.arena {
+  background: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 52%, #cbd5e1 52%, #94a3b8 100%);
+  border: 3px solid #0f172a;
+  border-radius: 18px;
+  padding: 16px;
+  margin: 14px 0;
+  position: relative;
+  overflow: hidden;
+}
+.skyline-backdrop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22%;
+  height: 32%;
+  pointer-events: none;
+  opacity: 0.32;
+  z-index: 0;
+}
+.rooftop-ledge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 52%;
+  height: 10px;
+  background: #475569;
+  border-top: 2px solid #0f172a;
+  border-bottom: 2px solid #334155;
+  pointer-events: none;
+  z-index: 0;
+}
+.battle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 560px) {
+  .battle-row {
+    grid-template-columns: 1fr;
+  }
+}
+.fighter-box {
+  background: rgba(255, 255, 255, 0.93);
+  border: 2px solid #0f172a;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.14);
+}
+.fighter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.hp-track {
+  height: 16px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #64748b;
+}
+.hp-fill {
+  height: 100%;
+  width: 100%;
+  background: #22c55e;
+  transition: width 0.35s ease, background-color 0.35s ease;
+}
+.hp-fill.mid { background: #eab308; }
+.hp-fill.low { background: #ef4444; }
+.hp-label {
+  font-size: 0.88rem;
+  font-weight: bold;
+  color: #334155;
+  margin-top: 4px;
+  text-align: right;
+}
+.fighter-img {
+  width: 135px;
+  height: 135px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 6px auto 0;
+  display: block;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+.anim-attack {
+  animation: lunge 0.4s ease;
+}
+.anim-hit {
+  animation: shakeHit 0.45s ease;
+}
+.anim-faint {
+  opacity: 0.35;
+  filter: grayscale(100%);
+  transform: translateY(14px) scale(0.9);
+}
+@keyframes lunge {
+  0% { transform: translateX(0) scale(1); }
+  45% { transform: translateX(24px) scale(1.12); }
+  100% { transform: translateX(0) scale(1); }
+}
+@keyframes shakeHit {
+  0%, 100% { transform: translateX(0); filter: none; }
+  25% { transform: translateX(-10px); filter: brightness(1.8) saturate(2); }
+  50% { transform: translateX(10px); filter: brightness(0.6); }
+  75% { transform: translateX(-6px); }
+}
+
+.battle-log-box {
+  background: #0f172a;
+  color: #f8fafc;
+  border: 3px solid #facc15;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-size: 1.08rem;
+  font-weight: bold;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* SPEECH PROMPT & MOVES */
+.prompt {
+  font-size: 1.65rem;
+  font-weight: bold;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 14px 0;
+}
+.cue-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+.cue-badge.modeled {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #f59e0b;
+}
+.move-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+.move-pill {
+  background: #eff6ff;
+  color: #1e3a8a;
+  border: 2px solid #93c5fd;
+  min-height: 44px;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+}
+.move-pill.active-move {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+.scoring-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+.scoring-row button {
+  min-width: 185px;
+  min-height: 56px;
+  padding: 15px 20px;
+  font-size: 1.08rem;
+}
+.utility-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.stat {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: bold;
+}
+label { font-weight: bold; display: block; margin-top: 6px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
+th, td {
+  border: 1px solid #cbd5e1;
+  padding: 8px;
+}
+th { background: #f8fafc; }
+.import-help {
+  font-size: 0.88rem;
+  color: #475569;
+}
+footer { padding: 20px; font-size: .85rem; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🕷️ Spider-Verse Speech Battle 🕸️</h1>
+  <p class="subtitle">Say your speech words to launch web-attacks and save the Spider-Verse!</p>
+</header>
+
+<div class="container">
+
+<div id="jsWarning" class="preview-warning">
+  ⚠️ If buttons do not respond on iPad, you are viewing this file in Apple's static Quick Look preview (which disables JavaScript). Open this page in Safari via your GitHub Pages link.
+</div>
+
+<!-- SLP CONTROL CENTER -->
+<section class="card">
+<h2>🎓 SLP Control Center</h2>
+<p>Select a client, set their speech target, and pick a Spider-Hero to battle villains!</p>
+
+<div class="client-bar">
+  <!-- DEVICE PRIVACY LOCK -->
+  <div id="privacyBanner" class="privacy-banner">
+    <div id="privacyStatusText" class="privacy-status-text">🔒 Guest Mode — Saved client profiles are hidden on unrecognized devices.</div>
+    <div class="privacy-actions">
+      <button type="button" id="unlockDeviceBtn">🔓 Unlock / Trust This Device</button>
+      <button type="button" id="lockDeviceBtn" class="secondary hidden">🔒 Lock Clients</button>
+      <button type="button" id="forgetDeviceBtn" class="danger-btn hidden">Forget Device</button>
+    </div>
+  </div>
+
+  <div id="pinPanel" class="pin-panel hidden">
+    <div id="pinPanelTitle" style="font-weight:bold;margin-bottom:6px;">Enter Clinician PIN to Unlock Saved Clients</div>
+    <div class="import-help" id="pinPanelSub" style="margin-bottom:8px;">Your PIN and client data stay locally on this browser only and are never uploaded to GitHub.</div>
+    <div>
+      <input type="password" id="pinInput" inputmode="numeric" maxlength="12" placeholder="Enter PIN..." aria-label="Clinician PIN">
+      <button type="button" id="confirmPinBtn">Confirm</button>
+      <button type="button" id="cancelPinBtn" class="secondary">Cancel</button>
+    </div>
+    <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;font-size:0.92rem;margin-top:8px;cursor:pointer;">
+      <input type="checkbox" id="trustDeviceCheckbox" checked style="min-height:auto;width:18px;height:18px;margin:0;">
+      Remember &amp; trust this computer/iPad automatically next time
+    </label>
+    <div id="pinError" style="color:#dc2626;font-weight:bold;font-size:0.9rem;margin-top:6px;"></div>
+  </div>
+
+  <label for="clientSelect">Active Client</label>
+  <div class="client-controls">
+    <select id="clientSelect"></select>
+    <input type="text" id="newClientName" placeholder="Client initials or name..." aria-label="New client name">
+    <button type="button" id="addClientBtn">+ Add Client</button>
+    <button type="button" id="deleteClientBtn" class="danger-btn">Remove Client</button>
+  </div>
+  <div id="clientStatus" class="import-help" style="margin-top:6px;"></div>
+</div>
+
+<div class="settings-grid">
+  <div>
+    <label for="sound">Target sound</label>
+    <select id="sound">
+      <option value="p">/p/</option>
+      <option value="b">/b/</option>
+      <option value="t">/t/</option>
+      <option value="d">/d/</option>
+      <option value="k">/k/</option>
+      <option value="g">/g/</option>
+      <option value="m">/m/</option>
+      <option value="n">/n/</option>
+      <option value="ng">/ŋ/ (ng)</option>
+      <option value="f">/f/</option>
+      <option value="v">/v/</option>
+      <option value="s">/s/</option>
+      <option value="z">/z/</option>
+      <option value="sh">/ʃ/ (sh)</option>
+      <option value="zh">/ʒ/ (zh)</option>
+      <option value="ch">/tʃ/ (ch)</option>
+      <option value="j">/dʒ/ (j)</option>
+      <option value="th1">/θ/ (voiceless th)</option>
+      <option value="th2">/ð/ (voiced th)</option>
+      <option value="l">/l/</option>
+      <option value="r">/r/</option>
+      <option value="w">/w/</option>
+      <option value="y">/j/ (y)</option>
+      <option value="h">/h/</option>
+      <option value="blend">Consonant blends</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="position">Word position</label>
+    <select id="position">
+      <option value="initial">Initial</option>
+      <option value="medial">Medial</option>
+      <option value="final">Final</option>
+      <option value="mixed">Mixed</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="level">Practice level</label>
+    <select id="level">
+      <option value="word">Word level</option>
+      <option value="sentence">Sentence level</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="opponentPool">Villain Pool</label>
+    <select id="opponentPool">
+      <option value="all">Classic &amp; Spider-Verse Villains</option>
+      <option value="classic">Classic Sinister Six Villains</option>
+      <option value="spiderverse">Spider-Verse &amp; Symbiote Villains</option>
+    </select>
+  </div>
+</div>
+
+<label>Choose Your Spider-Hero</label>
+<div class="starter-grid" id="starterGrid"></div>
+
+<p><b>Each correct speech production deals 20 HP damage — 5 correct productions defeats the villain!</b></p>
+<button type="button" id="startBtn" class="primary">Start Spider-Verse Battle 🕸️</button>
+</section>
+
+<!-- CUSTOM WORD IMPORT -->
+<section class="card">
+  <h2>📝 Custom Practice Words</h2>
+  <p>Import custom words or sentences (saved specifically to the active client).</p>
+  <div class="import-row">
+    <input type="file" id="wordFile" accept=".csv,.txt,text/csv,text/plain">
+    <button type="button" id="importBtn">Import File</button>
+    <button type="button" id="clearWordsBtn" class="secondary">Clear Client Words</button>
+  </div>
+  <p class="import-help">TXT: one item per line. CSV: required <b>word</b> column; optional <b>sound</b>, <b>position</b>, and <b>level</b> columns.</p>
+  <div id="importStatus" role="status" aria-live="polite"></div>
+</section>
+
+<!-- BATTLE & SPEECH PRACTICE ARENA -->
+<section class="card hidden" id="battleSection">
+<h2>🕸️ NYC Rooftop Battle Arena</h2>
+<div class="stats">
+  <div class="stat">Hero: <span id="activeClientBadge">Guest Session</span></div>
+  <div class="stat">Target: <span id="activeSound">/p/</span></div>
+  <div class="stat">Round Hits: <span id="roundHits">0</span> / 5</div>
+</div>
+
+<div class="arena">
+  <!-- Subtle NYC Skyline Silhouette -->
+  <svg class="skyline-backdrop" viewBox="0 0 800 120" preserveAspectRatio="none">
+    <path d="M0,120 L0,65 L45,65 L45,35 L85,35 L85,80 L120,80 L120,25 L155,25 L155,15 L170,15 L170,25 L195,25 L195,70 L240,70 L240,42 L290,42 L290,85 L340,85 L340,20 L385,20 L385,60 L435,60 L435,38 L490,38 L490,78 L545,78 L545,18 L575,18 L575,5 L585,5 L585,18 L610,18 L610,65 L665,65 L665,45 L720,45 L720,75 L765,75 L765,30 L800,30 L800,120 Z" fill="#1e293b"/>
+  </svg>
+  <div class="rooftop-ledge"></div>
+
+  <div class="battle-row">
+    <!-- PLAYER SPIDER-HERO -->
+    <div class="fighter-box">
+      <div class="fighter-header">
+        <span id="playerPokeName">Spider-Man (Peter)</span>
+        <span style="color:#dc2626;font-size:0.9rem;">YOUR HERO</span>
+      </div>
+      <div class="hp-track"><div class="hp-fill" id="playerHpBar"></div></div>
+      <div class="hp-label">HP: <span id="playerHpText">100</span> / 100</div>
+      <img id="playerPokeImg" class="fighter-img" alt="Your Spider-Hero" src="" />
+    </div>
+
+    <!-- SUPERVILLAIN OPPONENT -->
+    <div class="fighter-box">
+      <div class="fighter-header">
+        <span id="enemyPokeName">Green Goblin</span>
+        <span style="color:#1e3a8a;font-size:0.9rem;">VILLAIN</span>
+      </div>
+      <div class="hp-track"><div class="hp-fill" id="enemyHpBar"></div></div>
+      <div class="hp-label">HP: <span id="enemyHpText">100</span> / 100</div>
+      <img id="enemyPokeImg" class="fighter-img" alt="Supervillain opponent" src="" />
+    </div>
+  </div>
+
+  <div class="battle-log-box" id="battleLogBox">A villain appeared on the rooftop! Say your speech target to strike!</div>
+</div>
+
+<div id="nextBattleRow" class="hidden" style="margin: 12px 0;">
+  <button type="button" id="nextBattleBtn" class="primary" style="font-size:1.15rem;padding:15px 26px;">Battle Next Villain ➜</button>
+</div>
+
+<div id="speechControlsArea">
+  <p id="positionText"></p>
+  <div><span id="cueBadge" class="cue-badge">Cueing: Spontaneous / Independent</span></div>
+  <div class="prompt" id="speechPrompt">Say your target word!</div>
+
+  <div style="font-weight:bold;font-size:0.95rem;color:#334155;">Choose Spider-Attack Move:</div>
+  <div class="move-selector" id="moveSelector"></div>
+
+  <div class="scoring-row">
+    <button type="button" id="modeledBtn" class="modeled-btn">🗣️ Modeled: OFF</button>
+    <button type="button" id="correctBtn" class="primary">🕸️ Correct = Web Attack!</button>
+    <button type="button" id="incorrectBtn" class="secondary">🛡️ Missed (Villain Dodges)</button>
+  </div>
+  <div class="utility-row">
+    <button type="button" id="nextPromptBtn">Next Practice Word</button>
+    <button type="button" id="resetBattleBtn">Restart Current Battle</button>
+  </div>
+</div>
+</section>
+
+<!-- SCOREBOARD -->
+<section class="card">
+<h2>🏆 Spider-Verse Scoreboard — <span id="scoreboardClientName">Guest Session</span></h2>
+<div class="stats">
+  <div class="stat">Battles Won: <span id="battlesWon">0</span> 🏆</div>
+  <div class="stat">Web Hits Landed: <span id="attacksLanded">0</span> 🕸️</div>
+  <div class="stat">Hero XP: <span id="points">0</span> ⭐</div>
+</div>
+  <div class="import-row" style="margin-top:14px;">
+    <button type="button" id="exportActiveBtn">⬇ Export Active Client CSV</button>
+    <button type="button" id="exportAllBtn">⬇ Export All Clients CSV</button>
+    <button type="button" id="copyCsvBtn" class="secondary">📋 Copy CSV to Clipboard</button>
+    <button type="button" id="clearLogBtn" class="secondary">Clear Client Session Data</button>
+  </div>
+  <p class="import-help">Export includes: client, timestamp, target sound, position, level, prompt, move used, cue type (Spontaneous vs. Modeled), and accuracy.</p>
+  <table id="sessionLog">
+    <thead>
+      <tr>
+        <th>Total Trials</th>
+        <th>Spontaneous</th>
+        <th>Modeled</th>
+        <th>Overall Accuracy</th>
+        <th>Client Words</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="logTrials">0</td>
+        <td id="logSpontaneous">—</td>
+        <td id="logModeled">—</td>
+        <td id="logAccuracy">—</td>
+        <td id="logCustom">0</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<footer>
+  Made for speech therapy practice ❤️<br>
+  SLP-supervised articulation practice. Data is saved locally in your browser per client.
+</footer>
+
+<script>
+document.getElementById("jsWarning").classList.add("hidden");
+
+document.addEventListener("touchstart", function(e) {
+  const btn = e.target.closest("button");
+  if (btn && !btn.disabled) btn.classList.add("is-pressed");
+}, { passive: true });
+
+document.addEventListener("touchend", function(e) {
+  const btn = e.target.closest("button");
+  if (btn) btn.classList.remove("is-pressed");
+}, { passive: true });
+
+document.addEventListener("touchcancel", function(e) {
+  const btn = e.target.closest("button");
+  if (btn) btn.classList.remove("is-pressed");
+}, { passive: true });
+
+function bindTap(el, handler) {
+  if (!el) return;
+  let touchHandled = false;
+  let startX = 0;
+  let startY = 0;
+
+  el.addEventListener("touchstart", function(e) {
+    if (el.disabled) return;
+    if (e.touches && e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  el.addEventListener("touchend", function(e) {
+    if (el.disabled) return;
+    if (e.changedTouches && e.changedTouches.length === 1) {
+      const dx = Math.abs(e.changedTouches[0].clientX - startX);
+      const dy = Math.abs(e.changedTouches[0].clientY - startY);
+      if (dx > 12 || dy > 12) return;
+    }
+    e.preventDefault();
+    touchHandled = true;
+    handler(e);
+    setTimeout(() => { touchHandled = false; }, 400);
+  }, { passive: false });
+
+  el.addEventListener("click", function(e) {
+    if (el.disabled || touchHandled) return;
+    handler(e);
+  });
+}
+
+const prompts = {
+  p: { initial: ["pig", "pencil", "pizza", "panda", "popcorn"], medial: ["apple", "happy", "puppy", "hippo", "paper"], final: ["cup", "map", "soap", "hop", "ship"] },
+  b: { initial: ["ball", "baby", "bear", "book", "bus"], medial: ["rabbit", "cabin", "robot", "table", "bubble"], final: ["web", "tub", "crab", "bib", "cub"] },
+  t: { initial: ["table", "turtle", "tiger", "tomato", "tent"], medial: ["button", "water", "kitten", "butter", "mitten"], final: ["hat", "cat", "boat", "kite", "bat"] },
+  d: { initial: ["dog", "daddy", "duck", "door", "dolphin"], medial: ["ladder", "candy", "spider", "garden", "window"], final: ["bed", "red", "bird", "cloud", "hand"] },
+  k: { initial: ["cat", "cookie", "kite", "king", "cow"], medial: ["taco", "rocket", "monkey", "chicken", "pumpkin"], final: ["book", "duck", "cake", "sock", "bike"] },
+  g: { initial: ["goat", "gum", "girl", "gift", "goose"], medial: ["tiger", "wagon", "burger", "dragon", "sugar"], final: ["dog", "pig", "frog", "bug", "egg"] },
+  m: { initial: ["moon", "monkey", "mouse", "milk", "muffin"], medial: ["lemon", "hammer", "camel", "snowman", "tomato"], final: ["gum", "ham", "drum", "worm", "jam"] },
+  n: { initial: ["nose", "napkin", "nest", "nurse", "net"], medial: ["dinner", "banana", "bunny", "donut", "peanut"], final: ["sun", "pen", "train", "spoon", "lion"] },
+  ng: { initial: [], medial: ["finger", "hanger", "singer", "ping-pong", "kangaroo"], final: ["sing", "ring", "song", "king", "wing"] },
+  f: { initial: ["fish", "funny", "fox", "fork", "feather"], medial: ["coffee", "elephant", "muffin", "dolphin", "waffle"], final: ["leaf", "off", "giraffe", "roof", "chef"] },
+  v: { initial: ["van", "vacuum", "vest", "vine", "volcano"], medial: ["seven", "river", "oven", "shovel", "beaver"], final: ["love", "five", "glove", "wave", "cave"] },
+  s: { initial: ["sun", "sock", "soap", "sand", "seal"], medial: ["pencil", "dinosaur", "castle", "bicycle", "glasses"], final: ["bus", "mouse", "house", "horse", "ice"] },
+  z: { initial: ["zebra", "zipper", "zoo", "zero", "zucchini"], medial: ["puzzle", "music", "lizard", "wizard", "daisy"], final: ["nose", "cheese", "bees", "toes", "rose"] },
+  sh: { initial: ["shoe", "shower", "sheep", "shark", "shell"], medial: ["fishing", "washing", "ocean", "lotion", "mushroom"], final: ["fish", "brush", "wash", "dish", "push"] },
+  zh: { initial: ["genre"], medial: ["measure", "treasure", "usual", "vision", "television"], final: ["beige", "garage", "collage", "massage", "camouflage"] },
+  ch: { initial: ["chair", "chicken", "cheese", "cherry", "chin"], medial: ["teacher", "ketchup", "kitchen", "nature", "pitcher"], final: ["watch", "peach", "beach", "couch", "lunch"] },
+  j: { initial: ["jump", "jelly", "jacket", "giraffe", "juice"], medial: ["magic", "pajamas", "pigeon", "soldier", "angel"], final: ["bridge", "orange", "cage", "page", "fridge"] },
+  th1: { initial: ["thumb", "thunder", "three", "thirsty", "thorn"], medial: ["toothbrush", "birthday", "bathtub", "python", "healthy"], final: ["bath", "teeth", "mouth", "earth", "path"] },
+  th2: { initial: ["this", "that", "there", "them", "those"], medial: ["mother", "weather", "feather", "brother", "father"], final: ["smooth", "breathe", "bathe", "soothe", "clothe"] },
+  l: { initial: ["lion", "lemon", "leaf", "lamp", "ladder"], medial: ["yellow", "balloon", "pillow", "salad", "dolphin"], final: ["ball", "bell", "owl", "shell", "whale"] },
+  r: { initial: ["rabbit", "rainbow", "rocket", "red", "ring"], medial: ["carrot", "pirate", "giraffe", "cherry", "orange"], final: ["car", "star", "bear", "door", "chair"] },
+  w: { initial: ["water", "window", "wagon", "whale", "worm"], medial: ["flower", "towel", "kiwi", "shower", "cowboy"], final: [] },
+  y: { initial: ["yellow", "yoyo", "yogurt", "yarn", "yard"], medial: ["onion", "canyon", "crayon", "kayak", "lawyer"], final: [] },
+  h: { initial: ["house", "hello", "hammer", "happy", "horse"], medial: ["behind", "ahead", "grasshopper", "treehouse", "doghouse"], final: [] },
+  blend: { initial: ["star", "plane", "green", "train", "spoon"], medial: ["ostrich", "ice-cream", "umbrella", "backpack", "hamster"], final: ["desk", "nest", "milk", "hand", "jump"] }
+};
+
+const sentences = {
+  p: ["The pig is pink.","I put the paper on the table.","The puppy plays outside.","Please pass the popcorn.","The cup is purple."],
+  b: ["The baby has a blue ball.","The rabbit is in the barn.","I see a big balloon.","The boy rides his bike.","The bear is eating berries."],
+  t: ["The turtle is tiny.","I ate a tomato today.","The cat is sitting on the mat.","The train is going fast.","Put the toy on the table."],
+  d: ["The dog is digging.","Daddy drives the red car.","The lady has a doll.","I found a diamond.","The bird is in the garden."],
+  k: ["The cat is climbing.","I like chocolate cake.","The duck is in the pond.","The cookie is crunchy.","The cow is in the kitchen."],
+  g: ["The goat is green.","The girl is playing a game.","I got a big gift.","The dog is digging.","The wagon is going fast."],
+  m: ["My mom made muffins.","The monkey is climbing.","I see a small mouse.","The lemon is yellow.","The farmer has a hammer."],
+  n: ["The nice nurse is kind.","The bunny is eating a banana.","I need a new notebook.","The sun is shining.","The dinner is ready."],
+  ng: ["The king is singing.","I like swinging.","The ring is sparkling.","The bird is singing.","We are going camping."],
+  f: ["The fish is funny.","The elephant has big feet.","I found a flower.","The family is having fun.","The fox is fast."],
+  v: ["The van is very big.","I love vegetables.","The seven birds are flying.","The vacuum is loud.","The river is flowing."],
+  s: ["The sun is shining.","I see six silly snakes.","The mouse is eating cheese.","The bus is yellow.","Sam likes swimming."],
+  z: ["The zebra is at the zoo.","The music is amazing.","The puzzle is easy.","The bees are buzzing.","My nose is cold."],
+  sh: ["The sheep is in the shed.","She has shiny shoes.","The fish is splashing.","I like shopping.","The spaceship is silver."],
+  zh: ["The treasure is hidden.","The television has a picture.","I measure the vision.","The usual decision is easy.","The beige cushion is soft."],
+  ch: ["The chicken is eating cheese.","The teacher has a chair.","I watch the children play.","The cheese is crunchy.","The train is at the station."],
+  j: ["The jelly is delicious.","The giraffe is jumping.","The magic show is fun.","The bridge is very long.","The baby has a new jacket."],
+  th1: ["I think about Thursday.","The three thieves are hiding.","I brush my teeth.","The thunder is loud.","I see a thorn."],
+  th2: ["This is my brother.","The mother is happy.","Those are their toys.","The weather is warm.","My father is tall."],
+  l: ["The lion likes lemons.","The little girl is laughing.","I see a yellow balloon.","The flower is beautiful.","The ball is on the table."],
+  r: ["The rabbit is running.","The red car is very fast.","I like riding my bike.","The green frog is jumping.","The pirate has a treasure."],
+  w: ["The whale is swimming.","The window is open.","I want watermelon.","The cow is in the meadow.","We went to the zoo."],
+  y: ["The yellow yo-yo is yours.","The boy is playing.","I eat yogurt every morning.","The unicorn is young.","The onion is yellow."],
+  h: ["The happy horse is hungry.","The house has a big hall.","I hear a helicopter.","He has a hat.","The hamster is hiding."],
+  blend: ["The frog jumps on the grass.","The plane is flying.","The star is shining.","The train is fast.","The blue flower is pretty."]
+};
+
+function svgToDataUri(innerSvg) {
+  const full = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">${innerSvg}</svg>`;
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(full);
+}
+
+const CHARACTER_ART = {
+  // 8 Selectable Spider-Heroes
+  spiderman: svgToDataUri(`
+    <path d="M20 116 C24 90, 96 90, 100 116 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M36 116 C40 92, 80 92, 84 116 Z" fill="#dc2626" stroke="#0f172a" stroke-width="2.5"/>
+    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
+    <g stroke="#7f1d1d" stroke-width="1.6" fill="none" opacity="0.7">
+      <line x1="60" y1="16" x2="60" y2="96"/>
+      <line x1="26" y1="56" x2="94" y2="56"/>
+      <line x1="34" y1="27" x2="86" y2="85"/>
+      <line x1="86" y1="27" x2="34" y2="85"/>
+      <ellipse cx="60" cy="56" rx="16" ry="20"/>
+      <ellipse cx="60" cy="56" rx="26" ry="31"/>
+    </g>
+    <path d="M32 48 C36 35, 52 41, 54 56 C44 63, 32 58, 32 48 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
+    <path d="M88 48 C84 35, 68 41, 66 56 C76 63, 88 58, 88 48 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
+  `),
+  miles: svgToDataUri(`
+    <path d="M20 116 C24 90, 96 90, 100 116 Z" fill="#0f172a" stroke="#ef4444" stroke-width="3.5"/>
+    <path d="M44 94 L60 112 L76 94" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
+    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#111827" stroke="#020617" stroke-width="4"/>
+    <g stroke="#ef4444" stroke-width="1.7" fill="none" opacity="0.85">
+      <line x1="60" y1="16" x2="60" y2="96"/>
+      <line x1="34" y1="27" x2="86" y2="85"/>
+      <line x1="86" y1="27" x2="34" y2="85"/>
+      <ellipse cx="60" cy="56" rx="24" ry="29"/>
+    </g>
+    <path d="M32 48 C36 35, 52 41, 54 56 C44 63, 32 58, 32 48 Z" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <path d="M88 48 C84 35, 68 41, 66 56 C76 63, 88 58, 88 48 Z" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
+    <path d="M18 32 L26 24 L22 36 L30 28" fill="none" stroke="#facc15" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M102 32 L94 24 L98 36 L90 28" fill="none" stroke="#facc15" stroke-width="2.5" stroke-linecap="round"/>
+  `),
+  gwen: svgToDataUri(`
+    <path d="M18 62 C18 18, 102 18, 102 62 C102 95, 86 108, 60 108 C34 108, 18 95, 18 62 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="4"/>
+    <path d="M25 60 C25 25, 95 25, 95 60 C95 87, 82 98, 60 98 C38 98, 25 87, 25 60 Z" fill="#ec4899"/>
+    <ellipse cx="60" cy="58" rx="29" ry="34" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M38 35 Q60 44 82 35" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
+    <path d="M36 50 C39 39, 53 45, 55 57 C46 62, 36 59, 36 50 Z" fill="#0f172a" stroke="#ec4899" stroke-width="3.5"/>
+    <path d="M84 50 C81 39, 67 45, 65 57 C74 62, 84 59, 84 50 Z" fill="#0f172a" stroke="#ec4899" stroke-width="3.5"/>
+    <path d="M22 116 C28 96, 92 96, 98 116 Z" fill="#0f172a"/>
+  `),
+  spider2099: svgToDataUri(`
+    <path d="M18 116 C22 88, 98 88, 102 116 Z" fill="#1e3a8a" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M34 96 L60 114 L86 96" fill="none" stroke="#ef4444" stroke-width="5"/>
+    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#1d4ed8" stroke="#0f172a" stroke-width="4"/>
+    <path d="M44 26 L60 42 L76 26 L68 58 L60 76 L52 58 Z" fill="#dc2626" stroke="#0f172a" stroke-width="2"/>
+    <path d="M30 44 L54 54 L46 62 L30 54 Z" fill="#ef4444" stroke="#facc15" stroke-width="2.5"/>
+    <path d="M90 44 L66 54 L74 62 L90 54 Z" fill="#ef4444" stroke="#facc15" stroke-width="2.5"/>
+  `),
+  noir: svgToDataUri(`
+    <path d="M18 116 C24 88, 96 88, 102 116 Z" fill="#1e293b" stroke="#020617" stroke-width="3.5"/>
+    <ellipse cx="60" cy="60" rx="32" ry="36" fill="#334155" stroke="#020617" stroke-width="4"/>
+    <ellipse cx="60" cy="30" rx="46" ry="9" fill="#0f172a" stroke="#020617" stroke-width="3"/>
+    <path d="M32 29 L38 10 L60 14 L82 10 L88 29 Z" fill="#1e293b" stroke="#020617" stroke-width="3"/>
+    <circle cx="45" cy="56" r="11" fill="#f8fafc" stroke="#020617" stroke-width="3.5"/>
+    <circle cx="75" cy="56" r="11" fill="#f8fafc" stroke="#020617" stroke-width="3.5"/>
+    <line x1="56" y1="56" x2="64" y2="56" stroke="#020617" stroke-width="4"/>
+  `),
+  ham: svgToDataUri(`
+    <polygon points="28,32 22,12 44,24" fill="#dc2626" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="92,32 98,12 76,24" fill="#dc2626" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
+    <ellipse cx="60" cy="58" rx="35" ry="36" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
+    <path d="M32 45 C36 33, 52 39, 54 52 C44 58, 32 54, 32 45 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M88 45 C84 33, 68 39, 66 52 C76 58, 88 54, 88 45 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="60" cy="72" rx="18" ry="13" fill="#f9a8d4" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="53" cy="72" rx="3.5" ry="5" fill="#0f172a"/>
+    <ellipse cx="67" cy="72" rx="3.5" ry="5" fill="#0f172a"/>
+    <path d="M26 116 C30 96, 90 96, 94 116 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="3"/>
+  `),
+  scarlet: svgToDataUri(`
+    <path d="M18 116 C22 88, 98 88, 102 116 Z" fill="#2563eb" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M40 94 L60 112 L80 94 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="2.5"/>
+    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#ef4444" stroke="#0f172a" stroke-width="4"/>
+    <path d="M28 46 C33 32, 53 39, 55 57 C43 65, 28 59, 28 46 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
+    <path d="M92 46 C87 32, 67 39, 65 57 C77 65, 92 59, 92 46 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
+  `),
+  ironspider: svgToDataUri(`
+    <path d="M24 88 L8 42 L20 26" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M96 88 L112 42 L100 26" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 116 C24 90, 96 90, 100 116 Z" fill="#b91c1c" stroke="#facc15" stroke-width="3.5"/>
+    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
+    <path d="M32 48 C36 35, 52 41, 54 56 C44 63, 32 58, 32 48 Z" fill="#38bdf8" stroke="#facc15" stroke-width="3.5"/>
+    <path d="M88 48 C84 35, 68 41, 66 56 C76 63, 88 58, 88 48 Z" fill="#38bdf8" stroke="#facc15" stroke-width="3.5"/>
+  `),
+
+  // Classic Sinister Six Villains
+  goblin: svgToDataUri(`
+    <polygon points="24,52 6,36 28,68" fill="#22c55e" stroke="#0f172a" stroke-width="3.5"/>
+    <polygon points="96,52 114,36 92,68" fill="#22c55e" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="60" cy="64" rx="31" ry="35" fill="#22c55e" stroke="#0f172a" stroke-width="4"/>
+    <path d="M24 46 Q60 32 96 46 L76 12 L20 34 Z" fill="#7e22ce" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="35,54 53,60 39,66" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
+    <polygon points="85,54 67,60 81,66" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M40 76 Q60 93 80 76 Q60 83 40 76 Z" fill="#fef08a" stroke="#0f172a" stroke-width="2.5"/>
+  `),
+  docock: svgToDataUri(`
+    <path d="M24 85 Q6 55 18 26" fill="none" stroke="#94a3b8" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="18" cy="26" r="6" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M96 85 Q114 55 102 26" fill="none" stroke="#94a3b8" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="102" cy="26" r="6" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
+    <ellipse cx="60" cy="60" rx="30" ry="34" fill="#fde68a" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M28 52 C28 22, 92 22, 92 52 C78 44, 42 44, 28 52 Z" fill="#451a03" stroke="#0f172a" stroke-width="3.5"/>
+    <circle cx="46" cy="58" r="11" fill="#10b981" stroke="#334155" stroke-width="4"/>
+    <circle cx="74" cy="58" r="11" fill="#10b981" stroke="#334155" stroke-width="4"/>
+    <line x1="57" y1="58" x2="63" y2="58" stroke="#334155" stroke-width="4"/>
+    <path d="M48 80 Q60 73 72 80" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+  `),
+  electro: svgToDataUri(`
+    <polygon points="60,8 70,34 102,22 84,50 112,64 82,74 96,102 66,86 60,114 54,86 24,102 38,74 8,64 36,50 18,22 50,34" fill="#facc15" stroke="#0f172a" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="60" cy="62" r="24" fill="#16a34a" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="50" cy="58" rx="6" ry="4" fill="#38bdf8" stroke="#0f172a" stroke-width="2"/>
+    <ellipse cx="70" cy="58" rx="6" ry="4" fill="#38bdf8" stroke="#0f172a" stroke-width="2"/>
+    <path d="M48 72 Q60 80 72 72" fill="none" stroke="#facc15" stroke-width="3" stroke-linecap="round"/>
+  `),
+  sandman: svgToDataUri(`
+    <path d="M22 116 C24 88, 96 88, 98 116 Z" fill="#16a34a" stroke="#0f172a" stroke-width="3.5"/>
+    <rect x="28" y="34" width="64" height="60" rx="18" fill="#d97706" stroke="#0f172a" stroke-width="4"/>
+    <path d="M28 42 Q44 22 60 32 Q76 22 92 42 Z" fill="#92400e" stroke="#0f172a" stroke-width="3"/>
+    <rect x="38" y="50" width="14" height="7" rx="3" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <rect x="68" y="50" width="14" height="7" rx="3" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <path d="M42 76 L78 76" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  `),
+  rhino: svgToDataUri(`
+    <ellipse cx="60" cy="62" rx="36" ry="38" fill="#64748b" stroke="#0f172a" stroke-width="4"/>
+    <ellipse cx="60" cy="68" rx="22" ry="20" fill="#fed7aa" stroke="#0f172a" stroke-width="3"/>
+    <polygon points="60,12 51,48 69,48" fill="#f8fafc" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="60,48 54,66 66,66" fill="#e2e8f0" stroke="#0f172a" stroke-width="2.5"/>
+    <circle cx="46" cy="58" r="4" fill="#0f172a"/>
+    <circle cx="74" cy="58" r="4" fill="#0f172a"/>
+    <path d="M48 78 Q60 72 72 78" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+  `),
+  mysterio: svgToDataUri(`
+    <path d="M18 116 L32 82 L88 82 L102 116 Z" fill="#7e22ce" stroke="#0f172a" stroke-width="3.5"/>
+    <circle cx="60" cy="54" r="36" fill="#a5f3fc" stroke="#0f172a" stroke-width="4"/>
+    <path d="M34 56 Q48 40 60 54 Q72 68 86 52" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+    <circle cx="34" cy="84" r="8" fill="#facc15" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="86" cy="84" r="8" fill="#facc15" stroke="#0f172a" stroke-width="3"/>
+  `),
+  vulture: svgToDataUri(`
+    <path d="M14 96 Q60 70 106 96 L96 116 L24 116 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+    <ellipse cx="60" cy="58" rx="28" ry="34" fill="#15803d" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="60" cy="56" rx="20" ry="24" fill="#fed7aa" stroke="#0f172a" stroke-width="2.5"/>
+    <polygon points="60,56 52,70 68,70" fill="#f59e0b" stroke="#0f172a" stroke-width="2.5"/>
+    <circle cx="49" cy="48" r="4" fill="#ef4444"/>
+    <circle cx="71" cy="48" r="4" fill="#ef4444"/>
+  `),
+  lizard: svgToDataUri(`
+    <path d="M30 42 C30 20, 90 20, 90 42 L84 88 C84 98, 36 98, 36 88 Z" fill="#16a34a" stroke="#0f172a" stroke-width="4"/>
+    <polygon points="36,48 54,54 38,60" fill="#facc15" stroke="#0f172a" stroke-width="2"/>
+    <polygon points="84,48 66,54 82,60" fill="#facc15" stroke="#0f172a" stroke-width="2"/>
+    <path d="M38 72 L82 72 L76 86 L44 86 Z" fill="#dc2626" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M42 72 L46 78 L50 72 L55 78 L60 72 L65 78 L70 72 L74 78 L78 72" fill="#ffffff"/>
+  `),
+  kraven: svgToDataUri(`
+    <path d="M20 116 L32 82 L88 82 L100 116 Z" fill="#b45309" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="60" cy="56" rx="30" ry="34" fill="#fdba74" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M30 48 C30 22, 90 22, 90 48 C76 38, 44 38, 30 48 Z" fill="#1e293b" stroke="#0f172a" stroke-width="3"/>
+    <path d="M34 66 Q60 92 86 66 L78 88 L42 88 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2.5"/>
+    <circle cx="48" cy="52" r="4" fill="#0f172a"/>
+    <circle cx="72" cy="52" r="4" fill="#0f172a"/>
+  `),
+  scorpion: svgToDataUri(`
+    <path d="M84 96 Q112 72 104 34 Q98 16 80 22" fill="none" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
+    <polygon points="80,22 68,18 76,30" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
+    <ellipse cx="56" cy="60" rx="30" ry="34" fill="#15803d" stroke="#0f172a" stroke-width="4"/>
+    <ellipse cx="56" cy="64" rx="18" ry="18" fill="#fed7aa" stroke="#0f172a" stroke-width="2.5"/>
+    <rect x="42" y="54" width="11" height="6" fill="#ef4444" stroke="#0f172a" stroke-width="2"/>
+    <rect x="59" y="54" width="11" height="6" fill="#ef4444" stroke="#0f172a" stroke-width="2"/>
+  `),
+  shocker: svgToDataUri(`
+    <ellipse cx="60" cy="58" rx="33" ry="38" fill="#eab308" stroke="#0f172a" stroke-width="4"/>
+    <g stroke="#92400e" stroke-width="2">
+      <line x1="36" y1="28" x2="84" y2="88"/>
+      <line x1="84" y1="28" x2="36" y2="88"/>
+      <line x1="60" y1="20" x2="60" y2="96"/>
+    </g>
+    <path d="M36 48 L54 54 L36 60 Z" fill="#0f172a"/>
+    <path d="M84 48 L66 54 L84 60 Z" fill="#0f172a"/>
+    <ellipse cx="60" cy="76" rx="12" ry="7" fill="#7f1d1d" stroke="#0f172a" stroke-width="2.5"/>
+  `),
+
+  // Spider-Verse & Symbiote Villains
+  venom: svgToDataUri(`
+    <ellipse cx="60" cy="58" rx="36" ry="42" fill="#090d16" stroke="#334155" stroke-width="3.5"/>
+    <path d="M28 42 C36 30, 52 44, 54 54 C42 56, 30 50, 28 42 Z" fill="#ffffff"/>
+    <path d="M92 42 C84 30, 68 44, 66 54 C78 56, 90 50, 92 42 Z" fill="#ffffff"/>
+    <path d="M32 66 Q60 98 88 66 Q60 76 32 66 Z" fill="#e11d48" stroke="#ffffff" stroke-width="2"/>
+    <path d="M38 68 L42 77 L46 69 L51 79 L56 70 L60 80 L64 70 L69 79 L74 69 L78 77 L82 68" fill="#ffffff"/>
+  `),
+  carnage: svgToDataUri(`
+    <ellipse cx="60" cy="58" rx="35" ry="41" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
+    <path d="M32 24 Q46 40 38 56 M88 24 Q74 40 82 56" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M28 42 C38 32, 52 44, 54 54 C42 56, 30 50, 28 42 Z" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <path d="M92 42 C82 32, 68 44, 66 54 C78 56, 90 50, 92 42 Z" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
+    <path d="M34 68 Q60 96 86 68 Q60 76 34 68 Z" fill="#0f172a"/>
+    <path d="M40 70 L44 79 L48 70 L53 80 L58 70 L62 80 L67 70 L72 79 L76 70" fill="#ffffff"/>
+  `),
+  kingpin: svgToDataUri(`
+    <path d="M10 116 L20 68 L100 68 L110 116 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
+    <polygon points="60,72 52,96 60,108 68,96" fill="#7e22ce" stroke="#0f172a" stroke-width="2.5"/>
+    <ellipse cx="60" cy="48" rx="26" ry="28" fill="#fed7aa" stroke="#0f172a" stroke-width="3.5"/>
+    <line x1="42" y1="44" x2="54" y2="48" stroke="#0f172a" stroke-width="3"/>
+    <line x1="78" y1="44" x2="66" y2="48" stroke="#0f172a" stroke-width="3"/>
+    <path d="M48 64 L72 64" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/>
+  `),
+  prowler: svgToDataUri(`
+    <polygon points="30,36 22,12 46,26" fill="#6b21a8" stroke="#0f172a" stroke-width="3.5"/>
+    <polygon points="90,36 98,12 74,26" fill="#6b21a8" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="60" cy="58" rx="32" ry="36" fill="#581c87" stroke="#0f172a" stroke-width="4"/>
+    <path d="M34 48 L54 54 L36 60 Z" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+    <path d="M86 48 L66 54 L84 60 Z" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+    <path d="M36 74 L84 74 L76 92 L44 92 Z" fill="#16a34a" stroke="#0f172a" stroke-width="3"/>
+  `),
+  spot: svgToDataUri(`
+    <ellipse cx="60" cy="58" rx="34" ry="40" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
+    <circle cx="44" cy="46" r="8" fill="#090d16"/>
+    <circle cx="76" cy="54" r="10" fill="#090d16"/>
+    <circle cx="52" cy="76" r="7" fill="#090d16"/>
+    <circle cx="64" cy="28" r="5" fill="#090d16"/>
+    <path d="M22 116 C28 92, 92 92, 98 116 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3.5"/>
+    <circle cx="45" cy="105" r="6" fill="#090d16"/>
+    <circle cx="75" cy="106" r="7" fill="#090d16"/>
+  `),
+  hobgoblin: svgToDataUri(`
+    <polygon points="24,52 6,36 28,68" fill="#f97316" stroke="#0f172a" stroke-width="3.5"/>
+    <polygon points="96,52 114,36 92,68" fill="#f97316" stroke="#0f172a" stroke-width="3.5"/>
+    <ellipse cx="60" cy="64" rx="31" ry="35" fill="#f97316" stroke="#0f172a" stroke-width="4"/>
+    <path d="M24 46 Q60 32 96 46 L76 12 L20 34 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="35,54 53,60 39,66" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
+    <polygon points="85,54 67,60 81,66" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M40 76 Q60 93 80 76 Q60 83 40 76 Z" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
+  `),
+  morbius: svgToDataUri(`
+    <path d="M24 46 C24 18, 96 18, 96 46 L90 92 L30 92 Z" fill="#0f172a"/>
+    <ellipse cx="60" cy="58" rx="26" ry="32" fill="#e2e8f0" stroke="#0f172a" stroke-width="3.5"/>
+    <circle cx="49" cy="52" r="5" fill="#dc2626"/>
+    <circle cx="71" cy="52" r="5" fill="#dc2626"/>
+    <path d="M44 74 L76 74" stroke="#0f172a" stroke-width="3"/>
+    <polygon points="48,74 52,84 56,74" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+    <polygon points="64,74 68,84 72,74" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
+  `),
+  tinkerer: svgToDataUri(`
+    <ellipse cx="60" cy="60" rx="30" ry="34" fill="#fed7aa" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M28 54 C28 32, 42 32, 42 54 M78 54 C78 32, 92 32, 92 54" fill="none" stroke="#f8fafc" stroke-width="7" stroke-linecap="round"/>
+    <rect x="34" y="48" width="22" height="12" rx="4" fill="#38bdf8" stroke="#0f172a" stroke-width="3"/>
+    <rect x="64" y="48" width="22" height="12" rx="4" fill="#38bdf8" stroke="#0f172a" stroke-width="3"/>
+    <line x1="56" y1="54" x2="64" y2="54" stroke="#0f172a" stroke-width="3"/>
+    <path d="M48 76 Q60 84 72 76" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+  `),
+  tombstone: svgToDataUri(`
+    <path d="M18 116 L26 84 L94 84 L102 116 Z" fill="#1e293b" stroke="#0f172a" stroke-width="3.5"/>
+    <rect x="30" y="24" width="60" height="68" rx="14" fill="#cbd5e1" stroke="#0f172a" stroke-width="4"/>
+    <path d="M30 38 Q60 28 90 38 L90 24 L30 24 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+    <rect x="38" y="48" width="14" height="6" fill="#0f172a"/>
+    <rect x="68" y="48" width="14" height="6" fill="#0f172a"/>
+    <path d="M44 74 L76 74" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  `)
+};
+
+const starters = [
+  { id: "spiderman", name: "Spider-Man (Peter)", img: "images/spiderman.jpg", moves: ["🕸️ Web-Shooter", "💥 Spider-Swing Kick", "⚡ Electric Web", "🕷️ Web-Slam"] },
+  { id: "miles", name: "Miles Morales", img: "images/miles.jpg", moves: ["⚡ Venom Blast", "🕸️ Bio-Electric Web", "👻 Camouflage Strike", "💥 Mega Venom"] },
+  { id: "gwen", name: "Ghost-Spider (Gwen)", img: "images/gwen.png", moves: ["🕸️ Web-Ribbon", "🩰 Acrobat Kick", "🌪️ Web-Cyclone", "💥 Impact Webbing"] },
+  { id: "spider2099", name: "Spider-Man 2099", img: "images/miguel.png", moves: ["🔴 Laser Web", "🦅 Talon Strike", "⚡ Holo-Decoy", "💥 Future Slam"] },
+  { id: "noir", name: "Spider-Noir", img: "images/noir.png", moves: ["🎩 Shadow Web", "👊 Heavy Haymaker", "🕵️ Stealth Takedown", "🕸️ Grapple Pull"] },
+  { id: "ham", name: "Spider-Ham", img: "images/spiderham.png", moves: ["🔨 Giant Mallet", "🕸️ Porker Web", "🎈 Anvil Drop", "💥 Cartoon Uppercut"] },
+  { id: "scarlet", name: "Scarlet Spider", img: "images/scarlet.png", moves: ["🕸️ Impact Webbing", "🔥 Stinger Darts", "💥 Parkour Kick", "🛡️ Web-Shield Bash"] },
+  { id: "ironspider", name: "Iron Spider", img: "images/ironspider.png", moves: ["🦾 Waldoes Strike", "⚡ Repulsor Web", "🚀 Jet-Boost Kick", "💥 Nano-Web Barrage"] }
+];
+
+const wildOpponents = [
+  { id: "goblin", name: "Green Goblin", img: "images/goblin.jpg", pool: "classic", move: "Pumpkin Bomb" },
+  { id: "docock", name: "Doctor Octopus", img: "images/octopus.png", pool: "classic", move: "Tentacle Slam" },
+  { id: "electro", name: "Electro", img: "images/electro.png", pool: "classic", move: "Lightning Surge" },
+  { id: "sandman", name: "Sandman", img: "images/sandman.png", pool: "classic", move: "Sandstorm Hammer" },
+  { id: "rhino", name: "Rhino", img: "images/rhino.png", pool: "classic", move: "Horn Charge" },
+  { id: "mysterio", name: "Mysterio", img: "images/mysterio.jpg", pool: "classic", move: "Illusion Mist" },
+  { id: "vulture", name: "Vulture", img: "images/vulture.jpg", pool: "classic", move: "Wing Gust" },
+  { id: "lizard", name: "Lizard", img: "images/lizard.png", pool: "classic", move: "Tail Whip" },
+  { id: "kraven", name: "Kraven the Hunter", img: "images/kraven.png", pool: "classic", move: "Net Trap" },
+  { id: "scorpion", name: "Scorpion", img: "images/scorpion.png", pool: "classic", move: "Tail Sting" },
+  { id: "shocker", name: "Shocker", img: "images/shocker.png", pool: "classic", move: "Vibro-Blast" },
+  { id: "venom", name: "Venom", img: "images/venom.png", pool: "spiderverse", move: "Symbiote Tendril" },
+  { id: "carnage", name: "Carnage", img: "images/carnage.png", pool: "spiderverse", move: "Chaos Claws" },
+  { id: "kingpin", name: "Kingpin", img: "images/kingpin.png", pool: "spiderverse", move: "Super Slam" },
+  { id: "prowler", name: "Prowler", img: "images/prowler.png", pool: "spiderverse", move: "Gauntlet Swipe" },
+  { id: "spot", name: "The Spot", img: "images/spot.png", pool: "spiderverse", move: "Portal Punch" },
+  { id: "hobgoblin", name: "Hobgoblin", img: "images/hobgoblin.png", pool: "spiderverse", move: "Flame Glider" },
+  { id: "morbius", name: "Morbius", img: "images/morbius.png", pool: "spiderverse", move: "Shadow Dive" },
+  { id: "tinkerer", name: "Tinkerer", img: "images/tinkerer.png", pool: "spiderverse", move: "Tech Drone" },
+  { id: "tombstone", name: "Tombstone", img: "images/tombstone.png", pool: "spiderverse", move: "Brawler Smash" }
+];
+
+const STORAGE_KEY = "spiderverse_battle_slp_clients_v1";
+const TRUST_KEY = "spiderverse_battle_slp_device_trusted";
+const PIN_HASH_KEY = "spiderverse_battle_slp_device_trusted_pin";
+
+function createDefaultClient(id, name) {
+  return {
+    id,
+    name,
+    sound: "p",
+    position: "initial",
+    level: "word",
+    heroId: "spiderman",
+    battlesWon: 0,
+    webHitsLanded: 0,
+    points: 0,
+    customEntries: [],
+    trialLog: []
+  };
+}
+
+let isDeviceUnlocked = false;
+let pinMode = "unlock";
+let guestSessionClient = createDefaultClient("guest-session", "Guest Session");
+let appState = { activeClientId: "guest-session", clients: [guestSessionClient] };
+
+let selectedStarter = starters[0];
+let selectedMove = starters[0].moves[0];
+let currentEnemy = wildOpponents[0];
+let lastEnemyId = null;
+let enemyHp = 100;
+let playerHp = 100;
+let roundHits = 0;
+let battleOver = false;
+let currentPrompt = "";
+let isModeled = false;
+
+const $ = id => document.getElementById(id);
+
+const ALL_CHARACTERS = [...starters, ...wildOpponents];
+
+function setCharacterImage(imgEl, charId) {
+  const charObj = ALL_CHARACTERS.find(c => c.id === charId);
+  const fallbackSrc = CHARACTER_ART[charId] || CHARACTER_ART.spiderman;
+  if (charObj && charObj.img) {
+    imgEl.onerror = () => {
+      imgEl.onerror = null;
+      imgEl.src = fallbackSrc;
+    };
+    imgEl.src = charObj.img;
+  } else {
+    imgEl.onerror = null;
+    imgEl.src = fallbackSrc;
+  }
+}
+
+async function hashPin(pin) {
+  const enc = new TextEncoder().encode("spiderverse-slp-salt:" + pin);
+  const buf = await crypto.subtle.digest("SHA-256", enc);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function isTrustedBrowser() {
+  try {
+    return localStorage.getItem(TRUST_KEY) === "true";
+  } catch (e) {
+    return false;
+  }
+}
+
+function hasSavedClientsInStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return Boolean(parsed && Array.isArray(parsed.clients) && parsed.clients.length);
+  } catch (e) {
+    return false;
+  }
+}
+
+function loadSavedClientsFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && Array.isArray(parsed.clients) && parsed.clients.length) {
+        return parsed;
+      }
+    }
+  } catch (e) {}
+  const defaultClient = createDefaultClient("client-default", "Default Client");
+  return { activeClientId: defaultClient.id, clients: [defaultClient] };
+}
+
+function initPrivacyState() {
+  if (isTrustedBrowser()) {
+    isDeviceUnlocked = true;
+    appState = loadSavedClientsFromStorage();
+  } else {
+    isDeviceUnlocked = false;
+    guestSessionClient = createDefaultClient("guest-session", "Guest Session");
+    appState = { activeClientId: "guest-session", clients: [guestSessionClient] };
+  }
+}
+
+function saveState() {
+  if (!isDeviceUnlocked) return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+  } catch (e) {}
+}
+
+function getActiveClient() {
+  if (!isDeviceUnlocked) return guestSessionClient;
+  return appState.clients.find(c => c.id === appState.activeClientId) || appState.clients[0];
+}
+
+function updatePrivacyUI() {
+  const banner = $("privacyBanner");
+  const statusText = $("privacyStatusText");
+  const unlockBtn = $("unlockDeviceBtn");
+  const lockBtn = $("lockDeviceBtn");
+  const forgetBtn = $("forgetDeviceBtn");
+  const addBtn = $("addClientBtn");
+  const delBtn = $("deleteClientBtn");
+  const nameInput = $("newClientName");
+  const select = $("clientSelect");
+
+  if (isDeviceUnlocked) {
+    banner.classList.add("trusted");
+    const trusted = isTrustedBrowser();
+    statusText.textContent = trusted
+      ? "✅ Trusted Device — Saved client profiles unlocked on this computer/iPad."
+      : "🔓 Unlocked (This Session Only) — Lock before leaving a shared computer.";
+    unlockBtn.classList.add("hidden");
+    lockBtn.classList.remove("hidden");
+    if (trusted) forgetBtn.classList.remove("hidden");
+    else forgetBtn.classList.add("hidden");
+    select.disabled = false;
+    nameInput.disabled = false;
+    addBtn.disabled = false;
+    delBtn.disabled = false;
+  } else {
+    banner.classList.remove("trusted");
+    const hasExisting = hasSavedClientsInStorage();
+    statusText.textContent = hasExisting
+      ? "🔒 Locked (Guest Session) — Stored client profiles are hidden until you unlock this device."
+      : "🔒 Guest Mode — Client names are not saved unless you unlock & trust this device.";
+    unlockBtn.textContent = hasExisting ? "🔓 Unlock Saved Clients" : "🔓 Set PIN & Enable Client Profiles";
+    unlockBtn.classList.remove("hidden");
+    lockBtn.classList.add("hidden");
+    forgetBtn.classList.add("hidden");
+    select.disabled = true;
+    nameInput.disabled = true;
+    addBtn.disabled = true;
+    delBtn.disabled = true;
+  }
+}
+
+function openPinPanel() {
+  const existingPin = localStorage.getItem(PIN_HASH_KEY);
+  $("pinError").textContent = "";
+  $("pinInput").value = "";
+  $("trustDeviceCheckbox").checked = true;
+
+  if (!existingPin) {
+    pinMode = "setup";
+    $("pinPanelTitle").textContent = "Create a Clinician PIN (4+ digits)";
+    $("pinPanelSub").textContent = "Protects client profiles on shared computers. Check below to auto-unlock on your personal computer/iPad.";
+  } else {
+    pinMode = "unlock";
+    $("pinPanelTitle").textContent = "Enter Your Clinician PIN";
+    $("pinPanelSub").textContent = "Unlocks your locally saved client list on this device.";
+  }
+  $("pinPanel").classList.remove("hidden");
+  $("pinInput").focus();
+}
+
+function closePinPanel() {
+  $("pinPanel").classList.add("hidden");
+  $("pinError").textContent = "";
+  $("pinInput").value = "";
+}
+
+async function confirmPinAction() {
+  const pin = $("pinInput").value.trim();
+  if (pin.length < 4) {
+    $("pinError").textContent = "Please enter at least 4 digits/characters.";
+    return;
+  }
+  const hashed = await hashPin(pin);
+  if (pinMode === "setup") {
+    localStorage.setItem(PIN_HASH_KEY, hashed);
+  } else {
+    const savedHash = localStorage.getItem(PIN_HASH_KEY);
+    if (hashed !== savedHash) {
+      $("pinError").textContent = "Incorrect PIN. Try again.";
+      return;
+    }
+  }
+
+  if ($("trustDeviceCheckbox").checked) {
+    localStorage.setItem(TRUST_KEY, "true");
+  } else {
+    localStorage.removeItem(TRUST_KEY);
+  }
+
+  isDeviceUnlocked = true;
+  appState = loadSavedClientsFromStorage();
+  saveState();
+  closePinPanel();
+  renderClientSelector();
+  $("clientStatus").textContent = "Client profiles unlocked.";
+}
+
+function lockDeviceNow() {
+  isDeviceUnlocked = false;
+  guestSessionClient = createDefaultClient("guest-session", "Guest Session");
+  appState = { activeClientId: "guest-session", clients: [guestSessionClient] };
+  $("battleSection").classList.add("hidden");
+  renderClientSelector();
+  $("clientStatus").textContent = "Locked. Saved client info is now hidden.";
+}
+
+function forgetTrustedDevice() {
+  localStorage.removeItem(TRUST_KEY);
+  lockDeviceNow();
+  $("clientStatus").textContent = "Device untrusted. It will ask for your PIN next time.";
+}
+
+function renderStarterGrid() {
+  const grid = $("starterGrid");
+  grid.innerHTML = "";
+  starters.forEach(st => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "starter-card" + (st.id === selectedStarter.id ? " selected" : "");
+    const img = document.createElement("img");
+    img.alt = st.name;
+    setCharacterImage(img, st.id);
+    const label = document.createElement("span");
+    label.textContent = st.name;
+    btn.appendChild(img);
+    btn.appendChild(label);
+    bindTap(btn, () => {
+      selectedStarter = st;
+      selectedMove = st.moves[0];
+      const client = getActiveClient();
+      client.heroId = st.id;
+      saveState();
+      renderStarterGrid();
+      if (!$("battleSection").classList.contains("hidden")) {
+        $("playerPokeName").textContent = st.name;
+        setCharacterImage($("playerPokeImg"), st.id);
+        renderMovePills();
+      }
+    });
+    grid.appendChild(btn);
+  });
+}
+
+function renderMovePills() {
+  const container = $("moveSelector");
+  container.innerHTML = "";
+  selectedStarter.moves.forEach(mv => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "move-pill" + (mv === selectedMove ? " active-move" : "");
+    btn.textContent = mv;
+    bindTap(btn, () => {
+      selectedMove = mv;
+      renderMovePills();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function renderClientSelector() {
+  updatePrivacyUI();
+  const select = $("clientSelect");
+  select.innerHTML = "";
+  if (!isDeviceUnlocked) {
+    const opt = document.createElement("option");
+    opt.value = "guest-session";
+    opt.textContent = "Guest Session (Clients Hidden)";
+    select.appendChild(opt);
+    select.value = "guest-session";
+    loadClientIntoUI();
+    return;
+  }
+  appState.clients.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c.id;
+    opt.textContent = c.name;
+    select.appendChild(opt);
+  });
+  const active = getActiveClient();
+  appState.activeClientId = active.id;
+  select.value = active.id;
+  loadClientIntoUI();
+}
+
+function loadClientIntoUI() {
+  const client = getActiveClient();
+  $("sound").value = client.sound || "p";
+  $("position").value = client.position || "initial";
+  $("level").value = client.level || "word";
+  selectedStarter = starters.find(s => s.id === client.heroId) || starters[0];
+  selectedMove = selectedStarter.moves[0];
+  renderStarterGrid();
+
+  const hits = client.webHitsLanded ?? client.attacksLanded ?? 0;
+  $("battlesWon").textContent = client.battlesWon || 0;
+  $("attacksLanded").textContent = hits;
+  $("points").textContent = client.points || 0;
+  $("activeClientBadge").textContent = client.name;
+  $("scoreboardClientName").textContent = client.name;
+  $("importStatus").textContent = "";
+  updateSessionStats();
+}
+
+function switchClient() {
+  if (!isDeviceUnlocked) return;
+  appState.activeClientId = $("clientSelect").value;
+  saveState();
+  loadClientIntoUI();
+  $("battleSection").classList.add("hidden");
+  $("clientStatus").textContent = `Loaded profile for ${getActiveClient().name}.`;
+}
+
+function addClient() {
+  if (!isDeviceUnlocked) {
+    $("clientStatus").textContent = "Unlock this device first to save named client profiles.";
+    return;
+  }
+  const input = $("newClientName");
+  const name = input.value.trim();
+  if (!name) {
+    $("clientStatus").textContent = "Enter a client name or initials first.";
+    return;
+  }
+  const newClient = createDefaultClient("client-" + Date.now(), name);
+  appState.clients.push(newClient);
+  appState.activeClientId = newClient.id;
+  input.value = "";
+  saveState();
+  renderClientSelector();
+  $("battleSection").classList.add("hidden");
+  $("clientStatus").textContent = `Added and selected client "${name}".`;
+}
+
+function deleteClient() {
+  if (!isDeviceUnlocked) return;
+  if (appState.clients.length <= 1) {
+    $("clientStatus").textContent = "At least one client profile must remain.";
+    return;
+  }
+  const active = getActiveClient();
+  if (!confirm(`Remove client "${active.name}" and all their recorded data?`)) return;
+  appState.clients = appState.clients.filter(c => c.id !== active.id);
+  appState.activeClientId = appState.clients[0].id;
+  saveState();
+  renderClientSelector();
+  $("battleSection").classList.add("hidden");
+  $("clientStatus").textContent = `Removed "${active.name}".`;
+}
+
+function saveClientGoal() {
+  const client = getActiveClient();
+  client.sound = $("sound").value;
+  client.position = $("position").value;
+  client.level = $("level").value;
+  client.heroId = selectedStarter.id;
+  saveState();
+}
+
+function setModeledState(val) {
+  isModeled = val;
+  const btn = $("modeledBtn");
+  const badge = $("cueBadge");
+  if (isModeled) {
+    btn.textContent = "🗣️ Modeled: ON";
+    btn.classList.add("active");
+    badge.textContent = "Cueing: Modeled Production";
+    badge.classList.add("modeled");
+  } else {
+    btn.textContent = "🗣️ Modeled: OFF";
+    btn.classList.remove("active");
+    badge.textContent = "Cueing: Spontaneous / Independent";
+    badge.classList.remove("modeled");
+  }
+}
+
+function toggleModeled() {
+  if (battleOver) return;
+  setModeledState(!isModeled);
+}
+
+function updateHpBars() {
+  const pBar = $("playerHpBar");
+  const eBar = $("enemyHpBar");
+  pBar.style.width = Math.max(0, playerHp) + "%";
+  eBar.style.width = Math.max(0, enemyHp) + "%";
+  $("playerHpText").textContent = Math.max(0, playerHp);
+  $("enemyHpText").textContent = Math.max(0, enemyHp);
+
+  pBar.className = "hp-fill" + (playerHp <= 25 ? " low" : playerHp <= 50 ? " mid" : "");
+  eBar.className = "hp-fill" + (enemyHp <= 25 ? " low" : enemyHp <= 50 ? " mid" : "");
+}
+
+function startBattle(keepSameEnemy = false) {
+  saveClientGoal();
+  const client = getActiveClient();
+  enemyHp = 100;
+  playerHp = 100;
+  roundHits = 0;
+  battleOver = false;
+  setModeledState(false);
+
+  if (!keepSameEnemy) {
+    const poolChoice = $("opponentPool").value;
+    let pool = wildOpponents.filter(op => op.id !== lastEnemyId);
+    if (poolChoice === "classic") pool = pool.filter(op => op.pool === "classic");
+    if (poolChoice === "spiderverse") pool = pool.filter(op => op.pool === "spiderverse");
+    if (!pool.length) pool = wildOpponents;
+    currentEnemy = pool[Math.floor(Math.random() * pool.length)];
+    lastEnemyId = currentEnemy.id;
+  }
+
+  $("activeClientBadge").textContent = client.name;
+  $("activeSound").textContent = "/" + $("sound").value + "/";
+  $("roundHits").textContent = "0";
+
+  $("playerPokeName").textContent = selectedStarter.name;
+  setCharacterImage($("playerPokeImg"), selectedStarter.id);
+  $("playerPokeImg").className = "fighter-img";
+
+  $("enemyPokeName").textContent = currentEnemy.name;
+  setCharacterImage($("enemyPokeImg"), currentEnemy.id);
+  $("enemyPokeImg").className = "fighter-img";
+
+  updateHpBars();
+  renderMovePills();
+
+  $("battleLogBox").textContent = `${currentEnemy.name} appeared on the NYC rooftop! Swing in, ${selectedStarter.name}!`;
+  $("nextBattleRow").classList.add("hidden");
+  $("speechControlsArea").classList.remove("hidden");
+  $("battleSection").classList.remove("hidden");
+  $("battleSection").scrollIntoView({ behavior: "smooth" });
+
+  nextPrompt();
+}
+
+function getBuiltInWords(sound, position) {
+  const soundGroup = prompts[sound];
+  if (!soundGroup) return [];
+  if (position === "mixed") {
+    return [
+      ...(soundGroup.initial || []),
+      ...(soundGroup.medial || []),
+      ...(soundGroup.final || [])
+    ];
+  }
+  return soundGroup[position] || [];
+}
+
+function nextPrompt() {
+  if (battleOver) return;
+  setModeledState(false);
+  const client = getActiveClient();
+  const sound = $("sound").value;
+  const level = $("level").value;
+  const position = $("position").value;
+
+  let list = level === "sentence"
+    ? (sentences[sound] || [])
+    : getBuiltInWords(sound, position);
+
+  const imported = (client.customEntries || []).filter(entry =>
+    (!entry.sound || entry.sound === sound) &&
+    (!entry.level || entry.level === level) &&
+    (!entry.position || entry.position === "mixed" || position === "mixed" || entry.position === position)
+  ).map(entry => entry.word);
+
+  const pool = [...list, ...imported];
+  const candidates = pool.length > 1 ? pool.filter(w => w !== currentPrompt) : pool;
+
+  if (!candidates.length) {
+    currentPrompt = "";
+    $("speechPrompt").textContent = `No ${position} words available for /${sound}/. Try another position or import custom words.`;
+  } else {
+    let word = candidates[Math.floor(Math.random() * candidates.length)];
+    currentPrompt = word;
+    $("speechPrompt").textContent = word;
+  }
+
+  if (level === "word" && position !== "mixed") {
+    $("positionText").textContent = "Word position goal: " + position.toUpperCase();
+  } else {
+    $("positionText").textContent =
+      "Position: " + $("position").selectedOptions[0].text +
+      " | Level: " + $("level").selectedOptions[0].text;
+  }
+}
+
+function triggerAnim(el, className) {
+  el.classList.remove(className);
+  void el.offsetWidth;
+  el.classList.add(className);
+}
+
+function markTrial(correctVal) {
+  if (battleOver || !currentPrompt) return;
+
+  const client = getActiveClient();
+  const cueType = isModeled ? "modeled" : "spontaneous";
+  const moveLabel = selectedMove.replace(/^[^\w]+/, "").trim();
+
+  client.trialLog.push({
+    client: client.name,
+    timestamp: new Date().toISOString(),
+    sound: $("sound").value,
+    position: $("position").value,
+    level: $("level").value,
+    prompt: currentPrompt,
+    move: moveLabel,
+    cue: cueType,
+    correct: correctVal
+  });
+
+  const pImg = $("playerPokeImg");
+  const eImg = $("enemyPokeImg");
+
+  if (correctVal === 1) {
+    roundHits++;
+    enemyHp = Math.max(0, 100 - roundHits * 20);
+    client.webHitsLanded = (client.webHitsLanded ?? client.attacksLanded ?? 0) + 1;
+    client.points = (client.points || 0) + 5;
+
+    $("roundHits").textContent = roundHits;
+    updateHpBars();
+    triggerAnim(pImg, "anim-attack");
+    triggerAnim(eImg, "anim-hit");
+
+    const cueTag = isModeled ? " (Modeled)" : "";
+    if (enemyHp <= 0) {
+      battleOver = true;
+      client.battlesWon = (client.battlesWon || 0) + 1;
+      client.points = (client.points || 0) + 25;
+      setTimeout(() => eImg.classList.add("anim-faint"), 320);
+      $("battleLogBox").textContent = `🏆 ${selectedStarter.name} used ${moveLabel}! ${currentEnemy.name} was webbed up! YOU WON! (+25 Hero XP)`;
+      $("speechControlsArea").classList.add("hidden");
+      $("nextBattleRow").classList.remove("hidden");
+    } else {
+      $("battleLogBox").textContent = `🕸️ THWIP! ${selectedStarter.name} used ${moveLabel}${cueTag}! Direct hit (-20 HP)!`;
+      nextPrompt();
+    }
+  } else {
+    playerHp = Math.max(20, playerHp - 15);
+    updateHpBars();
+    triggerAnim(eImg, "anim-attack");
+    triggerAnim(pImg, "anim-hit");
+    $("battleLogBox").textContent = `🛡️ ${currentEnemy.name} dodged and used ${currentEnemy.move}! Swing into the next word!`;
+    nextPrompt();
+  }
+
+  $("battlesWon").textContent = client.battlesWon || 0;
+  $("attacksLanded").textContent = client.webHitsLanded || 0;
+  $("points").textContent = client.points || 0;
+  saveState();
+  updateSessionStats();
+}
+
+function formatAccuracy(rows) {
+  if (!rows.length) return "—";
+  const correct = rows.reduce((sum, r) => sum + r.correct, 0);
+  return `${correct}/${rows.length} (${Math.round(correct / rows.length * 100)}%)`;
+}
+
+function updateSessionStats() {
+  const client = getActiveClient();
+  const log = client.trialLog || [];
+  const spontRows = log.filter(r => r.cue !== "modeled");
+  const modRows = log.filter(r => r.cue === "modeled");
+
+  $("logTrials").textContent = log.length;
+  $("logSpontaneous").textContent = formatAccuracy(spontRows);
+  $("logModeled").textContent = formatAccuracy(modRows);
+  $("logAccuracy").textContent = formatAccuracy(log);
+  $("logCustom").textContent = (client.customEntries || []).length;
+}
+
+function buildCSVString(allClients) {
+  const rows = allClients
+    ? appState.clients.flatMap(c => (c.trialLog || []).map(r => ({ client: c.name, ...r })))
+    : (getActiveClient().trialLog || []).map(r => ({ client: getActiveClient().name, ...r }));
+
+  if (!rows.length) return null;
+  const headers = ["client", "timestamp", "sound", "position", "level", "prompt", "move", "cue", "correct"];
+  const quote = value => '"' + String(value ?? "").replace(/"/g, '""') + '"';
+  return [headers.join(","), ...rows.map(row => headers.map(key => quote(row[key])).join(","))].join("\r\n");
+}
+
+function exportCSV(allClients) {
+  const csv = buildCSVString(allClients);
+  if (!csv) {
+    alert("There are no scored trials to export yet.");
+    return;
+  }
+  const slug = allClients ? "all-clients" : getActiveClient().name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const filename = `spiderverse-battle-speech-${slug}.csv`;
+
+  try {
+    const file = new File([csv], filename, { type: "text/csv" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: filename }).catch(() => {});
+      return;
+    }
+  } catch (e) {}
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function copyCSV() {
+  const csv = buildCSVString(false);
+  if (!csv) {
+    alert("There are no scored trials to copy yet.");
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(csv);
+    alert("Active client CSV copied to clipboard!");
+  } catch (e) {
+    alert("Clipboard access unavailable in this browser context.");
+  }
+}
+
+function clearSessionLog() {
+  const client = getActiveClient();
+  if (!confirm(`Clear all recorded trials, battles won, web hits, and Hero XP for ${client.name}?`)) return;
+  client.trialLog = [];
+  client.battlesWon = 0;
+  client.webHitsLanded = 0;
+  client.points = 0;
+  $("battlesWon").textContent = "0";
+  $("attacksLanded").textContent = "0";
+  $("points").textContent = "0";
+  saveState();
+  updateSessionStats();
+  $("clientStatus").textContent = `Cleared battle & trial session data for ${client.name}.`;
+}
+
+function parseCSVLine(line) {
+  const cells = []; let value = "", quoted = false;
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"' && line[i+1] === '"' && quoted) { value += '"'; i++; }
+    else if (ch === '"') quoted = !quoted;
+    else if (ch === ',' && !quoted) { cells.push(value.trim()); value = ""; }
+    else value += ch;
+  }
+  cells.push(value.trim()); return cells;
+}
+
+function importWords() {
+  const file = $("wordFile").files[0];
+  if (!file) { $("importStatus").textContent = "Choose a .txt or .csv file first."; return; }
+  const client = getActiveClient();
+  const reader = new FileReader();
+  reader.onload = () => {
+    const content = String(reader.result || "").replace(/^\uFEFF/, "");
+    const lines = content.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+    if (!lines.length) { $("importStatus").textContent = "That file appears to be empty."; return; }
+    if (file.name.toLowerCase().endsWith(".txt")) {
+      client.customEntries = lines.map(word => ({ word, sound: "", position: "", level: "" }));
+    } else {
+      const headers = parseCSVLine(lines[0]).map(h => h.toLowerCase());
+      const wi = headers.indexOf("word");
+      if (wi < 0) { $("importStatus").textContent = 'CSV needs a column named "word".'; return; }
+      const idx = name => headers.indexOf(name);
+      client.customEntries = lines.slice(1).map(line => {
+        const row = parseCSVLine(line);
+        const sound = idx("sound") >= 0 ? (row[idx("sound")] || "").toLowerCase().replace(/^\/|\/$/g, "") : "";
+        return {
+          word: (row[wi] || "").trim(),
+          sound,
+          position: idx("position") >= 0 ? (row[idx("position")] || "").toLowerCase() : "",
+          level: idx("level") >= 0 ? (row[idx("level")] || "").toLowerCase() : ""
+        };
+      }).filter(entry => entry.word);
+    }
+    saveState();
+    updateSessionStats();
+    $("importStatus").textContent = `Imported ${client.customEntries.length} item(s) for ${client.name}.`;
+  };
+  reader.onerror = () => $("importStatus").textContent = "Could not read that file.";
+  reader.readAsText(file);
+}
+
+function clearCustomWords() {
+  const client = getActiveClient();
+  client.customEntries = [];
+  saveState();
+  updateSessionStats();
+  $("importStatus").textContent = `Imported words cleared for ${client.name}.`;
+}
+
+initPrivacyState();
+
+$("clientSelect").addEventListener("change", switchClient);
+$("sound").addEventListener("change", saveClientGoal);
+$("position").addEventListener("change", saveClientGoal);
+$("level").addEventListener("change", saveClientGoal);
+
+bindTap($("addClientBtn"), addClient);
+bindTap($("deleteClientBtn"), deleteClient);
+bindTap($("startBtn"), () => startBattle(false));
+bindTap($("nextBattleBtn"), () => startBattle(false));
+bindTap($("resetBattleBtn"), () => startBattle(true));
+bindTap($("importBtn"), importWords);
+bindTap($("clearWordsBtn"), clearCustomWords);
+bindTap($("modeledBtn"), toggleModeled);
+bindTap($("correctBtn"), () => markTrial(1));
+bindTap($("incorrectBtn"), () => markTrial(0));
+bindTap($("nextPromptBtn"), nextPrompt);
+bindTap($("exportActiveBtn"), () => exportCSV(false));
+bindTap($("exportAllBtn"), () => exportCSV(true));
+bindTap($("copyCsvBtn"), copyCSV);
+bindTap($("clearLogBtn"), clearSessionLog);
+
+bindTap($("unlockDeviceBtn"), openPinPanel);
+bindTap($("lockDeviceBtn"), lockDeviceNow);
+bindTap($("forgetDeviceBtn"), forgetTrustedDevice);
+bindTap($("confirmPinBtn"), confirmPinAction);
+bindTap($("cancelPinBtn"), closePinPanel);
+$("pinInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    confirmPinAction();
+  }
+});
+
+renderClientSelector();
+</script>
+</body>
+</html>
