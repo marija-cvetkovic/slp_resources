@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Spider-Verse Battle SLP">
+<meta name="apple-mobile-web-app-title" content="Spider-Verse SLP">
 <title>Spider-Verse Speech Battle — Articulation Practice</title>
 <style>
 * {
@@ -19,15 +19,15 @@ html, body {
 body {
   margin: 0;
   font-family: -apple-system, 'Trebuchet MS', Arial, sans-serif;
-  background: linear-gradient(135deg, #fee2e2, #dbeafe, #fef3c7);
+  background: linear-gradient(135deg, #dbeafe, #fef3c7, #fee2e2);
   color: #1e293b;
   text-align: center;
 }
 header {
-  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 74%, #facc15 74%, #eab308 86%, #0f172a 86%, #1e293b 100%);
+  background: linear-gradient(180deg, #dc2626 0%, #b91c1c 74%, #facc15 74%, #eab308 86%, #1e293b 86%, #0f172a 100%);
   color: #ffffff;
   padding: 20px 18px 28px;
-  border-bottom: 4px solid #1d4ed8;
+  border-bottom: 4px solid #94a3b8;
   text-shadow: 0 2px 4px rgba(0,0,0,0.45);
 }
 h1 { margin: 0; font-size: 2.15rem; letter-spacing: 0.5px; }
@@ -45,7 +45,7 @@ h1 { margin: 0; font-size: 2.15rem; letter-spacing: 0.5px; }
   box-shadow: 0 5px 14px rgba(30, 41, 59, 0.14);
   border: 2px solid #e2e8f0;
 }
-h2 { color: #b91c1c; margin-top: 0; }
+h2 { color: #1d4ed8; margin-top: 0; }
 select, input, button {
   font: inherit;
   border-radius: 12px;
@@ -57,7 +57,7 @@ select, input, button {
 }
 select { max-width: 100%; background: #fff; color: #1e293b; }
 button {
-  background: #1d4ed8;
+  background: #2563eb;
   color: white;
   border: none;
   font-weight: bold;
@@ -67,7 +67,7 @@ button {
   user-select: none;
   -webkit-user-select: none;
 }
-button:hover { background: #1e3a8a; }
+button:hover { background: #1d4ed8; }
 button:active, button.is-pressed {
   transform: scale(0.95);
   filter: brightness(0.92);
@@ -138,7 +138,7 @@ button:disabled {
 }
 .pin-panel {
   background: #ffffff;
-  border: 2px solid #1d4ed8;
+  border: 2px solid #2563eb;
   border-radius: 14px;
   padding: 14px;
   margin-bottom: 14px;
@@ -188,67 +188,43 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 122px;
+  min-height: 118px;
 }
 .starter-card:hover {
-  background: #fef2f2;
-  border-color: #fca5a5;
+  background: #eff6ff;
+  border-color: #93c5fd;
 }
 .starter-card.selected {
-  background: #fee2e2;
-  border-color: #dc2626;
-  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.25);
+  background: #dbeafe;
+  border-color: #2563eb;
+  box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
 }
 .starter-card img {
   width: 68px;
   height: 68px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 .starter-card span {
-  font-size: 0.9rem;
-  margin-top: 5px;
+  font-size: 0.92rem;
+  margin-top: 4px;
 }
 
-/* BATTLE ARENA — NYC SKYLINE & ROOFTOP */
+/* BATTLE ARENA */
 .arena {
-  background: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 52%, #cbd5e1 52%, #94a3b8 100%);
-  border: 3px solid #0f172a;
+  background: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 52%, #334155 52%, #1e293b 100%);
+  border: 3px solid #64748b;
   border-radius: 18px;
   padding: 16px;
   margin: 14px 0;
   position: relative;
   overflow: hidden;
 }
-.skyline-backdrop {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 22%;
-  height: 32%;
-  pointer-events: none;
-  opacity: 0.32;
-  z-index: 0;
-}
-.rooftop-ledge {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 52%;
-  height: 10px;
-  background: #475569;
-  border-top: 2px solid #0f172a;
-  border-bottom: 2px solid #334155;
-  pointer-events: none;
-  z-index: 0;
-}
 .battle-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
   align-items: center;
-  position: relative;
-  z-index: 1;
 }
 @media (max-width: 560px) {
   .battle-row {
@@ -256,11 +232,11 @@ button:disabled {
   }
 }
 .fighter-box {
-  background: rgba(255, 255, 255, 0.93);
-  border: 2px solid #0f172a;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #94a3b8;
   border-radius: 16px;
   padding: 12px;
-  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.18);
 }
 .fighter-header {
   display: flex;
@@ -275,7 +251,7 @@ button:disabled {
   background: #e2e8f0;
   border-radius: 999px;
   overflow: hidden;
-  border: 1px solid #64748b;
+  border: 1px solid #94a3b8;
 }
 .hp-fill {
   height: 100%;
@@ -296,7 +272,7 @@ button:disabled {
   width: 135px;
   height: 135px;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 12px;
   margin: 6px auto 0;
   display: block;
   transition: transform 0.25s ease, filter 0.25s ease;
@@ -327,7 +303,7 @@ button:disabled {
 .battle-log-box {
   background: #0f172a;
   color: #f8fafc;
-  border: 3px solid #facc15;
+  border: 3px solid #eab308;
   border-radius: 14px;
   padding: 12px 16px;
   margin-top: 12px;
@@ -337,8 +313,6 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 1;
 }
 
 /* SPEECH PROMPT & MOVES */
@@ -359,7 +333,7 @@ button:disabled {
   font-weight: bold;
   margin-bottom: 8px;
   background: #dbeafe;
-  color: #1e3a8a;
+  color: #1e40af;
 }
 .cue-badge.modeled {
   background: #fef3c7;
@@ -382,9 +356,9 @@ button:disabled {
   font-size: 0.95rem;
 }
 .move-pill.active-move {
-  background: #dc2626;
+  background: #1d4ed8;
   color: #ffffff;
-  border-color: #0f172a;
+  border-color: #1e3a8a;
 }
 .scoring-row {
   display: flex;
@@ -442,8 +416,8 @@ footer { padding: 20px; font-size: .85rem; }
 <body>
 
 <header>
-  <h1>🕷️ Spider-Verse Speech Battle 🕸️</h1>
-  <p class="subtitle">Say your speech words to launch web-attacks and save the Spider-Verse!</p>
+  <h1>🕸️ Spider-Verse Speech Battle ⚡</h1>
+  <p class="subtitle">Say your speech words to launch web attacks and defeat Spider-Verse villains!</p>
 </header>
 
 <div class="container">
@@ -455,7 +429,7 @@ footer { padding: 20px; font-size: .85rem; }
 <!-- SLP CONTROL CENTER -->
 <section class="card">
 <h2>🎓 SLP Control Center</h2>
-<p>Select a client, set their speech target, and pick a Spider-Hero to battle villains!</p>
+<p>Select a client, set their speech target, and pick a Spider-Hero to battle!</p>
 
 <div class="client-bar">
   <!-- DEVICE PRIVACY LOCK -->
@@ -544,11 +518,11 @@ footer { padding: 20px; font-size: .85rem; }
   </div>
 
   <div>
-    <label for="opponentPool">Villain Pool</label>
+    <label for="opponentPool">Villain Roster</label>
     <select id="opponentPool">
-      <option value="all">Classic &amp; Spider-Verse Villains</option>
-      <option value="classic">Classic Sinister Six Villains</option>
-      <option value="spiderverse">Spider-Verse &amp; Symbiote Villains</option>
+      <option value="all">All Spider-Verse Villains</option>
+      <option value="sinister">Classic Sinister Six</option>
+      <option value="multiverse">Spider-Verse &amp; Symbiotes</option>
     </select>
   </div>
 </div>
@@ -556,8 +530,8 @@ footer { padding: 20px; font-size: .85rem; }
 <label>Choose Your Spider-Hero</label>
 <div class="starter-grid" id="starterGrid"></div>
 
-<p><b>Each correct speech production deals 20 HP damage — 5 correct productions defeats the villain!</b></p>
-<button type="button" id="startBtn" class="primary">Start Spider-Verse Battle 🕸️</button>
+<p><b>Each correct speech production deals 20 HP damage — 5 correct productions wins the battle!</b></p>
+<button type="button" id="startBtn" class="primary">Start Spider-Battle 🕸️</button>
 </section>
 
 <!-- CUSTOM WORD IMPORT -->
@@ -577,43 +551,37 @@ footer { padding: 20px; font-size: .85rem; }
 <section class="card hidden" id="battleSection">
 <h2>🕸️ NYC Rooftop Battle Arena</h2>
 <div class="stats">
-  <div class="stat">Hero: <span id="activeClientBadge">Guest Session</span></div>
+  <div class="stat">Hero Player: <span id="activeClientBadge">Guest Session</span></div>
   <div class="stat">Target: <span id="activeSound">/p/</span></div>
   <div class="stat">Round Hits: <span id="roundHits">0</span> / 5</div>
 </div>
 
 <div class="arena">
-  <!-- Subtle NYC Skyline Silhouette -->
-  <svg class="skyline-backdrop" viewBox="0 0 800 120" preserveAspectRatio="none">
-    <path d="M0,120 L0,65 L45,65 L45,35 L85,35 L85,80 L120,80 L120,25 L155,25 L155,15 L170,15 L170,25 L195,25 L195,70 L240,70 L240,42 L290,42 L290,85 L340,85 L340,20 L385,20 L385,60 L435,60 L435,38 L490,38 L490,78 L545,78 L545,18 L575,18 L575,5 L585,5 L585,18 L610,18 L610,65 L665,65 L665,45 L720,45 L720,75 L765,75 L765,30 L800,30 L800,120 Z" fill="#1e293b"/>
-  </svg>
-  <div class="rooftop-ledge"></div>
-
   <div class="battle-row">
     <!-- PLAYER SPIDER-HERO -->
     <div class="fighter-box">
       <div class="fighter-header">
-        <span id="playerPokeName">Spider-Man (Peter)</span>
-        <span style="color:#dc2626;font-size:0.9rem;">YOUR HERO</span>
+        <span id="playerPokeName">Spider-Man</span>
+        <span style="color:#1d4ed8;font-size:0.9rem;">YOUR HERO</span>
       </div>
       <div class="hp-track"><div class="hp-fill" id="playerHpBar"></div></div>
       <div class="hp-label">HP: <span id="playerHpText">100</span> / 100</div>
       <img id="playerPokeImg" class="fighter-img" alt="Your Spider-Hero" src="" />
     </div>
 
-    <!-- SUPERVILLAIN OPPONENT -->
+    <!-- VILLAIN OPPONENT -->
     <div class="fighter-box">
       <div class="fighter-header">
-        <span id="enemyPokeName">Green Goblin</span>
-        <span style="color:#1e3a8a;font-size:0.9rem;">VILLAIN</span>
+        <span id="enemyPokeName">Villain</span>
+        <span style="color:#dc2626;font-size:0.9rem;">VILLAIN FOE</span>
       </div>
       <div class="hp-track"><div class="hp-fill" id="enemyHpBar"></div></div>
       <div class="hp-label">HP: <span id="enemyHpText">100</span> / 100</div>
-      <img id="enemyPokeImg" class="fighter-img" alt="Supervillain opponent" src="" />
+      <img id="enemyPokeImg" class="fighter-img" alt="Villain opponent" src="" />
     </div>
   </div>
 
-  <div class="battle-log-box" id="battleLogBox">A villain appeared on the rooftop! Say your speech target to strike!</div>
+  <div class="battle-log-box" id="battleLogBox">A villain appeared on the rooftop! Say your speech target to launch a web attack!</div>
 </div>
 
 <div id="nextBattleRow" class="hidden" style="margin: 12px 0;">
@@ -625,12 +593,12 @@ footer { padding: 20px; font-size: .85rem; }
   <div><span id="cueBadge" class="cue-badge">Cueing: Spontaneous / Independent</span></div>
   <div class="prompt" id="speechPrompt">Say your target word!</div>
 
-  <div style="font-weight:bold;font-size:0.95rem;color:#334155;">Choose Spider-Attack Move:</div>
+  <div style="font-weight:bold;font-size:0.95rem;color:#334155;">Choose Spider-Move:</div>
   <div class="move-selector" id="moveSelector"></div>
 
   <div class="scoring-row">
     <button type="button" id="modeledBtn" class="modeled-btn">🗣️ Modeled: OFF</button>
-    <button type="button" id="correctBtn" class="primary">🕸️ Correct = Web Attack!</button>
+    <button type="button" id="correctBtn">🕸️ Correct = Web Attack!</button>
     <button type="button" id="incorrectBtn" class="secondary">🛡️ Missed (Villain Dodges)</button>
   </div>
   <div class="utility-row">
@@ -642,10 +610,10 @@ footer { padding: 20px; font-size: .85rem; }
 
 <!-- SCOREBOARD -->
 <section class="card">
-<h2>🏆 Spider-Verse Scoreboard — <span id="scoreboardClientName">Guest Session</span></h2>
+<h2>🏆 Spider-Verse Hero Scoreboard — <span id="scoreboardClientName">Guest Session</span></h2>
 <div class="stats">
-  <div class="stat">Battles Won: <span id="battlesWon">0</span> 🏆</div>
-  <div class="stat">Web Hits Landed: <span id="attacksLanded">0</span> 🕸️</div>
+  <div class="stat">Villains Defeated: <span id="battlesWon">0</span> 🏆</div>
+  <div class="stat">Total Web Hits: <span id="attacksLanded">0</span> 🕸️</div>
   <div class="stat">Hero XP: <span id="points">0</span> ⭐</div>
 </div>
   <div class="import-row" style="margin-top:14px;">
@@ -791,302 +759,105 @@ const sentences = {
   blend: ["The frog jumps on the grass.","The plane is flying.","The star is shining.","The train is fast.","The blue flower is pretty."]
 };
 
-function svgToDataUri(innerSvg) {
-  const full = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">${innerSvg}</svg>`;
-  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(full);
+function makeHeroSvg(bg1, bg2, suit, webColor, eyeColor, emblem, accent) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${bg1}"/>
+        <stop offset="100%" stop-color="${bg2}"/>
+      </linearGradient>
+    </defs>
+    <rect x="6" y="6" width="128" height="128" rx="28" fill="url(#g)" stroke="#ffffff" stroke-width="4"/>
+    <path d="M70 6 L70 134 M6 70 L134 70 M20 20 L120 120 M120 20 L20 120" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+    <circle cx="70" cy="70" r="46" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+    <circle cx="70" cy="70" r="26" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2"/>
+    ${accent ? `<ellipse cx="70" cy="30" rx="26" ry="10" fill="${accent}"/>` : ""}
+    <path d="M38 66 C38 36, 102 36, 102 66 C102 98, 86 116, 70 116 C54 116, 38 98, 38 66 Z" fill="${suit}" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M70 42 L70 115 M40 68 L100 68 M47 50 L93 95 M93 50 L47 95" stroke="${webColor}" stroke-width="1.6" opacity="0.65"/>
+    <path d="M44 63 C50 56, 62 61, 64 73 C56 76, 45 73, 44 63 Z" fill="${eyeColor}" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M96 63 C90 56, 78 61, 76 73 C84 76, 95 73, 96 63 Z" fill="${eyeColor}" stroke="#0f172a" stroke-width="3.5"/>
+    <circle cx="70" cy="100" r="5" fill="#0f172a"/>
+    <path d="M62 96 L78 104 M78 96 L62 104 M61 100 L79 100" stroke="${emblem}" stroke-width="2"/>
+  </svg>`;
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
 }
 
-const CHARACTER_ART = {
-  // 8 Selectable Spider-Heroes
-  spiderman: svgToDataUri(`
-    <path d="M20 116 C24 90, 96 90, 100 116 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="3.5"/>
-    <path d="M36 116 C40 92, 80 92, 84 116 Z" fill="#dc2626" stroke="#0f172a" stroke-width="2.5"/>
-    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
-    <g stroke="#7f1d1d" stroke-width="1.6" fill="none" opacity="0.7">
-      <line x1="60" y1="16" x2="60" y2="96"/>
-      <line x1="26" y1="56" x2="94" y2="56"/>
-      <line x1="34" y1="27" x2="86" y2="85"/>
-      <line x1="86" y1="27" x2="34" y2="85"/>
-      <ellipse cx="60" cy="56" rx="16" ry="20"/>
-      <ellipse cx="60" cy="56" rx="26" ry="31"/>
-    </g>
-    <path d="M32 48 C36 35, 52 41, 54 56 C44 63, 32 58, 32 48 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
-    <path d="M88 48 C84 35, 68 41, 66 56 C76 63, 88 58, 88 48 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
-  `),
-  miles: svgToDataUri(`
-    <path d="M20 116 C24 90, 96 90, 100 116 Z" fill="#0f172a" stroke="#ef4444" stroke-width="3.5"/>
-    <path d="M44 94 L60 112 L76 94" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
-    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#111827" stroke="#020617" stroke-width="4"/>
-    <g stroke="#ef4444" stroke-width="1.7" fill="none" opacity="0.85">
-      <line x1="60" y1="16" x2="60" y2="96"/>
-      <line x1="34" y1="27" x2="86" y2="85"/>
-      <line x1="86" y1="27" x2="34" y2="85"/>
-      <ellipse cx="60" cy="56" rx="24" ry="29"/>
-    </g>
-    <path d="M32 48 C36 35, 52 41, 54 56 C44 63, 32 58, 32 48 Z" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
-    <path d="M88 48 C84 35, 68 41, 66 56 C76 63, 88 58, 88 48 Z" fill="#ffffff" stroke="#ef4444" stroke-width="4"/>
-    <path d="M18 32 L26 24 L22 36 L30 28" fill="none" stroke="#facc15" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M102 32 L94 24 L98 36 L90 28" fill="none" stroke="#facc15" stroke-width="2.5" stroke-linecap="round"/>
-  `),
-  gwen: svgToDataUri(`
-    <path d="M18 62 C18 18, 102 18, 102 62 C102 95, 86 108, 60 108 C34 108, 18 95, 18 62 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="4"/>
-    <path d="M25 60 C25 25, 95 25, 95 60 C95 87, 82 98, 60 98 C38 98, 25 87, 25 60 Z" fill="#ec4899"/>
-    <ellipse cx="60" cy="58" rx="29" ry="34" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M38 35 Q60 44 82 35" fill="none" stroke="#06b6d4" stroke-width="2.5"/>
-    <path d="M36 50 C39 39, 53 45, 55 57 C46 62, 36 59, 36 50 Z" fill="#0f172a" stroke="#ec4899" stroke-width="3.5"/>
-    <path d="M84 50 C81 39, 67 45, 65 57 C74 62, 84 59, 84 50 Z" fill="#0f172a" stroke="#ec4899" stroke-width="3.5"/>
-    <path d="M22 116 C28 96, 92 96, 98 116 Z" fill="#0f172a"/>
-  `),
-  spider2099: svgToDataUri(`
-    <path d="M18 116 C22 88, 98 88, 102 116 Z" fill="#1e3a8a" stroke="#0f172a" stroke-width="3.5"/>
-    <path d="M34 96 L60 114 L86 96" fill="none" stroke="#ef4444" stroke-width="5"/>
-    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#1d4ed8" stroke="#0f172a" stroke-width="4"/>
-    <path d="M44 26 L60 42 L76 26 L68 58 L60 76 L52 58 Z" fill="#dc2626" stroke="#0f172a" stroke-width="2"/>
-    <path d="M30 44 L54 54 L46 62 L30 54 Z" fill="#ef4444" stroke="#facc15" stroke-width="2.5"/>
-    <path d="M90 44 L66 54 L74 62 L90 54 Z" fill="#ef4444" stroke="#facc15" stroke-width="2.5"/>
-  `),
-  noir: svgToDataUri(`
-    <path d="M18 116 C24 88, 96 88, 102 116 Z" fill="#1e293b" stroke="#020617" stroke-width="3.5"/>
-    <ellipse cx="60" cy="60" rx="32" ry="36" fill="#334155" stroke="#020617" stroke-width="4"/>
-    <ellipse cx="60" cy="30" rx="46" ry="9" fill="#0f172a" stroke="#020617" stroke-width="3"/>
-    <path d="M32 29 L38 10 L60 14 L82 10 L88 29 Z" fill="#1e293b" stroke="#020617" stroke-width="3"/>
-    <circle cx="45" cy="56" r="11" fill="#f8fafc" stroke="#020617" stroke-width="3.5"/>
-    <circle cx="75" cy="56" r="11" fill="#f8fafc" stroke="#020617" stroke-width="3.5"/>
-    <line x1="56" y1="56" x2="64" y2="56" stroke="#020617" stroke-width="4"/>
-  `),
-  ham: svgToDataUri(`
-    <polygon points="28,32 22,12 44,24" fill="#dc2626" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
-    <polygon points="92,32 98,12 76,24" fill="#dc2626" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
-    <ellipse cx="60" cy="58" rx="35" ry="36" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
-    <path d="M32 45 C36 33, 52 39, 54 52 C44 58, 32 54, 32 45 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3.5"/>
-    <path d="M88 45 C84 33, 68 39, 66 52 C76 58, 88 54, 88 45 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="60" cy="72" rx="18" ry="13" fill="#f9a8d4" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="53" cy="72" rx="3.5" ry="5" fill="#0f172a"/>
-    <ellipse cx="67" cy="72" rx="3.5" ry="5" fill="#0f172a"/>
-    <path d="M26 116 C30 96, 90 96, 94 116 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="3"/>
-  `),
-  scarlet: svgToDataUri(`
-    <path d="M18 116 C22 88, 98 88, 102 116 Z" fill="#2563eb" stroke="#0f172a" stroke-width="3.5"/>
-    <path d="M40 94 L60 112 L80 94 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="2.5"/>
-    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#ef4444" stroke="#0f172a" stroke-width="4"/>
-    <path d="M28 46 C33 32, 53 39, 55 57 C43 65, 28 59, 28 46 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
-    <path d="M92 46 C87 32, 67 39, 65 57 C77 65, 92 59, 92 46 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
-  `),
-  ironspider: svgToDataUri(`
-    <path d="M24 88 L8 42 L20 26" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M96 88 L112 42 L100 26" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M20 116 C24 90, 96 90, 100 116 Z" fill="#b91c1c" stroke="#facc15" stroke-width="3.5"/>
-    <ellipse cx="60" cy="56" rx="34" ry="40" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
-    <path d="M32 48 C36 35, 52 41, 54 56 C44 63, 32 58, 32 48 Z" fill="#38bdf8" stroke="#facc15" stroke-width="3.5"/>
-    <path d="M88 48 C84 35, 68 41, 66 56 C76 63, 88 58, 88 48 Z" fill="#38bdf8" stroke="#facc15" stroke-width="3.5"/>
-  `),
+function makeVillainSvg(bg1, bg2, headColor, featureType, eyeColor, trimColor) {
+  let feature = "";
+  if (featureType === "goblin") {
+    feature = `<path d="M40 50 L24 38 L38 64 Z M100 50 L116 38 L102 64 Z" fill="${headColor}" stroke="#0f172a" stroke-width="3"/>
+               <path d="M36 48 Q70 20 104 48 L112 28 Q70 12 36 48 Z" fill="${trimColor}" stroke="#0f172a" stroke-width="3"/>`;
+  } else if (featureType === "venom") {
+    feature = `<path d="M44 76 Q70 96 96 76 Q88 106 70 106 Q52 106 44 76 Z" fill="#ffffff" stroke="#0f172a" stroke-width="2.5"/>
+               <path d="M66 88 Q74 114 88 112 Q78 122 62 102 Z" fill="#ef4444" stroke="#7f1d1d" stroke-width="2"/>`;
+  } else if (featureType === "ock") {
+    feature = `<path d="M22 110 Q14 75 36 78 M118 110 Q126 75 104 78" fill="none" stroke="#94a3b8" stroke-width="7" stroke-linecap="round"/>
+               <circle cx="22" cy="110" r="6" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
+               <circle cx="118" cy="110" r="6" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>`;
+  } else if (featureType === "electro") {
+    feature = `<polygon points="70,18 62,42 78,42" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
+               <polygon points="32,46 50,56 42,68" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
+               <polygon points="108,46 90,56 98,68" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>`;
+  } else if (featureType === "mysterio") {
+    feature = `<circle cx="70" cy="68" r="36" fill="rgba(224,242,254,0.82)" stroke="#38bdf8" stroke-width="4"/>
+               <path d="M46 76 Q70 60 94 76" fill="none" stroke="#a7f3d0" stroke-width="5" opacity="0.8"/>`;
+  } else if (featureType === "rhino") {
+    feature = `<polygon points="70,32 60,64 80,64" fill="#e2e8f0" stroke="#0f172a" stroke-width="3"/>`;
+  } else if (featureType === "vulture") {
+    feature = `<path d="M16 86 Q34 50 48 78 M124 86 Q106 50 92 78" fill="none" stroke="${trimColor}" stroke-width="9" stroke-linecap="round"/>
+               <ellipse cx="70" cy="96" rx="28" ry="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>`;
+  } else {
+    feature = `<circle cx="56" cy="54" r="6" fill="#0f172a"/><circle cx="86" cy="84" r="7" fill="#0f172a"/><circle cx="54" cy="90" r="5" fill="#0f172a"/>`;
+  }
 
-  // Classic Sinister Six Villains
-  goblin: svgToDataUri(`
-    <polygon points="24,52 6,36 28,68" fill="#22c55e" stroke="#0f172a" stroke-width="3.5"/>
-    <polygon points="96,52 114,36 92,68" fill="#22c55e" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="60" cy="64" rx="31" ry="35" fill="#22c55e" stroke="#0f172a" stroke-width="4"/>
-    <path d="M24 46 Q60 32 96 46 L76 12 L20 34 Z" fill="#7e22ce" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
-    <polygon points="35,54 53,60 39,66" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
-    <polygon points="85,54 67,60 81,66" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M40 76 Q60 93 80 76 Q60 83 40 76 Z" fill="#fef08a" stroke="#0f172a" stroke-width="2.5"/>
-  `),
-  docock: svgToDataUri(`
-    <path d="M24 85 Q6 55 18 26" fill="none" stroke="#94a3b8" stroke-width="7" stroke-linecap="round"/>
-    <circle cx="18" cy="26" r="6" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M96 85 Q114 55 102 26" fill="none" stroke="#94a3b8" stroke-width="7" stroke-linecap="round"/>
-    <circle cx="102" cy="26" r="6" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
-    <ellipse cx="60" cy="60" rx="30" ry="34" fill="#fde68a" stroke="#0f172a" stroke-width="3.5"/>
-    <path d="M28 52 C28 22, 92 22, 92 52 C78 44, 42 44, 28 52 Z" fill="#451a03" stroke="#0f172a" stroke-width="3.5"/>
-    <circle cx="46" cy="58" r="11" fill="#10b981" stroke="#334155" stroke-width="4"/>
-    <circle cx="74" cy="58" r="11" fill="#10b981" stroke="#334155" stroke-width="4"/>
-    <line x1="57" y1="58" x2="63" y2="58" stroke="#334155" stroke-width="4"/>
-    <path d="M48 80 Q60 73 72 80" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
-  `),
-  electro: svgToDataUri(`
-    <polygon points="60,8 70,34 102,22 84,50 112,64 82,74 96,102 66,86 60,114 54,86 24,102 38,74 8,64 36,50 18,22 50,34" fill="#facc15" stroke="#0f172a" stroke-width="3" stroke-linejoin="round"/>
-    <circle cx="60" cy="62" r="24" fill="#16a34a" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="50" cy="58" rx="6" ry="4" fill="#38bdf8" stroke="#0f172a" stroke-width="2"/>
-    <ellipse cx="70" cy="58" rx="6" ry="4" fill="#38bdf8" stroke="#0f172a" stroke-width="2"/>
-    <path d="M48 72 Q60 80 72 72" fill="none" stroke="#facc15" stroke-width="3" stroke-linecap="round"/>
-  `),
-  sandman: svgToDataUri(`
-    <path d="M22 116 C24 88, 96 88, 98 116 Z" fill="#16a34a" stroke="#0f172a" stroke-width="3.5"/>
-    <rect x="28" y="34" width="64" height="60" rx="18" fill="#d97706" stroke="#0f172a" stroke-width="4"/>
-    <path d="M28 42 Q44 22 60 32 Q76 22 92 42 Z" fill="#92400e" stroke="#0f172a" stroke-width="3"/>
-    <rect x="38" y="50" width="14" height="7" rx="3" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-    <rect x="68" y="50" width="14" height="7" rx="3" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-    <path d="M42 76 L78 76" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
-  `),
-  rhino: svgToDataUri(`
-    <ellipse cx="60" cy="62" rx="36" ry="38" fill="#64748b" stroke="#0f172a" stroke-width="4"/>
-    <ellipse cx="60" cy="68" rx="22" ry="20" fill="#fed7aa" stroke="#0f172a" stroke-width="3"/>
-    <polygon points="60,12 51,48 69,48" fill="#f8fafc" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
-    <polygon points="60,48 54,66 66,66" fill="#e2e8f0" stroke="#0f172a" stroke-width="2.5"/>
-    <circle cx="46" cy="58" r="4" fill="#0f172a"/>
-    <circle cx="74" cy="58" r="4" fill="#0f172a"/>
-    <path d="M48 78 Q60 72 72 78" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
-  `),
-  mysterio: svgToDataUri(`
-    <path d="M18 116 L32 82 L88 82 L102 116 Z" fill="#7e22ce" stroke="#0f172a" stroke-width="3.5"/>
-    <circle cx="60" cy="54" r="36" fill="#a5f3fc" stroke="#0f172a" stroke-width="4"/>
-    <path d="M34 56 Q48 40 60 54 Q72 68 86 52" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
-    <circle cx="34" cy="84" r="8" fill="#facc15" stroke="#0f172a" stroke-width="3"/>
-    <circle cx="86" cy="84" r="8" fill="#facc15" stroke="#0f172a" stroke-width="3"/>
-  `),
-  vulture: svgToDataUri(`
-    <path d="M14 96 Q60 70 106 96 L96 116 L24 116 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
-    <ellipse cx="60" cy="58" rx="28" ry="34" fill="#15803d" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="60" cy="56" rx="20" ry="24" fill="#fed7aa" stroke="#0f172a" stroke-width="2.5"/>
-    <polygon points="60,56 52,70 68,70" fill="#f59e0b" stroke="#0f172a" stroke-width="2.5"/>
-    <circle cx="49" cy="48" r="4" fill="#ef4444"/>
-    <circle cx="71" cy="48" r="4" fill="#ef4444"/>
-  `),
-  lizard: svgToDataUri(`
-    <path d="M30 42 C30 20, 90 20, 90 42 L84 88 C84 98, 36 98, 36 88 Z" fill="#16a34a" stroke="#0f172a" stroke-width="4"/>
-    <polygon points="36,48 54,54 38,60" fill="#facc15" stroke="#0f172a" stroke-width="2"/>
-    <polygon points="84,48 66,54 82,60" fill="#facc15" stroke="#0f172a" stroke-width="2"/>
-    <path d="M38 72 L82 72 L76 86 L44 86 Z" fill="#dc2626" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M42 72 L46 78 L50 72 L55 78 L60 72 L65 78 L70 72 L74 78 L78 72" fill="#ffffff"/>
-  `),
-  kraven: svgToDataUri(`
-    <path d="M20 116 L32 82 L88 82 L100 116 Z" fill="#b45309" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="60" cy="56" rx="30" ry="34" fill="#fdba74" stroke="#0f172a" stroke-width="3.5"/>
-    <path d="M30 48 C30 22, 90 22, 90 48 C76 38, 44 38, 30 48 Z" fill="#1e293b" stroke="#0f172a" stroke-width="3"/>
-    <path d="M34 66 Q60 92 86 66 L78 88 L42 88 Z" fill="#1e293b" stroke="#0f172a" stroke-width="2.5"/>
-    <circle cx="48" cy="52" r="4" fill="#0f172a"/>
-    <circle cx="72" cy="52" r="4" fill="#0f172a"/>
-  `),
-  scorpion: svgToDataUri(`
-    <path d="M84 96 Q112 72 104 34 Q98 16 80 22" fill="none" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
-    <polygon points="80,22 68,18 76,30" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
-    <ellipse cx="56" cy="60" rx="30" ry="34" fill="#15803d" stroke="#0f172a" stroke-width="4"/>
-    <ellipse cx="56" cy="64" rx="18" ry="18" fill="#fed7aa" stroke="#0f172a" stroke-width="2.5"/>
-    <rect x="42" y="54" width="11" height="6" fill="#ef4444" stroke="#0f172a" stroke-width="2"/>
-    <rect x="59" y="54" width="11" height="6" fill="#ef4444" stroke="#0f172a" stroke-width="2"/>
-  `),
-  shocker: svgToDataUri(`
-    <ellipse cx="60" cy="58" rx="33" ry="38" fill="#eab308" stroke="#0f172a" stroke-width="4"/>
-    <g stroke="#92400e" stroke-width="2">
-      <line x1="36" y1="28" x2="84" y2="88"/>
-      <line x1="84" y1="28" x2="36" y2="88"/>
-      <line x1="60" y1="20" x2="60" y2="96"/>
-    </g>
-    <path d="M36 48 L54 54 L36 60 Z" fill="#0f172a"/>
-    <path d="M84 48 L66 54 L84 60 Z" fill="#0f172a"/>
-    <ellipse cx="60" cy="76" rx="12" ry="7" fill="#7f1d1d" stroke="#0f172a" stroke-width="2.5"/>
-  `),
-
-  // Spider-Verse & Symbiote Villains
-  venom: svgToDataUri(`
-    <ellipse cx="60" cy="58" rx="36" ry="42" fill="#090d16" stroke="#334155" stroke-width="3.5"/>
-    <path d="M28 42 C36 30, 52 44, 54 54 C42 56, 30 50, 28 42 Z" fill="#ffffff"/>
-    <path d="M92 42 C84 30, 68 44, 66 54 C78 56, 90 50, 92 42 Z" fill="#ffffff"/>
-    <path d="M32 66 Q60 98 88 66 Q60 76 32 66 Z" fill="#e11d48" stroke="#ffffff" stroke-width="2"/>
-    <path d="M38 68 L42 77 L46 69 L51 79 L56 70 L60 80 L64 70 L69 79 L74 69 L78 77 L82 68" fill="#ffffff"/>
-  `),
-  carnage: svgToDataUri(`
-    <ellipse cx="60" cy="58" rx="35" ry="41" fill="#dc2626" stroke="#0f172a" stroke-width="4"/>
-    <path d="M32 24 Q46 40 38 56 M88 24 Q74 40 82 56" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
-    <path d="M28 42 C38 32, 52 44, 54 54 C42 56, 30 50, 28 42 Z" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-    <path d="M92 42 C82 32, 68 44, 66 54 C78 56, 90 50, 92 42 Z" fill="#ffffff" stroke="#0f172a" stroke-width="2"/>
-    <path d="M34 68 Q60 96 86 68 Q60 76 34 68 Z" fill="#0f172a"/>
-    <path d="M40 70 L44 79 L48 70 L53 80 L58 70 L62 80 L67 70 L72 79 L76 70" fill="#ffffff"/>
-  `),
-  kingpin: svgToDataUri(`
-    <path d="M10 116 L20 68 L100 68 L110 116 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
-    <polygon points="60,72 52,96 60,108 68,96" fill="#7e22ce" stroke="#0f172a" stroke-width="2.5"/>
-    <ellipse cx="60" cy="48" rx="26" ry="28" fill="#fed7aa" stroke="#0f172a" stroke-width="3.5"/>
-    <line x1="42" y1="44" x2="54" y2="48" stroke="#0f172a" stroke-width="3"/>
-    <line x1="78" y1="44" x2="66" y2="48" stroke="#0f172a" stroke-width="3"/>
-    <path d="M48 64 L72 64" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/>
-  `),
-  prowler: svgToDataUri(`
-    <polygon points="30,36 22,12 46,26" fill="#6b21a8" stroke="#0f172a" stroke-width="3.5"/>
-    <polygon points="90,36 98,12 74,26" fill="#6b21a8" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="60" cy="58" rx="32" ry="36" fill="#581c87" stroke="#0f172a" stroke-width="4"/>
-    <path d="M34 48 L54 54 L36 60 Z" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
-    <path d="M86 48 L66 54 L84 60 Z" fill="#22c55e" stroke="#0f172a" stroke-width="2"/>
-    <path d="M36 74 L84 74 L76 92 L44 92 Z" fill="#16a34a" stroke="#0f172a" stroke-width="3"/>
-  `),
-  spot: svgToDataUri(`
-    <ellipse cx="60" cy="58" rx="34" ry="40" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
-    <circle cx="44" cy="46" r="8" fill="#090d16"/>
-    <circle cx="76" cy="54" r="10" fill="#090d16"/>
-    <circle cx="52" cy="76" r="7" fill="#090d16"/>
-    <circle cx="64" cy="28" r="5" fill="#090d16"/>
-    <path d="M22 116 C28 92, 92 92, 98 116 Z" fill="#ffffff" stroke="#0f172a" stroke-width="3.5"/>
-    <circle cx="45" cy="105" r="6" fill="#090d16"/>
-    <circle cx="75" cy="106" r="7" fill="#090d16"/>
-  `),
-  hobgoblin: svgToDataUri(`
-    <polygon points="24,52 6,36 28,68" fill="#f97316" stroke="#0f172a" stroke-width="3.5"/>
-    <polygon points="96,52 114,36 92,68" fill="#f97316" stroke="#0f172a" stroke-width="3.5"/>
-    <ellipse cx="60" cy="64" rx="31" ry="35" fill="#f97316" stroke="#0f172a" stroke-width="4"/>
-    <path d="M24 46 Q60 32 96 46 L76 12 L20 34 Z" fill="#1d4ed8" stroke="#0f172a" stroke-width="3.5" stroke-linejoin="round"/>
-    <polygon points="35,54 53,60 39,66" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
-    <polygon points="85,54 67,60 81,66" fill="#ef4444" stroke="#0f172a" stroke-width="2.5"/>
-    <path d="M40 76 Q60 93 80 76 Q60 83 40 76 Z" fill="#facc15" stroke="#0f172a" stroke-width="2.5"/>
-  `),
-  morbius: svgToDataUri(`
-    <path d="M24 46 C24 18, 96 18, 96 46 L90 92 L30 92 Z" fill="#0f172a"/>
-    <ellipse cx="60" cy="58" rx="26" ry="32" fill="#e2e8f0" stroke="#0f172a" stroke-width="3.5"/>
-    <circle cx="49" cy="52" r="5" fill="#dc2626"/>
-    <circle cx="71" cy="52" r="5" fill="#dc2626"/>
-    <path d="M44 74 L76 74" stroke="#0f172a" stroke-width="3"/>
-    <polygon points="48,74 52,84 56,74" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
-    <polygon points="64,74 68,84 72,74" fill="#ffffff" stroke="#0f172a" stroke-width="1.5"/>
-  `),
-  tinkerer: svgToDataUri(`
-    <ellipse cx="60" cy="60" rx="30" ry="34" fill="#fed7aa" stroke="#0f172a" stroke-width="3.5"/>
-    <path d="M28 54 C28 32, 42 32, 42 54 M78 54 C78 32, 92 32, 92 54" fill="none" stroke="#f8fafc" stroke-width="7" stroke-linecap="round"/>
-    <rect x="34" y="48" width="22" height="12" rx="4" fill="#38bdf8" stroke="#0f172a" stroke-width="3"/>
-    <rect x="64" y="48" width="22" height="12" rx="4" fill="#38bdf8" stroke="#0f172a" stroke-width="3"/>
-    <line x1="56" y1="54" x2="64" y2="54" stroke="#0f172a" stroke-width="3"/>
-    <path d="M48 76 Q60 84 72 76" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
-  `),
-  tombstone: svgToDataUri(`
-    <path d="M18 116 L26 84 L94 84 L102 116 Z" fill="#1e293b" stroke="#0f172a" stroke-width="3.5"/>
-    <rect x="30" y="24" width="60" height="68" rx="14" fill="#cbd5e1" stroke="#0f172a" stroke-width="4"/>
-    <path d="M30 38 Q60 28 90 38 L90 24 L30 24 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
-    <rect x="38" y="48" width="14" height="6" fill="#0f172a"/>
-    <rect x="68" y="48" width="14" height="6" fill="#0f172a"/>
-    <path d="M44 74 L76 74" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
-  `)
-};
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140">
+    <defs>
+      <linearGradient id="vg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${bg1}"/>
+        <stop offset="100%" stop-color="${bg2}"/>
+      </linearGradient>
+    </defs>
+    <rect x="6" y="6" width="128" height="128" rx="28" fill="url(#vg)" stroke="#facc15" stroke-width="4"/>
+    <path d="M40 66 C40 38, 100 38, 100 66 C100 96, 85 114, 70 114 C55 114, 40 96, 40 66 Z" fill="${headColor}" stroke="#0f172a" stroke-width="3.5"/>
+    <path d="M46 62 L64 68 L48 73 Z" fill="${eyeColor}" stroke="#0f172a" stroke-width="2.5"/>
+    <path d="M94 62 L76 68 L92 73 Z" fill="${eyeColor}" stroke="#0f172a" stroke-width="2.5"/>
+    ${feature}
+  </svg>`;
+  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+}
 
 const starters = [
-  { id: "spiderman", name: "Spider-Man (Peter)", img: "images/spiderman.jpg", moves: ["🕸️ Web-Shooter", "💥 Spider-Swing Kick", "⚡ Electric Web", "🕷️ Web-Slam"] },
-  { id: "miles", name: "Miles Morales", img: "images/miles.jpg", moves: ["⚡ Venom Blast", "🕸️ Bio-Electric Web", "👻 Camouflage Strike", "💥 Mega Venom"] },
-  { id: "gwen", name: "Ghost-Spider (Gwen)", img: "images/gwen.png", moves: ["🕸️ Web-Ribbon", "🩰 Acrobat Kick", "🌪️ Web-Cyclone", "💥 Impact Webbing"] },
-  { id: "spider2099", name: "Spider-Man 2099", img: "images/miguel.png", moves: ["🔴 Laser Web", "🦅 Talon Strike", "⚡ Holo-Decoy", "💥 Future Slam"] },
-  { id: "noir", name: "Spider-Noir", img: "images/noir.png", moves: ["🎩 Shadow Web", "👊 Heavy Haymaker", "🕵️ Stealth Takedown", "🕸️ Grapple Pull"] },
-  { id: "ham", name: "Spider-Ham", img: "images/spiderham.png", moves: ["🔨 Giant Mallet", "🕸️ Porker Web", "🎈 Anvil Drop", "💥 Cartoon Uppercut"] },
-  { id: "scarlet", name: "Scarlet Spider", img: "images/scarlet.png", moves: ["🕸️ Impact Webbing", "🔥 Stinger Darts", "💥 Parkour Kick", "🛡️ Web-Shield Bash"] },
-  { id: "ironspider", name: "Iron Spider", img: "images/ironspider.png", moves: ["🦾 Waldoes Strike", "⚡ Repulsor Web", "🚀 Jet-Boost Kick", "💥 Nano-Web Barrage"] }
+  { id: 1, name: "Spider-Man", img: "images/spiderman.png", fallback: makeHeroSvg("#dc2626", "#1d4ed8", "#ef4444", "#0f172a", "#ffffff", "#0f172a", ""), moves: ["🕸️ Web-Shot", "⚡ Spider-Strike", "🌀 Web-Swing Kick", "🛡️ Web-Shield"] },
+  { id: 2, name: "Miles Morales", img: "images/miles.png", fallback: makeHeroSvg("#0f172a", "#dc2626", "#18181b", "#ef4444", "#ffffff", "#ef4444", ""), moves: ["⚡ Venom Blast", "🕸️ Bio-Web Slam", "👻 Camo Strike", "💥 Mega Shock"] },
+  { id: 3, name: "Ghost-Spider", img: "images/gwen.png", fallback: makeHeroSvg("#f8fafc", "#ec4899", "#ffffff", "#ec4899", "#0f172a", "#06b6d4", "#f8fafc"), moves: ["🕸️ Ribbon Web", "🩰 Acrobat Kick", "💫 Portal Leap", "✨ Gwen-Barrage"] },
+  { id: 4, name: "Spider-Man 2099", img: "images/miguel.png", fallback: makeHeroSvg("#1e3a8a", "#dc2626", "#1d4ed8", "#ef4444", "#ef4444", "#ef4444", ""), moves: ["🔴 Laser Web", "🦅 Talon Slash", "🌐 Holo-Trap", "⚡ Future Surge"] },
+  { id: 5, name: "Spider-Noir", img: "images/noir.png", fallback: makeHeroSvg("#334155", "#0f172a", "#1e293b", "#94a3b8", "#f8fafc", "#94a3b8", "#0f172a"), moves: ["🎩 Shadow Web", "🕵️ Noir Uppercut", "🕸️ Trench Snare", "💨 Smoke Dash"] },
+  { id: 6, name: "Spider-Ham", img: "images/spiderham.png", fallback: makeHeroSvg("#f43f5e", "#facc15", "#fb7185", "#0f172a", "#ffffff", "#0f172a", "#fda4af"), moves: ["🔨 Cartoon Mallet", "🕸️ Porker Web", "🐷 Snout Boop", "⭐ Anvil Drop"] },
+  { id: 7, name: "Scarlet Spider", img: "images/scarlet.png", fallback: makeHeroSvg("#dc2626", "#0284c7", "#ef4444", "#0f172a", "#ffffff", "#0284c7", ""), moves: ["🎯 Impact Webbing", "🕸️ Stinger Dart", "🔥 Scarlet Surge", "🌀 Clone Rush"] },
+  { id: 8, name: "Iron Spider", img: "images/ironspider.png", fallback: makeHeroSvg("#b91c1c", "#eab308", "#dc2626", "#facc15", "#38bdf8", "#facc15", ""), moves: ["🦾 Waldoe Strike", "🚀 Repulsor Web", "🛡️ Nano-Armor", "⚡ Stark Blast"] }
 ];
 
 const wildOpponents = [
-  { id: "goblin", name: "Green Goblin", img: "images/goblin.jpg", pool: "classic", move: "Pumpkin Bomb" },
-  { id: "docock", name: "Doctor Octopus", img: "images/octopus.png", pool: "classic", move: "Tentacle Slam" },
-  { id: "electro", name: "Electro", img: "images/electro.png", pool: "classic", move: "Lightning Surge" },
-  { id: "sandman", name: "Sandman", img: "images/sandman.png", pool: "classic", move: "Sandstorm Hammer" },
-  { id: "rhino", name: "Rhino", img: "images/rhino.png", pool: "classic", move: "Horn Charge" },
-  { id: "mysterio", name: "Mysterio", img: "images/mysterio.jpg", pool: "classic", move: "Illusion Mist" },
-  { id: "vulture", name: "Vulture", img: "images/vulture.jpg", pool: "classic", move: "Wing Gust" },
-  { id: "lizard", name: "Lizard", img: "images/lizard.png", pool: "classic", move: "Tail Whip" },
-  { id: "kraven", name: "Kraven the Hunter", img: "images/kraven.png", pool: "classic", move: "Net Trap" },
-  { id: "scorpion", name: "Scorpion", img: "images/scorpion.png", pool: "classic", move: "Tail Sting" },
-  { id: "shocker", name: "Shocker", img: "images/shocker.png", pool: "classic", move: "Vibro-Blast" },
-  { id: "venom", name: "Venom", img: "images/venom.png", pool: "spiderverse", move: "Symbiote Tendril" },
-  { id: "carnage", name: "Carnage", img: "images/carnage.png", pool: "spiderverse", move: "Chaos Claws" },
-  { id: "kingpin", name: "Kingpin", img: "images/kingpin.png", pool: "spiderverse", move: "Super Slam" },
-  { id: "prowler", name: "Prowler", img: "images/prowler.png", pool: "spiderverse", move: "Gauntlet Swipe" },
-  { id: "spot", name: "The Spot", img: "images/spot.png", pool: "spiderverse", move: "Portal Punch" },
-  { id: "hobgoblin", name: "Hobgoblin", img: "images/hobgoblin.png", pool: "spiderverse", move: "Flame Glider" },
-  { id: "morbius", name: "Morbius", img: "images/morbius.png", pool: "spiderverse", move: "Shadow Dive" },
-  { id: "tinkerer", name: "Tinkerer", img: "images/tinkerer.png", pool: "spiderverse", move: "Tech Drone" },
-  { id: "tombstone", name: "Tombstone", img: "images/tombstone.png", pool: "spiderverse", move: "Brawler Smash" }
+  { id: 101, name: "Green Goblin", pool: "sinister", move: "Pumpkin Bomb", img: "images/goblin.png", fallback: makeVillainSvg("#581c87", "#15803d", "#22c55e", "goblin", "#facc15", "#9333ea") },
+  { id: 102, name: "Doctor Octopus", pool: "sinister", move: "Tentacle Slam", img: "images/octopus.png", fallback: makeVillainSvg("#14532d", "#ca8a04", "#fcd34d", "ock", "#ef4444", "#16a34a") },
+  { id: 103, name: "Electro", pool: "sinister", move: "Lightning Bolt", img: "images/electro.png", fallback: makeVillainSvg("#15803d", "#eab308", "#22c55e", "electro", "#fef08a", "#facc15") },
+  { id: 104, name: "Sandman", pool: "sinister", move: "Sandstorm Hammer", img: "images/sandman.png", fallback: makeVillainSvg("#b45309", "#15803d", "#d97706", "sand", "#fef3c7", "#166534") },
+  { id: 105, name: "Mysterio", pool: "sinister", move: "Illusion Mist", img: "images/mysterio.png", fallback: makeVillainSvg("#6b21a8", "#0d9488", "#14b8a6", "mysterio", "#ffffff", "#a855f7") },
+  { id: 106, name: "Vulture", pool: "sinister", move: "Wing Gust", img: "images/vulture.png", fallback: makeVillainSvg("#166534", "#0f172a", "#94a3b8", "vulture", "#ef4444", "#22c55e") },
+  { id: 107, name: "Rhino", pool: "sinister", move: "Horn Charge", img: "images/rhino.png", fallback: makeVillainSvg("#475569", "#1e293b", "#94a3b8", "rhino", "#f87171", "#cbd5e1") },
+  { id: 108, name: "Lizard", pool: "sinister", move: "Tail Whip", img: "images/lizard.png", fallback: makeVillainSvg("#15803d", "#7e22ce", "#4ade80", "goblin", "#facc15", "#f8fafc") },
+  { id: 109, name: "Kraven the Hunter", pool: "sinister", move: "Jungle Trap", img: "images/kraven.png", fallback: makeVillainSvg("#92400e", "#78350f", "#d97706", "vulture", "#fef08a", "#b45309") },
+  { id: 110, name: "Scorpion", pool: "sinister", move: "Acid Sting", img: "images/scorpion.png", fallback: makeVillainSvg("#16a34a", "#065f46", "#22c55e", "ock", "#facc15", "#4ade80") },
+  { id: 111, name: "Shocker", pool: "sinister", move: "Vibro-Blast", img: "images/shocker.png", fallback: makeVillainSvg("#ca8a04", "#9a3412", "#eab308", "electro", "#ffffff", "#b45309") },
+  { id: 201, name: "Venom", pool: "multiverse", move: "Symbiote Fang", img: "images/venom.png", fallback: makeVillainSvg("#09090b", "#3f3f46", "#18181b", "venom", "#ffffff", "#ffffff") },
+  { id: 202, name: "Carnage", pool: "multiverse", move: "Tendril Storm", img: "images/carnage.png", fallback: makeVillainSvg("#991b1b", "#09090b", "#dc2626", "venom", "#ffffff", "#09090b") },
+  { id: 203, name: "Kingpin", pool: "multiverse", move: "Heavy Slam", img: "images/kingpin.png", fallback: makeVillainSvg("#334155", "#6d28d9", "#cbd5e1", "spot", "#0f172a", "#ffffff") },
+  { id: 204, name: "Prowler", pool: "multiverse", move: "Gauntlet Dash", img: "images/prowler.png", fallback: makeVillainSvg("#581c87", "#065f46", "#7e22ce", "goblin", "#f472b6", "#10b981") },
+  { id: 205, name: "The Spot", pool: "multiverse", move: "Portal Kick", img: "images/spot.png", fallback: makeVillainSvg("#cbd5e1", "#0f172a", "#ffffff", "spot", "#0f172a", "#0f172a") },
+  { id: 206, name: "Hobgoblin", pool: "multiverse", move: "Fire Bomb", img: "images/hobgoblin.png", fallback: makeVillainSvg("#c2410c", "#1d4ed8", "#f97316", "goblin", "#facc15", "#ea580c") },
+  { id: 207, name: "Morbius", pool: "multiverse", move: "Shadow Swoop", img: "images/morbius.png", fallback: makeVillainSvg("#1e1b4b", "#991b1b", "#e2e8f0", "goblin", "#ef4444", "#1e293b") },
+  { id: 208, name: "Tinkerer", pool: "multiverse", move: "Gadget Zap", img: "images/tinkerer.png", fallback: makeVillainSvg("#4338ca", "#475569", "#94a3b8", "ock", "#38bdf8", "#cbd5e1") },
+  { id: 209, name: "Tombstone", pool: "multiverse", move: "Granite Punch", img: "images/tombstone.png", fallback: makeVillainSvg("#1e293b", "#64748b", "#e2e8f0", "rhino", "#ef4444", "#94a3b8") }
 ];
 
 const STORAGE_KEY = "spiderverse_battle_slp_clients_v1";
@@ -1100,9 +871,9 @@ function createDefaultClient(id, name) {
     sound: "p",
     position: "initial",
     level: "word",
-    heroId: "spiderman",
+    starterId: 1,
     battlesWon: 0,
-    webHitsLanded: 0,
+    attacksLanded: 0,
     points: 0,
     customEntries: [],
     trialLog: []
@@ -1127,25 +898,16 @@ let isModeled = false;
 
 const $ = id => document.getElementById(id);
 
-const ALL_CHARACTERS = [...starters, ...wildOpponents];
-
-function setCharacterImage(imgEl, charId) {
-  const charObj = ALL_CHARACTERS.find(c => c.id === charId);
-  const fallbackSrc = CHARACTER_ART[charId] || CHARACTER_ART.spiderman;
-  if (charObj && charObj.img) {
-    imgEl.onerror = () => {
-      imgEl.onerror = null;
-      imgEl.src = fallbackSrc;
-    };
-    imgEl.src = charObj.img;
-  } else {
+function setCharacterImage(imgEl, character) {
+  imgEl.onerror = () => {
     imgEl.onerror = null;
-    imgEl.src = fallbackSrc;
-  }
+    imgEl.src = character.fallback;
+  };
+  imgEl.src = character.img || character.fallback;
 }
 
 async function hashPin(pin) {
-  const enc = new TextEncoder().encode("spiderverse-slp-salt:" + pin);
+  const enc = new TextEncoder().encode("slp-battle-salt:" + pin);
   const buf = await crypto.subtle.digest("SHA-256", enc);
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
 }
@@ -1328,7 +1090,7 @@ function renderStarterGrid() {
     btn.className = "starter-card" + (st.id === selectedStarter.id ? " selected" : "");
     const img = document.createElement("img");
     img.alt = st.name;
-    setCharacterImage(img, st.id);
+    setCharacterImage(img, st);
     const label = document.createElement("span");
     label.textContent = st.name;
     btn.appendChild(img);
@@ -1337,12 +1099,12 @@ function renderStarterGrid() {
       selectedStarter = st;
       selectedMove = st.moves[0];
       const client = getActiveClient();
-      client.heroId = st.id;
+      client.starterId = st.id;
       saveState();
       renderStarterGrid();
       if (!$("battleSection").classList.contains("hidden")) {
         $("playerPokeName").textContent = st.name;
-        setCharacterImage($("playerPokeImg"), st.id);
+        setCharacterImage($("playerPokeImg"), st);
         renderMovePills();
       }
     });
@@ -1396,13 +1158,12 @@ function loadClientIntoUI() {
   $("sound").value = client.sound || "p";
   $("position").value = client.position || "initial";
   $("level").value = client.level || "word";
-  selectedStarter = starters.find(s => s.id === client.heroId) || starters[0];
+  selectedStarter = starters.find(s => s.id === client.starterId) || starters[0];
   selectedMove = selectedStarter.moves[0];
   renderStarterGrid();
 
-  const hits = client.webHitsLanded ?? client.attacksLanded ?? 0;
   $("battlesWon").textContent = client.battlesWon || 0;
-  $("attacksLanded").textContent = hits;
+  $("attacksLanded").textContent = client.attacksLanded || 0;
   $("points").textContent = client.points || 0;
   $("activeClientBadge").textContent = client.name;
   $("scoreboardClientName").textContent = client.name;
@@ -1461,7 +1222,7 @@ function saveClientGoal() {
   client.sound = $("sound").value;
   client.position = $("position").value;
   client.level = $("level").value;
-  client.heroId = selectedStarter.id;
+  client.starterId = selectedStarter.id;
   saveState();
 }
 
@@ -1511,8 +1272,8 @@ function startBattle(keepSameEnemy = false) {
   if (!keepSameEnemy) {
     const poolChoice = $("opponentPool").value;
     let pool = wildOpponents.filter(op => op.id !== lastEnemyId);
-    if (poolChoice === "classic") pool = pool.filter(op => op.pool === "classic");
-    if (poolChoice === "spiderverse") pool = pool.filter(op => op.pool === "spiderverse");
+    if (poolChoice === "sinister") pool = pool.filter(op => op.pool === "sinister");
+    if (poolChoice === "multiverse") pool = pool.filter(op => op.pool === "multiverse");
     if (!pool.length) pool = wildOpponents;
     currentEnemy = pool[Math.floor(Math.random() * pool.length)];
     lastEnemyId = currentEnemy.id;
@@ -1523,17 +1284,17 @@ function startBattle(keepSameEnemy = false) {
   $("roundHits").textContent = "0";
 
   $("playerPokeName").textContent = selectedStarter.name;
-  setCharacterImage($("playerPokeImg"), selectedStarter.id);
+  setCharacterImage($("playerPokeImg"), selectedStarter);
   $("playerPokeImg").className = "fighter-img";
 
   $("enemyPokeName").textContent = currentEnemy.name;
-  setCharacterImage($("enemyPokeImg"), currentEnemy.id);
+  setCharacterImage($("enemyPokeImg"), currentEnemy);
   $("enemyPokeImg").className = "fighter-img";
 
   updateHpBars();
   renderMovePills();
 
-  $("battleLogBox").textContent = `${currentEnemy.name} appeared on the NYC rooftop! Swing in, ${selectedStarter.name}!`;
+  $("battleLogBox").textContent = `${currentEnemy.name} swung onto the rooftop! Go, ${selectedStarter.name}!`;
   $("nextBattleRow").classList.add("hidden");
   $("speechControlsArea").classList.remove("hidden");
   $("battleSection").classList.remove("hidden");
@@ -1625,7 +1386,7 @@ function markTrial(correctVal) {
   if (correctVal === 1) {
     roundHits++;
     enemyHp = Math.max(0, 100 - roundHits * 20);
-    client.webHitsLanded = (client.webHitsLanded ?? client.attacksLanded ?? 0) + 1;
+    client.attacksLanded = (client.attacksLanded || 0) + 1;
     client.points = (client.points || 0) + 5;
 
     $("roundHits").textContent = roundHits;
@@ -1639,11 +1400,11 @@ function markTrial(correctVal) {
       client.battlesWon = (client.battlesWon || 0) + 1;
       client.points = (client.points || 0) + 25;
       setTimeout(() => eImg.classList.add("anim-faint"), 320);
-      $("battleLogBox").textContent = `🏆 ${selectedStarter.name} used ${moveLabel}! ${currentEnemy.name} was webbed up! YOU WON! (+25 Hero XP)`;
+      $("battleLogBox").textContent = `🏆 ${selectedStarter.name} used ${moveLabel}! ${currentEnemy.name} is webbed up! YOU WON! (+25 XP)`;
       $("speechControlsArea").classList.add("hidden");
       $("nextBattleRow").classList.remove("hidden");
     } else {
-      $("battleLogBox").textContent = `🕸️ THWIP! ${selectedStarter.name} used ${moveLabel}${cueTag}! Direct hit (-20 HP)!`;
+      $("battleLogBox").textContent = `🕸️ ${selectedStarter.name} used ${moveLabel}${cueTag}! Direct hit (-20 HP)!`;
       nextPrompt();
     }
   } else {
@@ -1651,12 +1412,12 @@ function markTrial(correctVal) {
     updateHpBars();
     triggerAnim(eImg, "anim-attack");
     triggerAnim(pImg, "anim-hit");
-    $("battleLogBox").textContent = `🛡️ ${currentEnemy.name} dodged and used ${currentEnemy.move}! Swing into the next word!`;
+    $("battleLogBox").textContent = `🛡️ ${currentEnemy.name} dodged and used ${currentEnemy.move}! Try the next word!`;
     nextPrompt();
   }
 
   $("battlesWon").textContent = client.battlesWon || 0;
-  $("attacksLanded").textContent = client.webHitsLanded || 0;
+  $("attacksLanded").textContent = client.attacksLanded || 0;
   $("points").textContent = client.points || 0;
   saveState();
   updateSessionStats();
@@ -1736,10 +1497,10 @@ async function copyCSV() {
 
 function clearSessionLog() {
   const client = getActiveClient();
-  if (!confirm(`Clear all recorded trials, battles won, web hits, and Hero XP for ${client.name}?`)) return;
+  if (!confirm(`Clear all recorded trials, villains defeated, web hits, and XP for ${client.name}?`)) return;
   client.trialLog = [];
   client.battlesWon = 0;
-  client.webHitsLanded = 0;
+  client.attacksLanded = 0;
   client.points = 0;
   $("battlesWon").textContent = "0";
   $("attacksLanded").textContent = "0";
