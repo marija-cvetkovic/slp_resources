@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Speech Pokémon">
-<title>Guess That Pokémon!</title>
+<title>Who's That Pokémon? — Speech Practice</title>
 <style>
 * {
   box-sizing: border-box;
@@ -19,42 +19,45 @@ html, body {
 body {
   margin: 0;
   font-family: -apple-system, 'Trebuchet MS', Arial, sans-serif;
-  background: linear-gradient(135deg,#fff2bd,#ffcfdf,#c8e8ff);
-  color: #30334a;
+  background: linear-gradient(135deg, #d7efff, #fff6cc, #ffe1e1);
+  color: #24303c;
   text-align: center;
 }
 header {
-  background: #ffcb45;
-  padding: 18px;
-  border-bottom: 5px solid #e9a927;
+  background: linear-gradient(180deg, #e53935 0%, #c62828 76%, #222222 76%, #222222 86%, #f8fafc 86%, #e2e8f0 100%);
+  color: #ffffff;
+  padding: 20px 18px 28px;
+  border-bottom: 4px solid #cbd5e1;
+  text-shadow: 0 2px 3px rgba(0,0,0,0.45);
 }
-h1 { margin: 0; font-size: 2.2rem; }
-.subtitle { margin: 6px 0 0; }
+h1 { margin: 0; font-size: 2.2rem; letter-spacing: 0.5px; }
+.subtitle { margin: 6px 0 0; font-size: 1.02rem; }
 .container {
   max-width: 850px;
   margin: 20px auto;
   padding: 15px;
 }
 .card {
-  background: white;
+  background: #ffffff;
   border-radius: 20px;
   padding: 22px;
   margin-bottom: 18px;
-  box-shadow: 0 5px 14px #6c638033;
+  box-shadow: 0 5px 14px rgba(36, 48, 60, 0.14);
+  border: 2px solid #e2e8f0;
 }
-h2 { color: #5264b8; margin-top: 0; }
+h2 { color: #1d4ed8; margin-top: 0; }
 select, input, button {
   font: inherit;
   border-radius: 12px;
   padding: 12px 16px;
   margin: 5px;
-  border: 2px solid #d6d9ec;
+  border: 2px solid #cbd5e1;
   min-height: 48px;
   touch-action: manipulation;
 }
-select { max-width: 100%; background: #fff; }
+select { max-width: 100%; background: #fff; color: #24303c; }
 button {
-  background: #6379db;
+  background: #2563eb;
   color: white;
   border: none;
   font-weight: bold;
@@ -64,6 +67,7 @@ button {
   user-select: none;
   -webkit-user-select: none;
 }
+button:hover { background: #1d4ed8; }
 button:active, button.is-pressed {
   transform: scale(0.95);
   filter: brightness(0.92);
@@ -74,18 +78,57 @@ button:disabled {
   transform: none;
   filter: none;
 }
-.primary { background: #ef7193; }
-.primary:hover { background: #d9577a; }
-.secondary { background: #8c96b8; }
-.secondary:hover { background: #717b9c; }
-.modeled-btn { background: #f59e0b; color: white; }
-.modeled-btn:hover { background: #d97706; }
+.primary { background: #e53935; }
+.primary:hover { background: #c62828; }
+.secondary { background: #64748b; }
+.secondary:hover { background: #475569; }
+.modeled-btn { background: #d97706; color: white; }
+.modeled-btn:hover { background: #b45309; }
 .modeled-btn.active {
-  background: #d97706;
+  background: #b45309;
   outline: 3px solid #fde68a;
 }
-.danger-btn { background: #e05263; }
-.danger-btn:hover { background: #c53b4c; }
+.danger-btn { background: #dc2626; }
+.danger-btn:hover { background: #b91c1c; }
+
+/* GENERATION TABS */
+.gen-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(36, 48, 60, 0.1);
+  border: 2px solid #e2e8f0;
+}
+.gen-tab {
+  flex: 1;
+  max-width: 340px;
+  min-height: 54px;
+  font-size: 1.08rem;
+  border-radius: 14px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 2px solid #cbd5e1;
+  margin: 0;
+}
+.gen-tab:hover {
+  background: #e2e8f0;
+}
+.gen-tab.active-gen1 {
+  background: linear-gradient(135deg, #ef4444, #2563eb);
+  color: #ffffff;
+  border-color: #1e40af;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+}
+.gen-tab.active-gen2 {
+  background: linear-gradient(135deg, #ef4444, #2563eb);
+  color: #ffffff;
+  border-color: #1e40af;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+}
 
 .preview-warning {
   background: #fee2e2;
@@ -98,8 +141,8 @@ button:disabled {
 }
 
 .client-bar {
-  background: #f2f4ff;
-  border: 2px solid #d4dcff;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
   border-radius: 14px;
   padding: 14px;
   margin-bottom: 16px;
@@ -120,26 +163,28 @@ button:disabled {
 .counter {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #ef7193;
+  color: #1d4ed8;
   margin: 10px;
 }
 .progress {
-  height: 18px;
-  background: #eee;
+  height: 20px;
+  background: #e2e8f0;
   border-radius: 20px;
   overflow: hidden;
   margin: 12px 0;
+  border: 1px solid #cbd5e1;
 }
 .bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg,#ffb74d,#ef7193);
+  background: linear-gradient(90deg, #ef4444, #f59e0b, #2563eb);
   transition: .3s;
 }
 .prompt {
   font-size: 1.65rem;
   font-weight: bold;
-  background: #f2f4ff;
+  background: #f8fafc;
+  border: 2px solid #cbd5e1;
   padding: 22px;
   border-radius: 15px;
   margin: 15px 0;
@@ -151,8 +196,8 @@ button:disabled {
   font-size: 0.95rem;
   font-weight: bold;
   margin-bottom: 8px;
-  background: #e9edff;
-  color: #35458e;
+  background: #dbeafe;
+  color: #1e40af;
 }
 .cue-badge.modeled {
   background: #fef3c7;
@@ -182,25 +227,65 @@ button:disabled {
 .hidden { display: none; }
 .choices {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 14px;
   margin-top: 20px;
 }
+@media (max-width: 480px) {
+  .choices { grid-template-columns: 1fr; }
+}
 .choice {
-  background: #e9edff;
-  color: #35458e;
-  border: 3px solid #d4dcff;
+  background: #eff6ff;
+  color: #1e3a8a;
+  border: 3px solid #bfdbfe;
   min-height: 72px;
   font-size: 1.15rem;
 }
-#pokemonSilhouette {
-  max-width: 220px;
-  height: auto;
-  filter: brightness(0);
-  margin: 15px;
-  transition: filter 0.4s ease;
+.choice:hover { background: #dbeafe; }
+
+.poke-stage {
+  background: radial-gradient(circle, #ffffff 0%, #e0f2fe 100%);
+  border: 3px solid #bfdbfe;
+  border-radius: 18px;
+  padding: 18px;
+  margin: 14px auto;
+  max-width: 320px;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-#pokemonSilhouette.revealed { filter: none; }
+#pokeSilhouette {
+  max-width: 195px;
+  max-height: 195px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0);
+  margin: 8px;
+  transition: filter 0.4s ease, transform 0.3s ease;
+}
+#pokeSilhouette.revealed {
+  filter: none;
+  transform: scale(1.06);
+}
+#pokeFallback {
+  font-size: 1.05rem;
+  color: #475569;
+  font-weight: bold;
+  margin: 8px;
+}
+.poke-hint {
+  font-size: 0.95rem;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px dashed #94a3b8;
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: inline-block;
+  margin-top: 4px;
+}
 .feedback {
   font-size: 1.2rem;
   font-weight: bold;
@@ -214,7 +299,8 @@ button:disabled {
   gap: 10px;
 }
 .stat {
-  background: #fff3d4;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
   border-radius: 12px;
   padding: 12px 22px;
   font-weight: bold;
@@ -227,39 +313,119 @@ table {
   font-size: 0.95rem;
 }
 th, td {
-  border: 1px solid #d6d9ec;
+  border: 1px solid #cbd5e1;
   padding: 8px;
 }
-th { background: #f2f4ff; }
+th { background: #f8fafc; }
 .import-help {
   font-size: 0.88rem;
-  color: #555a75;
+  color: #475569;
 }
 footer { padding: 20px; font-size: .85rem; }
+
+/* DEVICE TRUST & CLIENT PRIVACY LOCK */
+.privacy-banner {
+  background: #f8fafc;
+  border: 2px solid #94a3b8;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+}
+.privacy-banner.trusted {
+  background: #ecfdf5;
+  border-color: #34d399;
+}
+.privacy-status-text {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+.privacy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.privacy-actions button {
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 0.92rem;
+  margin: 0;
+}
+.pin-panel {
+  background: #ffffff;
+  border: 2px solid #2563eb;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.pin-panel input {
+  max-width: 210px;
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>⚡ Guess That Pokémon! ⚡</h1>
-  <p class="subtitle">Practise your sounds, unlock real Pokémon artwork, and track your progress!</p>
+  <h1>🔴 Who's That Pokémon? ⚪</h1>
+  <p class="subtitle" id="headerSubtitle">Gen 1 • Practise your sounds, catch Pokémon, and track your progress!</p>
 </header>
 
 <div class="container">
 
 <!-- WARNING SHOWN ONLY IF JS IS BLOCKED BY IPAD QUICK LOOK -->
 <div id="jsWarning" class="preview-warning">
-  ⚠️ If buttons do not respond on iPad, you are viewing this file in Apple's static Quick Look preview (which disables JavaScript). Open this page in Safari via a web link (e.g., GitHub Pages) or an HTML viewer app.
+  ⚠️ If buttons do not respond on iPad, you are viewing this file in Apple's static Quick Look preview (which disables JavaScript). Open this page in Safari via your GitHub Pages link.
 </div>
+
+<!-- REGION / GENERATION TABS -->
+<nav class="gen-tabs" aria-label="Pokémon Generation Tabs">
+  <button type="button" id="tabGen1" class="gen-tab active-gen1">Gen 1</button>
+  <button type="button" id="tabGen2" class="gen-tab">Gen 2</button>
+</nav>
 
 <!-- SLP SETTINGS -->
 <section class="card">
 <h2>🎓 SLP Control Center</h2>
-<p>Select a client and choose their articulation goal.</p>
+<p>Select a client, choose their articulation goal, and pick Gen 1 or Gen 2 above.</p>
 
 <!-- CLIENT PROFILES -->
 <div class="client-bar">
+<!-- DEVICE PRIVACY LOCK -->
+<div id="privacyBanner" class="privacy-banner">
+  <div id="privacyStatusText" class="privacy-status-text">🔒 Guest Mode — Saved client profiles are hidden on unrecognized devices.</div>
+  <div class="privacy-actions">
+    <button type="button" id="unlockDeviceBtn">🔓 Unlock / Trust This Device</button>
+    <button type="button" id="lockDeviceBtn" class="secondary hidden">🔒 Lock Clients</button>
+    <button type="button" id="forgetDeviceBtn" class="danger-btn hidden">Forget Device</button>
+  </div>
+</div>
+
+<div id="pinPanel" class="pin-panel hidden">
+  <div id="pinPanelTitle" style="font-weight:bold;margin-bottom:6px;">Enter Clinician PIN to Unlock Saved Clients</div>
+  <div class="import-help" id="pinPanelSub" style="margin-bottom:8px;">Your PIN and client data stay locally on this browser only and are never uploaded to GitHub.</div>
+  <div>
+    <input type="password" id="pinInput" inputmode="numeric" maxlength="12" placeholder="Enter PIN..." aria-label="Clinician PIN">
+    <button type="button" id="confirmPinBtn">Confirm</button>
+    <button type="button" id="cancelPinBtn" class="secondary">Cancel</button>
+  </div>
+  <label style="display:inline-flex;align-items:center;gap:6px;font-weight:normal;font-size:0.92rem;margin-top:8px;cursor:pointer;">
+    <input type="checkbox" id="trustDeviceCheckbox" checked style="min-height:auto;width:18px;height:18px;margin:0;">
+    Remember &amp; trust this computer/iPad automatically next time
+  </label>
+  <div id="pinError" style="color:#dc2626;font-weight:bold;font-size:0.9rem;margin-top:6px;"></div>
+</div>
+
   <label for="clientSelect">Active Client</label>
   <div class="client-controls">
     <select id="clientSelect"></select>
@@ -321,8 +487,8 @@ footer { padding: 20px; font-size: .85rem; }
   </div>
 </div>
 
-<p><b>Goal: 5 correct productions to unlock a Generation I Pokémon!</b></p>
-<button type="button" id="startBtn" class="primary">Start Speech Challenge 🚀</button>
+<p><b>Goal: 5 correct productions to unlock a mystery <span id="goalGenLabel">Gen 1</span> Pokémon!</b></p>
+<button type="button" id="startBtn" class="primary">Start Speech Challenge 🔴</button>
 </section>
 
 <!-- CUSTOM WORD IMPORT -->
@@ -340,7 +506,7 @@ footer { padding: 20px; font-size: .85rem; }
 
 <!-- SPEECH PRACTICE -->
 <section class="card hidden" id="practice">
-<h2>🗣️ Speech Challenge</h2>
+<h2>🗣️ Speech Challenge (<span id="practiceGenBadge">Gen 1</span>)</h2>
 <div class="stats">
   <div class="stat">Client: <span id="activeClientBadge">Default Client</span></div>
   <div class="stat">Sound: <span id="activeSound">/p/</span></div>
@@ -368,35 +534,40 @@ footer { padding: 20px; font-size: .85rem; }
 <div class="feedback" id="practiceFeedback"></div>
 </section>
 
-<!-- POKEMON GAME -->
-<section class="card hidden" id="pokemonGame">
-<h2>🎉 You unlocked a Pokémon!</h2>
-<p>Look carefully at the mystery Pokémon!</p>
+<!-- POKEMON GUESSING GAME -->
+<section class="card hidden" id="pokeGame">
+<h2>🎉 A Wild <span id="wildGenLabel">Gen 1</span> Pokémon Appeared!</h2>
+<p>Look closely at the silhouette!</p>
 
-<img id="pokemonSilhouette" alt="Mystery Pokémon silhouette" src="" />
-<div id="mysteryName" style="font-size:1.5rem;font-weight:bold;"></div>
-<p>Who is this Pokémon?</p>
+<div class="poke-stage">
+  <img id="pokeSilhouette" alt="Mystery Pokémon silhouette" src="" />
+  <div id="pokeFallback" class="hidden"></div>
+</div>
+<div id="pokeHint" class="poke-hint"></div>
+<div id="mysteryName" style="font-size:1.5rem;font-weight:bold;margin-top:8px;"></div>
+<p>Who's that Pokémon?</p>
 
 <div class="choices" id="choices"></div>
 <div class="feedback" id="guessFeedback"></div>
-<button type="button" class="primary hidden" id="nextPokemon">Next Pokémon ➜</button>
+<button type="button" class="primary hidden" id="nextPoke">Next Pokémon ➜</button>
 </section>
 
 <!-- SCOREBOARD -->
 <section class="card">
 <h2>🏆 Trainer Scoreboard — <span id="scoreboardClientName">Default Client</span></h2>
 <div class="stats">
-  <div class="stat">Pokémon guessed correctly: <span id="caught">0</span></div>
-  <div class="stat">Points: <span id="points">0</span></div>
+  <div class="stat">Gen 1 Caught: <span id="caughtGen1">0</span></div>
+  <div class="stat">Gen 2 Caught: <span id="caughtGen2">0</span></div>
+  <div class="stat">Total Points: <span id="points">0</span> ⭐</div>
 </div>
-<p>Keep practising to become a Pokémon Master!</p>
+<p>Keep practising to catch every Gen 1 and Gen 2 Pokémon!</p>
   <div class="import-row">
     <button type="button" id="exportActiveBtn">⬇ Export Active Client CSV</button>
     <button type="button" id="exportAllBtn">⬇ Export All Clients CSV</button>
     <button type="button" id="copyCsvBtn" class="secondary">📋 Copy CSV to Clipboard</button>
     <button type="button" id="clearLogBtn" class="secondary">Clear Client Session Data</button>
   </div>
-  <p class="import-help">Export includes: client, timestamp, target sound, position, level, prompt, cue type (Spontaneous vs. Modeled), and accuracy.</p>
+  <p class="import-help">Export includes: client, timestamp, generation, target sound, position, level, prompt, cue type (Spontaneous vs. Modeled), and accuracy.</p>
   <table id="sessionLog">
     <thead>
       <tr>
@@ -422,7 +593,7 @@ footer { padding: 20px; font-size: .85rem; }
 </div>
 
 <footer>
-  Made for speech therapy practice 💛<br>
+  Made for speech therapy practice ❤️<br>
   SLP-supervised articulation practice. Data is saved locally in your browser per client.
 </footer>
 
@@ -466,7 +637,6 @@ function bindTap(el, handler) {
     if (e.changedTouches && e.changedTouches.length === 1) {
       const dx = Math.abs(e.changedTouches[0].clientX - startX);
       const dy = Math.abs(e.changedTouches[0].clientY - startY);
-      // Ignore scroll/swipe gestures
       if (dx > 12 || dy > 12) return;
     }
     e.preventDefault();
@@ -637,31 +807,92 @@ const sentences = {
   blend: ["The frog jumps on the grass.","The plane is flying.","The star is shining.","The train is fast.","The blue flower is pretty."]
 };
 
-const pokemon = [
-  {name:"Bulbasaur",id:1},{name:"Ivysaur",id:2},{name:"Venusaur",id:3},
-  {name:"Charmander",id:4},{name:"Charmeleon",id:5},{name:"Charizard",id:6},
-  {name:"Squirtle",id:7},{name:"Wartortle",id:8},{name:"Blastoise",id:9},
-  {name:"Caterpie",id:10},{name:"Pikachu",id:25},{name:"Raichu",id:26},
-  {name:"Vulpix",id:37},{name:"Jigglypuff",id:39},{name:"Meowth",id:52},
-  {name:"Psyduck",id:54},{name:"Growlithe",id:58},{name:"Poliwag",id:60},
-  {name:"Machop",id:66},{name:"Geodude",id:74},{name:"Ponyta",id:77},
-  {name:"Slowpoke",id:79},{name:"Magnemite",id:81},{name:"Farfetch'd",id:83},
-  {name:"Doduo",id:84},{name:"Seel",id:86},{name:"Shellder",id:90},
-  {name:"Gastly",id:92},{name:"Onix",id:95},{name:"Drowzee",id:96},
-  {name:"Krabby",id:98},{name:"Voltorb",id:100},{name:"Exeggcute",id:102},
-  {name:"Cubone",id:104},{name:"Hitmonlee",id:106},{name:"Koffing",id:109},
-  {name:"Rhyhorn",id:111},{name:"Chansey",id:113},{name:"Kangaskhan",id:115},
-  {name:"Horsea",id:116},{name:"Goldeen",id:118},{name:"Staryu",id:120},
-  {name:"Scyther",id:123},{name:"Jynx",id:124},{name:"Electabuzz",id:125},
-  {name:"Magmar",id:126},{name:"Pinsir",id:127},{name:"Tauros",id:128},
-  {name:"Magikarp",id:129},{name:"Lapras",id:131},{name:"Ditto",id:132},
-  {name:"Eevee",id:133},{name:"Vaporeon",id:134},{name:"Jolteon",id:135},
-  {name:"Flareon",id:136},{name:"Porygon",id:137},{name:"Snorlax",id:143},
-  {name:"Dratini",id:147},{name:"Dragonair",id:148},{name:"Dragonite",id:149},
-  {name:"Mewtwo",id:150},{name:"Mew",id:151}
-].map(p => ({...p,image:`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${p.id}.png`}));
+const POKE_ART = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+const POKE_SPRITE = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 
-const STORAGE_KEY = "pokemon_slp_clients_v1";
+// Gen 1 (Kanto #1–#151)
+const gen1Pokemon = [
+  { id: 1, name: "Bulbasaur", hint: "Grass/Poison • Carries a plant bulb on its back." },
+  { id: 4, name: "Charmander", hint: "Fire • Has a flame burning at the tip of its tail." },
+  { id: 7, name: "Squirtle", hint: "Water • Tiny turtle Pokémon with a curly tail." },
+  { id: 25, name: "Pikachu", hint: "Electric • Yellow mouse with lightning-bolt tail." },
+  { id: 39, name: "Jigglypuff", hint: "Normal/Fairy • Round balloon Pokémon that sings lullabies." },
+  { id: 52, name: "Meowth", hint: "Normal • Cat Pokémon with a gold charm on its forehead." },
+  { id: 54, name: "Psyduck", hint: "Water • Yellow duck holding its head." },
+  { id: 58, name: "Growlithe", hint: "Fire • Loyal puppy Pokémon with orange and black stripes." },
+  { id: 63, name: "Abra", hint: "Psychic • Sleeps 18 hours a day and teleports." },
+  { id: 79, name: "Slowpoke", hint: "Water/Psychic • Pink hippo-like Pokémon with a white-tipped tail." },
+  { id: 92, name: "Gastly", hint: "Ghost/Poison • Floating purple gas ball." },
+  { id: 94, name: "Gengar", hint: "Ghost/Poison • Shadowy Pokémon with a wide grin and spiky ears." },
+  { id: 95, name: "Onix", hint: "Rock/Ground • Giant snake made of boulders." },
+  { id: 104, name: "Cubone", hint: "Ground • Wears a skull helmet and holds a bone." },
+  { id: 113, name: "Chansey", hint: "Normal • Pink egg-carrying helper Pokémon." },
+  { id: 129, name: "Magikarp", hint: "Water • Splashing orange fish with whiskers." },
+  { id: 130, name: "Gyarados", hint: "Water/Flying • Huge fierce sea serpent." },
+  { id: 131, name: "Lapras", hint: "Water/Ice • Gentle sea Pokémon with a shell on its back." },
+  { id: 132, name: "Ditto", hint: "Normal • Squishy purple blob that can transform." },
+  { id: 133, name: "Eevee", hint: "Normal • Fluffy brown fox-like Pokémon with many evolutions." },
+  { id: 143, name: "Snorlax", hint: "Normal • Giant sleepy Pokémon that blocks roads." },
+  { id: 147, name: "Dratini", hint: "Dragon • Cute blue serpentine dragon." },
+  { id: 149, name: "Dragonite", hint: "Dragon/Flying • Friendly orange dragon with tiny wings." },
+  { id: 150, name: "Mewtwo", hint: "Psychic • Legendary cloned Pokémon with a long purple tail." },
+  { id: 151, name: "Mew", hint: "Psychic • Mythical pink Pokémon floating with a long thin tail." }
+];
+
+// Gen 2 (Johto #152–#251)
+const gen2Pokemon = [
+  { id: 152, name: "Chikorita", hint: "Grass • Has a large green leaf on top of its head." },
+  { id: 155, name: "Cyndaquil", hint: "Fire • Shy echidna Pokémon with flames on its back." },
+  { id: 158, name: "Totodile", hint: "Water • Energetic blue crocodile with big jaws." },
+  { id: 161, name: "Sentret", hint: "Normal • Scout Pokémon that stands high on its striped tail." },
+  { id: 163, name: "Hoothoot", hint: "Normal/Flying • Round owl Pokémon that stands on one foot." },
+  { id: 165, name: "Ledyba", hint: "Bug/Flying • Ladybug Pokémon with five spots on its shell." },
+  { id: 169, name: "Crobat", hint: "Poison/Flying • Fast purple bat with four wings." },
+  { id: 172, name: "Pichu", hint: "Electric • Tiny pre-evolution of Pikachu with big ears." },
+  { id: 175, name: "Togepi", hint: "Fairy • Spike-ball Pokémon still inside its patterned eggshell." },
+  { id: 179, name: "Mareep", hint: "Electric • Fluffy yellow sheep with a glowing orb on its tail." },
+  { id: 181, name: "Ampharos", hint: "Electric • Tall yellow lighthouse Pokémon with a red tail gem." },
+  { id: 183, name: "Marill", hint: "Water/Fairy • Round blue mouse with a bobbing bubble tail." },
+  { id: 185, name: "Sudowoodo", hint: "Rock • Disguises itself as a tree with green pom-pom hands." },
+  { id: 190, name: "Aipom", hint: "Normal • Purple monkey with a giant hand at the end of its tail." },
+  { id: 194, name: "Wooper", hint: "Water/Ground • Smiling blue axolotl Pokémon with branching gills." },
+  { id: 196, name: "Espeon", hint: "Psychic • Sleek lavender Eevee evolution with a red forehead gem." },
+  { id: 197, name: "Umbreon", hint: "Dark • Black Eevee evolution with glowing yellow rings." },
+  { id: 202, name: "Wobbuffet", hint: "Psychic • Blue punching-bag Pokémon hiding its black tail." },
+  { id: 208, name: "Steelix", hint: "Steel/Ground • Massive iron serpent with a spiked jaw." },
+  { id: 212, name: "Scizor", hint: "Bug/Steel • Red armored mantis with eye-patterned pincers." },
+  { id: 214, name: "Heracross", hint: "Bug/Fighting • Blue beetle with a large forked horn." },
+  { id: 216, name: "Teddiursa", hint: "Normal • Cute teddy bear Pokémon with a crescent moon on its forehead." },
+  { id: 225, name: "Delibird", hint: "Ice/Flying • Penguin Pokémon that carries presents in its tail sack." },
+  { id: 227, name: "Skarmory", hint: "Steel/Flying • Armor-clad silver bird with blade-like wings." },
+  { id: 229, name: "Houndoom", hint: "Dark/Fire • Horned black hound with bone-like ribs." },
+  { id: 231, name: "Phanpy", hint: "Ground • Small blue elephant Pokémon with a long trunk." },
+  { id: 241, name: "Miltank", hint: "Normal • Pink dairy cow Pokémon famous for Rollout." },
+  { id: 246, name: "Larvitar", hint: "Rock/Ground • Small green dinosaur Pokémon with a head horn." },
+  { id: 248, name: "Tyranitar", hint: "Rock/Dark • Towering armored green dinosaur Pokémon." },
+  { id: 249, name: "Lugia", hint: "Psychic/Flying • Legendary silver guardian of the seas." },
+  { id: 250, name: "Ho-Oh", hint: "Fire/Flying • Legendary rainbow phoenix Pokémon." },
+  { id: 251, name: "Celebi", hint: "Psychic/Grass • Mythical onion-headed time-traveling forest fairy." }
+];
+
+const POKEMON_BY_GEN = {
+  gen1: {
+    label: "Gen 1",
+    shortLabel: "Gen 1",
+    region: "Gen 1",
+    list: gen1Pokemon
+  },
+  gen2: {
+    label: "Gen 2",
+    shortLabel: "Gen 2",
+    region: "Gen 2",
+    list: gen2Pokemon
+  }
+};
+
+const STORAGE_KEY = "pokemon_slp_clients_v2";
+const TRUST_KEY = "pokemon_slp_device_trusted";
+const PIN_HASH_KEY = "pokemon_slp_device_trusted_pin";
 
 function createDefaultClient(id, name) {
   return {
@@ -671,28 +902,64 @@ function createDefaultClient(id, name) {
     position: "initial",
     level: "word",
     caught: 0,
+    caughtGen1: 0,
+    caughtGen2: 0,
     points: 0,
     customEntries: [],
     trialLog: []
   };
 }
 
-let appState = loadState();
+let isDeviceUnlocked = false;
+let pinMode = "unlock"; // "unlock" | "setup"
+let guestSessionClient = createDefaultClient("guest-session", "Guest Session");
+let appState = { activeClientId: "guest-session", clients: [guestSessionClient] };
 let count = 0;
-let currentPokemon;
+let currentPoke;
+let currentMob;
 let locked = false;
-let lastPokemon = null;
+let lastPokeByGen = { gen1: null, gen2: null };
+let lastMob = null;
 let currentPrompt = "";
 let isModeled = false;
 
 const $ = id => document.getElementById(id);
 
-function loadState() {
+async function hashPin(pin) {
+  const enc = new TextEncoder().encode("slp-salt:" + pin);
+  const buf = await crypto.subtle.digest("SHA-256", enc);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function isTrustedBrowser() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    return localStorage.getItem(TRUST_KEY) === "true";
+  } catch (e) {
+    return false;
+  }
+}
+
+function hasSavedClientsInStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("pokemon_slp_clients_v1");
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return Boolean(parsed && Array.isArray(parsed.clients) && parsed.clients.length);
+  } catch (e) {
+    return false;
+  }
+}
+
+function loadSavedClientsFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("pokemon_slp_clients_v1");
     if (raw) {
       const parsed = JSON.parse(raw);
       if (parsed && Array.isArray(parsed.clients) && parsed.clients.length) {
+        parsed.clients.forEach(c => {
+          if (typeof c.caughtGen1 !== "number") c.caughtGen1 = c.caught || 0;
+          if (typeof c.caughtGen2 !== "number") c.caughtGen2 = 0;
+        });
         return parsed;
       }
     }
@@ -701,19 +968,160 @@ function loadState() {
   return { activeClientId: defaultClient.id, clients: [defaultClient] };
 }
 
+function initPrivacyState() {
+  if (isTrustedBrowser()) {
+    isDeviceUnlocked = true;
+    appState = loadSavedClientsFromStorage();
+  } else {
+    isDeviceUnlocked = false;
+    guestSessionClient = createDefaultClient("guest-session", "Guest Session");
+    appState = { activeClientId: "guest-session", clients: [guestSessionClient] };
+  }
+}
+
 function saveState() {
+  if (!isDeviceUnlocked) return; // Never overwrite stored client profiles while in Guest Mode
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
   } catch (e) {}
 }
 
 function getActiveClient() {
+  if (!isDeviceUnlocked) return guestSessionClient;
   return appState.clients.find(c => c.id === appState.activeClientId) || appState.clients[0];
 }
 
+function updatePrivacyUI() {
+  const banner = $("privacyBanner");
+  const statusText = $("privacyStatusText");
+  const unlockBtn = $("unlockDeviceBtn");
+  const lockBtn = $("lockDeviceBtn");
+  const forgetBtn = $("forgetDeviceBtn");
+  const addBtn = $("addClientBtn");
+  const delBtn = $("deleteClientBtn");
+  const nameInput = $("newClientName");
+  const select = $("clientSelect");
+
+  if (isDeviceUnlocked) {
+    banner.classList.add("trusted");
+    const trusted = isTrustedBrowser();
+    statusText.textContent = trusted
+      ? "✅ Trusted Device — Saved client profiles unlocked on this computer/iPad."
+      : "🔓 Unlocked (This Session Only) — Lock before leaving a shared computer.";
+    unlockBtn.classList.add("hidden");
+    lockBtn.classList.remove("hidden");
+    if (trusted) {
+      forgetBtn.classList.remove("hidden");
+    } else {
+      forgetBtn.classList.add("hidden");
+    }
+    select.disabled = false;
+    nameInput.disabled = false;
+    addBtn.disabled = false;
+    delBtn.disabled = false;
+  } else {
+    banner.classList.remove("trusted");
+    const hasExisting = hasSavedClientsInStorage();
+    statusText.textContent = hasExisting
+      ? "🔒 Locked (Guest Session) — Stored client profiles are hidden until you unlock this device."
+      : "🔒 Guest Mode — Client names are not saved unless you unlock & trust this device.";
+    unlockBtn.textContent = hasExisting ? "🔓 Unlock Saved Clients" : "🔓 Set PIN & Enable Client Profiles";
+    unlockBtn.classList.remove("hidden");
+    lockBtn.classList.add("hidden");
+    forgetBtn.classList.add("hidden");
+    select.disabled = true;
+    nameInput.disabled = true;
+    addBtn.disabled = true;
+    delBtn.disabled = true;
+  }
+}
+
+function openPinPanel() {
+  const existingPin = localStorage.getItem(PIN_HASH_KEY);
+  $("pinError").textContent = "";
+  $("pinInput").value = "";
+  $("trustDeviceCheckbox").checked = true;
+
+  if (!existingPin) {
+    pinMode = "setup";
+    $("pinPanelTitle").textContent = "Create a Clinician PIN (4+ digits)";
+    $("pinPanelSub").textContent = "Protects client profiles on shared computers. Check below to auto-unlock on your personal computer/iPad.";
+  } else {
+    pinMode = "unlock";
+    $("pinPanelTitle").textContent = "Enter Your Clinician PIN";
+    $("pinPanelSub").textContent = "Unlocks your locally saved client list on this device.";
+  }
+  $("pinPanel").classList.remove("hidden");
+  $("pinInput").focus();
+}
+
+function closePinPanel() {
+  $("pinPanel").classList.add("hidden");
+  $("pinError").textContent = "";
+  $("pinInput").value = "";
+}
+
+async function confirmPinAction() {
+  const pin = $("pinInput").value.trim();
+  if (pin.length < 4) {
+    $("pinError").textContent = "Please enter at least 4 digits/characters.";
+    return;
+  }
+  const hashed = await hashPin(pin);
+  if (pinMode === "setup") {
+    localStorage.setItem(PIN_HASH_KEY, hashed);
+  } else {
+    const savedHash = localStorage.getItem(PIN_HASH_KEY);
+    if (hashed !== savedHash) {
+      $("pinError").textContent = "Incorrect PIN. Try again.";
+      return;
+    }
+  }
+
+  if ($("trustDeviceCheckbox").checked) {
+    localStorage.setItem(TRUST_KEY, "true");
+  } else {
+    localStorage.removeItem(TRUST_KEY);
+  }
+
+  isDeviceUnlocked = true;
+  appState = loadSavedClientsFromStorage();
+  saveState();
+  closePinPanel();
+  renderClientSelector();
+  $("clientStatus").textContent = "Client profiles unlocked.";
+}
+
+function lockDeviceNow() {
+  isDeviceUnlocked = false;
+  guestSessionClient = createDefaultClient("guest-session", "Guest Session");
+  appState = { activeClientId: "guest-session", clients: [guestSessionClient] };
+  $("practice").classList.add("hidden");
+  $("pokeGame")?.classList.add("hidden");
+  $("mobGame")?.classList.add("hidden");
+  renderClientSelector();
+  $("clientStatus").textContent = "Locked. Saved client info is now hidden.";
+}
+
+function forgetTrustedDevice() {
+  localStorage.removeItem(TRUST_KEY);
+  lockDeviceNow();
+  $("clientStatus").textContent = "Device untrusted. It will ask for your PIN next time.";
+}
+
 function renderClientSelector() {
+  updatePrivacyUI();
   const select = $("clientSelect");
   select.innerHTML = "";
+  if (!isDeviceUnlocked) {
+    const opt = document.createElement("option");
+    opt.value = "guest-session";
+    opt.textContent = "Guest Session (Clients Hidden)";
+    select.appendChild(opt);
+    select.value = "guest-session";
+    loadClientIntoUI();
+    return;
+  }
   appState.clients.forEach(c => {
     const opt = document.createElement("option");
     opt.value = c.id;
@@ -731,7 +1139,9 @@ function loadClientIntoUI() {
   $("sound").value = client.sound || "p";
   $("position").value = client.position || "initial";
   $("level").value = client.level || "word";
-  $("caught").textContent = client.caught || 0;
+  if ($("caught")) $("caught").textContent = client.caught || 0;
+  if ($("caughtGen1")) $("caughtGen1").textContent = client.caughtGen1 || 0;
+  if ($("caughtGen2")) $("caughtGen2").textContent = client.caughtGen2 || 0;
   $("points").textContent = client.points || 0;
   $("activeClientBadge").textContent = client.name;
   $("scoreboardClientName").textContent = client.name;
@@ -740,15 +1150,21 @@ function loadClientIntoUI() {
 }
 
 function switchClient() {
+  if (!isDeviceUnlocked) return;
   appState.activeClientId = $("clientSelect").value;
   saveState();
   loadClientIntoUI();
   $("practice").classList.add("hidden");
-  $("pokemonGame").classList.add("hidden");
+  $("pokeGame")?.classList.add("hidden");
+  $("mobGame")?.classList.add("hidden");
   $("clientStatus").textContent = `Loaded profile for ${getActiveClient().name}.`;
 }
 
 function addClient() {
+  if (!isDeviceUnlocked) {
+    $("clientStatus").textContent = "Unlock this device first to save named client profiles.";
+    return;
+  }
   const input = $("newClientName");
   const name = input.value.trim();
   if (!name) {
@@ -762,11 +1178,13 @@ function addClient() {
   saveState();
   renderClientSelector();
   $("practice").classList.add("hidden");
-  $("pokemonGame").classList.add("hidden");
+  $("pokeGame")?.classList.add("hidden");
+  $("mobGame")?.classList.add("hidden");
   $("clientStatus").textContent = `Added and selected client "${name}".`;
 }
 
 function deleteClient() {
+  if (!isDeviceUnlocked) return;
   if (appState.clients.length <= 1) {
     $("clientStatus").textContent = "At least one client profile must remain.";
     return;
@@ -778,8 +1196,28 @@ function deleteClient() {
   saveState();
   renderClientSelector();
   $("practice").classList.add("hidden");
-  $("pokemonGame").classList.add("hidden");
+  $("pokeGame")?.classList.add("hidden");
+  $("mobGame")?.classList.add("hidden");
   $("clientStatus").textContent = `Removed "${active.name}".`;
+}
+
+initPrivacyState();
+
+let currentGen = "gen1";
+
+function switchGeneration(gen) {
+  currentGen = gen;
+  const info = POKEMON_BY_GEN[gen];
+  $("tabGen1").classList.toggle("active-gen1", gen === "gen1");
+  $("tabGen2").classList.toggle("active-gen2", gen === "gen2");
+  $("headerSubtitle").textContent = `${info.label} • Practise your sounds, catch Pokémon, and track your progress!`;
+  $("goalGenLabel").textContent = info.shortLabel;
+  $("practiceGenBadge").textContent = info.shortLabel;
+  $("wildGenLabel").textContent = info.region;
+
+  if (!$("practice").classList.contains("hidden") || !$("pokeGame").classList.contains("hidden")) {
+    startGame();
+  }
 }
 
 function saveClientGoal() {
@@ -815,6 +1253,7 @@ function toggleModeled() {
 function startGame() {
   saveClientGoal();
   const client = getActiveClient();
+  const info = POKEMON_BY_GEN[currentGen];
   count = 0;
   locked = false;
   setModeledState(false);
@@ -824,9 +1263,10 @@ function startGame() {
   $("practiceFeedback").textContent = "";
   $("guessFeedback").textContent = "";
   $("activeClientBadge").textContent = client.name;
+  $("practiceGenBadge").textContent = info.shortLabel;
   $("practice").classList.remove("hidden");
-  $("pokemonGame").classList.add("hidden");
-  $("nextPokemon").classList.add("hidden");
+  $("pokeGame").classList.add("hidden");
+  $("nextPoke").classList.add("hidden");
 
   let sound = $("sound").value;
   $("activeSound").textContent = "/" + sound + "/";
@@ -899,6 +1339,7 @@ function markTrial(correctVal) {
   client.trialLog.push({
     client: client.name,
     timestamp: new Date().toISOString(),
+    generation: POKEMON_BY_GEN[currentGen].shortLabel,
     sound: $("sound").value,
     position: $("position").value,
     level: $("level").value,
@@ -919,7 +1360,7 @@ function markTrial(correctVal) {
 
     if (count === 5) {
       locked = true;
-      $("practiceFeedback").textContent = "🎉 AMAZING! You earned a Pokémon!";
+      $("practiceFeedback").textContent = `🎉 AMAZING! You unlocked a ${POKEMON_BY_GEN[currentGen].shortLabel} Pokémon!`;
       setTimeout(unlockPokemon, 800);
     } else {
       nextPrompt();
@@ -951,11 +1392,11 @@ function updateSessionStats() {
 
 function buildCSVString(allClients) {
   const rows = allClients
-    ? appState.clients.flatMap(c => (c.trialLog || []).map(r => ({ client: c.name, ...r })))
-    : (getActiveClient().trialLog || []).map(r => ({ client: getActiveClient().name, ...r }));
+    ? appState.clients.flatMap(c => (c.trialLog || []).map(r => ({ client: c.name, generation: r.generation || "Gen 1", ...r })))
+    : (getActiveClient().trialLog || []).map(r => ({ client: getActiveClient().name, generation: r.generation || "Gen 1", ...r }));
 
   if (!rows.length) return null;
-  const headers = ["client", "timestamp", "sound", "position", "level", "prompt", "cue", "correct"];
+  const headers = ["client", "timestamp", "generation", "sound", "position", "level", "prompt", "cue", "correct"];
   const quote = value => '"' + String(value ?? "").replace(/"/g, '""') + '"';
   return [headers.join(","), ...rows.map(row => headers.map(key => quote(row[key])).join(","))].join("\r\n");
 }
@@ -1004,10 +1445,25 @@ async function copyCSV() {
 
 function clearSessionLog() {
   const client = getActiveClient();
-  if (!confirm(`Clear all recorded trials for ${client.name}?`)) return;
+  if (!confirm(`Clear all recorded trials, points, and caught scoreboard data for ${client.name}?`)) return;
   client.trialLog = [];
+  client.caught = 0;
+  client.caughtGen1 = 0;
+  client.caughtGen2 = 0;
+  client.points = 0;
+  count = 0;
+  locked = false;
+  if ($("count")) $("count").textContent = "0";
+  if ($("bar")) $("bar").style.width = "0%";
+  if ($("caught")) $("caught").textContent = "0";
+  if ($("caughtGen1")) $("caughtGen1").textContent = "0";
+  if ($("caughtGen2")) $("caughtGen2").textContent = "0";
+  if ($("points")) $("points").textContent = "0";
   saveState();
   updateSessionStats();
+  if ($("clientStatus")) {
+    $("clientStatus").textContent = `Cleared session trials, points, and caught counts for ${client.name}.`;
+  }
 }
 
 function parseCSVLine(line) {
@@ -1075,28 +1531,49 @@ function resetCount() {
 }
 
 function unlockPokemon() {
-  $("pokemonGame").classList.remove("hidden");
-  $("pokemonGame").scrollIntoView({ behavior: "smooth" });
+  const info = POKEMON_BY_GEN[currentGen];
+  const pool = info.list;
+
+  $("wildGenLabel").textContent = info.region;
+  $("pokeGame").classList.remove("hidden");
+  $("pokeGame").scrollIntoView({ behavior: "smooth" });
   $("practice").classList.add("hidden");
 
-  let available = pokemon.filter(p => p.name !== lastPokemon);
-  currentPokemon = available[Math.floor(Math.random() * available.length)];
-  lastPokemon = currentPokemon.name;
+  let available = pool.filter(p => p.name !== lastPokeByGen[currentGen]);
+  const chosen = available[Math.floor(Math.random() * available.length)];
+  currentPoke = { ...chosen, gen: currentGen };
+  lastPokeByGen[currentGen] = currentPoke.name;
 
-  $("pokemonSilhouette").src = currentPokemon.image;
-  $("pokemonSilhouette").alt = "Silhouette of " + currentPokemon.name;
-  $("pokemonSilhouette").onerror = () => {
-    $("pokemonSilhouette").alt = currentPokemon.name + " image unavailable; check your internet connection";
+  const imgEl = $("pokeSilhouette");
+  const fallbackEl = $("pokeFallback");
+
+  imgEl.classList.remove("hidden", "revealed");
+  fallbackEl.classList.add("hidden");
+  fallbackEl.textContent = "";
+
+  let triedSprite = false;
+  imgEl.onerror = () => {
+    if (!triedSprite) {
+      triedSprite = true;
+      imgEl.src = POKE_SPRITE(currentPoke.id);
+    } else {
+      imgEl.classList.add("hidden");
+      fallbackEl.classList.remove("hidden");
+      fallbackEl.textContent = `Pokédex #${currentPoke.id} — use the clue below!`;
+    }
   };
-  $("pokemonSilhouette").classList.remove("revealed");
+  imgEl.src = POKE_ART(currentPoke.id);
+  imgEl.alt = "Silhouette of " + currentPoke.name;
+
+  $("pokeHint").textContent = `Pokédex #${String(currentPoke.id).padStart(3, "0")} • Clue: ${currentPoke.hint}`;
   $("choices").dataset.answered = "no";
   $("mysteryName").textContent = "???";
 
-  let wrong = pokemon.filter(p => p.name !== currentPokemon.name)
-    .sort(() => Math.random() - .5).slice(0, 3);
+  let wrong = pool.filter(p => p.name !== currentPoke.name)
+    .sort(() => Math.random() - 0.5).slice(0, 3);
 
-  let choices = [...wrong, currentPokemon]
-    .sort(() => Math.random() - .5);
+  let choices = [...wrong, currentPoke]
+    .sort(() => Math.random() - 0.5);
 
   $("choices").innerHTML = "";
   choices.forEach(p => {
@@ -1115,33 +1592,44 @@ function guessPokemon(answer) {
 
   const client = getActiveClient();
 
-  if (answer === currentPokemon.name) {
-    $("guessFeedback").textContent = "🎊 YOU GOT IT! It's " + currentPokemon.name + "!";
+  if (answer === currentPoke.name) {
+    $("guessFeedback").textContent = `🎊 YOU GOT IT! It's ${currentPoke.name}! (+10 Points)`;
     client.points = (client.points || 0) + 10;
-    client.caught = (client.caught || 0) + 1;
+    const isGen2 = currentPoke.gen === "gen2" || currentPoke.id >= 152;
+    if (isGen2) {
+      client.caughtGen2 = (client.caughtGen2 || 0) + 1;
+    } else {
+      client.caughtGen1 = (client.caughtGen1 || 0) + 1;
+    }
+    client.caught = (client.caughtGen1 || 0) + (client.caughtGen2 || 0);
     saveState();
   } else {
-    $("guessFeedback").textContent = "Nice try! The Pokémon was " + currentPokemon.name + "!";
+    $("guessFeedback").textContent = `Nice try! It was ${currentPoke.name}!`;
   }
 
-  $("pokemonSilhouette").classList.add("revealed");
-  $("mysteryName").textContent = currentPokemon.name;
+  $("pokeSilhouette").classList.add("revealed");
+  $("mysteryName").textContent = `#${String(currentPoke.id).padStart(3, "0")} ${currentPoke.name}`;
   $("points").textContent = client.points || 0;
-  $("caught").textContent = client.caught || 0;
+  $("caughtGen1").textContent = client.caughtGen1 || 0;
+  $("caughtGen2").textContent = client.caughtGen2 || 0;
 
   $("choices").querySelectorAll("button").forEach(btn => {
     btn.disabled = true;
-    if (btn.textContent === currentPokemon.name) {
-      btn.style.background = "#b5edc4";
-      btn.style.color = "#205b35";
+    if (btn.textContent === currentPoke.name) {
+      btn.style.background = "#bbf7d0";
+      btn.style.color = "#14532d";
+      btn.style.borderColor = "#16a34a";
     }
   });
 
-  $("nextPokemon").classList.remove("hidden");
-  $("nextPokemon").scrollIntoView({ behavior: "smooth" });
+  $("nextPoke").classList.remove("hidden");
+  $("nextPoke").scrollIntoView({ behavior: "smooth" });
 }
 
-// Bind dropdowns and all buttons with unified touch + click handlers
+// Bind generation tabs, dropdowns, and buttons
+bindTap($("tabGen1"), () => switchGeneration("gen1"));
+bindTap($("tabGen2"), () => switchGeneration("gen2"));
+
 $("clientSelect").addEventListener("change", switchClient);
 $("sound").addEventListener("change", saveClientGoal);
 $("position").addEventListener("change", saveClientGoal);
@@ -1157,11 +1645,23 @@ bindTap($("correctBtn"), () => markTrial(1));
 bindTap($("incorrectBtn"), () => markTrial(0));
 bindTap($("nextPromptBtn"), nextPrompt);
 bindTap($("resetCountBtn"), resetCount);
-bindTap($("nextPokemon"), startGame);
+bindTap($("nextPoke"), startGame);
 bindTap($("exportActiveBtn"), () => exportCSV(false));
 bindTap($("exportAllBtn"), () => exportCSV(true));
 bindTap($("copyCsvBtn"), copyCSV);
 bindTap($("clearLogBtn"), clearSessionLog);
+
+bindTap($("unlockDeviceBtn"), openPinPanel);
+bindTap($("lockDeviceBtn"), lockDeviceNow);
+bindTap($("forgetDeviceBtn"), forgetTrustedDevice);
+bindTap($("confirmPinBtn"), confirmPinAction);
+bindTap($("cancelPinBtn"), closePinPanel);
+$("pinInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    confirmPinAction();
+  }
+});
 
 renderClientSelector();
 </script>
